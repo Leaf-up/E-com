@@ -11,7 +11,7 @@ module.exports = {
     'eslint-config-prettier',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', '*.d.ts'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '*.config.ts', '*.d.ts'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
   overrides: [
