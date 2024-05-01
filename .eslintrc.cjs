@@ -7,33 +7,30 @@ module.exports = {
     'airbnb-typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    "plugin:react/jsx-runtime",
+    'plugin:react/jsx-runtime',
     'eslint-config-prettier',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', '*.d.ts'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
   overrides: [
     {
-      'files': ['*.ts', '*.tsx'],
-      'parserOptions': {
-        'ecmaVersion': 2015,
-        'sourceType': 'module',
-        'project': ['**/tsconfig.json']
-      }
-    }
+      files: ['*.ts', '*.tsx'],
+      parserOptions: {
+        ecmaVersion: 2015,
+        sourceType: 'module',
+        project: ['**/tsconfig.json'],
+      },
+    },
   ],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto'
-      }
+        endOfLine: 'auto',
+      },
     ],
     'implicit-arrow-linebreak': 'off',
     'operator-linebreak': 'off',
@@ -50,8 +47,8 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": "error"
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
   },
-  'noInlineConfig': true
-}
+  noInlineConfig: true,
+};
