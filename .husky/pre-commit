@@ -1,0 +1,3 @@
+echo "pre-commit: start"
+npm run ci:format
+echo "pre-commit: end"
