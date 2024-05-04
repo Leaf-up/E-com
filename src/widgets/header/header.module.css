@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 2em;
+  background-color: var(--color80);
+  color: var(--color00);
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  column-gap: 2em;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 2em;
+}
+
+.header__logo {
+  font-size: 1.6em;
+}
+
+.nav {
+  display: flex;
+  row-gap: 1em;
+  font-size: 1.2em;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--color10);
+}
+
+.nav__link_active {
+  color: var(--color00);
+}

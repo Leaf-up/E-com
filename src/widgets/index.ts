@@ -1,1 +1,1 @@
-// Complex components
+export * from './header/header';
