@@ -1,1 +1,1 @@
-// Pages
+export * from './home/home';

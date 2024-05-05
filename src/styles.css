@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../src/assets/fonts/inter-v13-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../src/assets/fonts/inter-v13-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../src/assets/fonts/inter-v13-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../src/assets/fonts/inter-v13-latin-900.woff2') format('woff2');
+}
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+
+  font-family: var(--font-inter);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color-scheme: light dark;
+  --color00: #ffffff;
+  --color10: #def7e7;
+  --color20: #9aeaae;
+  --color30: #6ede8a;
+  --color40: #4ad66d;
+  --color50: #2dc653;
+  --color60: #25a244;
+  --color70: #208b3a;
+  --color80: #155d27;
+  --color90: #10451d;
+  --color100: #041107;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color00: #000714;
+    --color10: #00102d;
+    --color20: #001845;
+    --color30: #002855;
+    --color40: #023e7d;
+    --color50: #0353a4;
+    --color60: #166cc3;
+    --color70: #2885e2;
+    --color80: #4ba3fb;
+    --color90: #88c2fb;
+    --color100: #fff;
+  }
+}
+
+html {
+  height: 100%;
+  background-color: var(--color00);
+  color: var(--color100);
+}
+
+.body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
