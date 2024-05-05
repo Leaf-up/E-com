@@ -38,6 +38,8 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     'object-curly-newline': 'off',
