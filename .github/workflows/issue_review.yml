@@ -1,0 +1,23 @@
+name: Project automations
+
+on:
+  pull_request_target:
+    types:
+      - opened
+
+jobs:
+  manage-project:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Move issues to Review
+        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+        with:
+          gh_token: ${{ secrets.TOKEN }}
+          organization: Leaf-up
+          project_id: 1
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          move_related_issues: true
+          status_value: "Dev: Review Needed 🙌"
