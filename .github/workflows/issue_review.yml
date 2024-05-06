@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Move issues to Review
         uses: leonsteinhaeuser/project-beta-automations@v2.1.0
-        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+        if: ${{ github.event_name == 'pull_request_target' && github.event.action == 'opened' }}
         with:
           gh_token: ${{ secrets.TOKEN }}
           organization: Leaf-up
