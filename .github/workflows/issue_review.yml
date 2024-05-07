@@ -22,7 +22,7 @@ jobs:
           project_id: 1
           resource_node_id: ${{ github.event.pull_request.node_id }}
           move_related_issues: true
-          status_value: "Review"
+          status_value: 'Review'
   pr_closed:
     name: pr_closed
     runs-on: ubuntu-latest
@@ -36,4 +36,4 @@ jobs:
           project_id: 1
           resource_node_id: ${{ github.event.pull_request.node_id }}
           move_related_issues: true
-          status_value: "Done"
+          status_value: 'Done'
