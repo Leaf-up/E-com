@@ -1,6 +1,6 @@
 type TValidationRule = {
   message: string;
-  test: (value: string | null) => boolean | null;
+  test: (value: string | null) => boolean;
 };
 
 export type TFormValidationErrors<T> = {
@@ -57,14 +57,6 @@ export const validationRules = () => {
 
       return builder;
     },
-    nullable: () => {
-      rules.push({
-        message: '',
-        test: (value: string | null) => (value !== null ? false : null),
-      });
-
-      return builder;
-    },
     finalize: () => rules,
   };
 
@@ -74,10 +66,6 @@ export const validationRules = () => {
 export const checkRules = (value: string | null, rules: TValidationRule[]) => {
   for (let i = 0; i < rules.length; i += 1) {
     const testResult = rules[i].test(value);
-
-    if (testResult === null) {
-      return null;
-    }
 
     if (testResult) {
       return rules[i].message;

@@ -1,18 +1,7 @@
-import { ReactNode } from 'react';
+import InputProps from './types';
 import styles from './input.module.css';
 
-interface InputProps {
-  label?: string;
-  id?: string;
-  type: 'text' | 'password';
-  errorMessage?: string | null;
-  placeholder: string;
-  inputIcon?: ReactNode;
-  onChange?: (value: string) => void;
-  onInput?: (value: string) => void;
-}
-
-export function Input({ type, label, id, errorMessage, placeholder, inputIcon, onChange, onInput }: InputProps) {
+export function Input({ type, label, name, id, errorMessage, placeholder, inputIcon, onChange, onInput }: InputProps) {
   return (
     <div className={styles.field__container}>
       {label && (
@@ -24,6 +13,7 @@ export function Input({ type, label, id, errorMessage, placeholder, inputIcon, o
         <input
           className={errorMessage ? `${styles.input} ${styles.input_invalid}` : styles.input}
           type={type}
+          name={name}
           id={id}
           placeholder={placeholder}
           autoComplete="off"

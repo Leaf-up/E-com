@@ -1,21 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
+import InputPasswordProps from './types';
 import eyeClosedIcon from '../../assets/icons/eye-closed.svg';
 import eyeIcon from '../../assets/icons/eye.svg';
 import styles from './input-password.module.css';
 
-interface InputPasswordProps {
-  value: string | null;
-  setValue: (value: string) => void;
-  setValid: (valid: boolean) => void;
-}
-
-const passwordRules = validationRules().nullable().notEmpty().noSpaces().minSize(8).password().finalize();
+const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).password().finalize();
 const validatePassword = (password: string | null) => checkRules(password, passwordRules);
 
-export function InputPassword({ value, setValue, setValid }: InputPasswordProps) {
-  const [eyeImg, setEyeImg] = useState(false);
+export function InputPassword({ setValid }: InputPasswordProps) {
+  const [value, setValue] = useState<string | null>(null);
+  const [show, setShow] = useState(false);
 
   const errorMessage = validatePassword(value);
 
@@ -26,13 +22,14 @@ export function InputPassword({ value, setValue, setValid }: InputPasswordProps)
   return (
     <Input
       label="Password"
-      type={eyeImg ? 'text' : 'password'}
+      type={show ? 'text' : 'password'}
+      name="password"
       id="password"
-      errorMessage={errorMessage}
+      errorMessage={value !== null ? errorMessage : null}
       placeholder="Enter your password"
       inputIcon={
-        <div className={styles.icon__container} onClick={() => setEyeImg(!eyeImg)} aria-hidden="true">
-          {eyeImg ? (
+        <div className={styles.icon__container} onClick={() => setShow(!show)} aria-hidden="true">
+          {show ? (
             <img className={styles.icon} src={eyeIcon} alt="eye" />
           ) : (
             <img className={styles.icon} src={eyeClosedIcon} alt="closed eye" />

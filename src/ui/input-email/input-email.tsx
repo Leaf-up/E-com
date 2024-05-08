@@ -1,17 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
+import InputEmailProps from './types';
 
-interface InputEmailProps {
-  value: string | null;
-  setValue: (value: string) => void;
-  setValid: (valid: boolean) => void;
-}
-
-const emailRules = validationRules().nullable().notEmpty().noSpaces().email().finalize();
+const emailRules = validationRules().notEmpty().noSpaces().email().finalize();
 const validateEmail = (email: string | null) => checkRules(email, emailRules);
 
-export function InputEmail({ value, setValue, setValid }: InputEmailProps) {
+export function InputEmail({ setValid }: InputEmailProps) {
+  const [value, setValue] = useState<string | null>(null);
   const errorMessage = validateEmail(value);
 
   useEffect(() => {
@@ -22,9 +18,10 @@ export function InputEmail({ value, setValue, setValid }: InputEmailProps) {
     <Input
       label="Email"
       type="text"
+      name="email"
       id="email"
       placeholder="Enter your email"
-      errorMessage={errorMessage}
+      errorMessage={value !== null ? errorMessage : null}
       onInput={(email) => setValue(email)}
     />
   );
