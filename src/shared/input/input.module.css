@@ -1,0 +1,39 @@
+.field__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.input__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 0.2em 2em 0.2em 0.4em;
+  border-radius: 8px;
+  border: 1px solid var(--color90);
+  font-size: 1.2em;
+}
+
+.input:focus-visible {
+  outline: none;
+  border: 2px solid var(--color90);
+}
+
+.input_invalid {
+  border: 1px solid rgb(241, 1, 1);
+}
+
+.message {
+  position: absolute;
+  top: 40px;
+  color: rgb(241, 1, 1);
+  font-size: 0.6em;
+}
