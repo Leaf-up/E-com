@@ -51,6 +51,7 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
+    'react/require-default-props': 'off',
   },
   noInlineConfig: true,
 };

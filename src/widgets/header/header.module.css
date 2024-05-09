@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   height: 60px;
-  margin-bottom: 2em;
   background-color: var(--color80);
   color: var(--color00);
 }

@@ -10,7 +10,7 @@ export function Header() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav_link}`
+              isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`
             }
           >
             Home
