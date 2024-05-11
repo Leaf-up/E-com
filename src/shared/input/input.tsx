@@ -1,7 +1,19 @@
 import InputProps from './types';
 import styles from './input.module.css';
 
-export function Input({ type, label, name, id, errorMessage, placeholder, inputIcon, onChange, onInput }: InputProps) {
+export function Input({
+  type = 'text',
+  label,
+  name,
+  id,
+  errorMessage,
+  placeholder,
+  value,
+  readonly,
+  inputIcon,
+  onChange,
+  onClick,
+}: InputProps) {
   return (
     <div className={styles.field__container}>
       {label && (
@@ -16,9 +28,11 @@ export function Input({ type, label, name, id, errorMessage, placeholder, inputI
           name={name}
           id={id}
           placeholder={placeholder}
+          value={value}
           autoComplete="off"
+          readOnly={readonly}
           onChange={(e) => onChange?.(e.currentTarget.value)}
-          onInput={(e) => onInput?.(e.currentTarget.value)}
+          onClick={(e) => onClick?.(e.currentTarget.value)}
         />
         {errorMessage && <div className={styles.message}>{errorMessage}</div>}
         {inputIcon && inputIcon}

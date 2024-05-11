@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
 import InputPasswordProps from './types';
@@ -10,14 +10,8 @@ const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).passwor
 const validatePassword = (password: string | null) => checkRules(password, passwordRules);
 
 export function InputPassword({ setValid }: InputPasswordProps) {
-  const [value, setValue] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [show, setShow] = useState(false);
-
-  const errorMessage = validatePassword(value);
-
-  useEffect(() => {
-    setValid(!errorMessage);
-  }, [errorMessage, setValid]);
 
   return (
     <Input
@@ -25,7 +19,7 @@ export function InputPassword({ setValid }: InputPasswordProps) {
       type={show ? 'text' : 'password'}
       name="password"
       id="password"
-      errorMessage={value !== null ? errorMessage : null}
+      errorMessage={errorMessage}
       placeholder="Enter your password"
       inputIcon={
         <div className={styles.icon__container} onClick={() => setShow(!show)} aria-hidden="true">
@@ -36,7 +30,11 @@ export function InputPassword({ setValid }: InputPasswordProps) {
           )}
         </div>
       }
-      onInput={(password) => setValue(password)}
+      onChange={(password) => {
+        const error = validatePassword(password);
+        setErrorMessage(error);
+        setValid(!error);
+      }}
     />
   );
 }
