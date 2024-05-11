@@ -22,7 +22,7 @@
 
 .nav {
   display: flex;
-  row-gap: 1em;
+  column-gap: 1em;
   font-size: 1.2em;
 }
 
@@ -32,5 +32,6 @@
 }
 
 .nav__link_active {
+  text-decoration: none;
   color: var(--color00);
 }

@@ -7,13 +7,11 @@ export function Header() {
       <div className={styles.header__content}>
         <div className={styles.header__logo}>E-com</div>
         <nav className={styles.nav}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`
-            }
-          >
+          <NavLink to="/" className={({ isActive }) => (isActive ? styles.nav__link_active : styles.nav__link)}>
             Home
+          </NavLink>
+          <NavLink to="/login" className={({ isActive }) => (isActive ? styles.nav__link_active : styles.nav__link)}>
+            Login
           </NavLink>
         </nav>
       </div>
