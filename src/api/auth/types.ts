@@ -10,6 +10,13 @@ export type TCredentials = {
   password: string;
 };
 
+export type TRegisterData = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+};
+
 type TAddress = {
   id?: string;
   streetName: string;
