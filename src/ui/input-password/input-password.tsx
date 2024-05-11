@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import eyeClosedIcon from '/public/icons/eye-closed.svg';
+import eyeIcon from '/public/icons/eye.svg';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
 import InputPasswordProps from './types';
-import eyeClosedIcon from '../../assets/icons/eye-closed.svg';
-import eyeIcon from '../../assets/icons/eye.svg';
 import styles from './input-password.module.css';
 
 const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).password().finalize();

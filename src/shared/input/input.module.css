@@ -1,7 +1,7 @@
 .field__container {
   display: flex;
   flex-direction: column;
-  row-gap: 0.5em;
+  row-gap: 0.3em;
 }
 
 .label {
@@ -34,7 +34,8 @@
 
 .message {
   position: absolute;
-  top: 34px;
+  top: 4em;
   color: rgb(241, 1, 1);
   font-size: 0.6em;
+  line-height: 1;
 }

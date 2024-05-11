@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import arrowIcon from '/public/icons/arrow.svg';
 import { Input } from '~/shared';
 import DropDownProps from './types';
-import arrowIcon from '../../assets/icons/arrow.svg';
 import styles from './drop-down.module.css';
 
-export function DropDown({ label, id, name, placeholder, options, errorMessage, value, setValue }: DropDownProps) {
+export function DropDown({ label, id, name, placeholder, options, errorMessage, onClick }: DropDownProps) {
+  const [value, setValue] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<boolean | null>(null);
 
   return (
-    <div className={styles.dropDown}>
+    <div className={styles.dropdown}>
       <Input
         label={label}
         id={id}
@@ -21,6 +22,7 @@ export function DropDown({ label, id, name, placeholder, options, errorMessage, 
         onClick={() => {
           setOpen(!open);
           open && setSelected(value.length > 0);
+          onClick(value);
         }}
         inputIcon={
           <div className={styles.icon__container}>
@@ -37,6 +39,7 @@ export function DropDown({ label, id, name, placeholder, options, errorMessage, 
             onClick={() => {
               setValue(option);
               setOpen(!open);
+              onClick(option);
             }}
           >
             {option}

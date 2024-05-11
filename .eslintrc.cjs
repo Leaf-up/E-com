@@ -40,6 +40,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 'off',
+    'import/no-absolute-path': 'off',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     'object-curly-newline': 'off',

@@ -1,5 +1,5 @@
 import { RegistrationForm } from '~/widgets';
 
-export function Registration() {
+export function Register() {
   return <RegistrationForm />;
 }

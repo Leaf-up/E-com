@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { InputDate, InputEmail, InputPassword, InputText, InputPostalCode, DropDownCountry, InputStreet } from '~/ui';
-import styles from './registration-form.module.css';
+import styles from './register-form.module.css';
 
 export function RegistrationForm() {
   const [emailValid, setEmailValid] = useState<boolean>(false);

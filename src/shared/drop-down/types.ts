@@ -5,6 +5,5 @@ export default interface DropDownProps {
   placeholder: string;
   options: string[];
   errorMessage?: string | null;
-  value: string;
-  setValue: (value: string) => void;
+  onClick: (value: string) => void;
 }
