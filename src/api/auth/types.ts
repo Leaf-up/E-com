@@ -25,7 +25,7 @@ type TAddress = {
   country: string;
 };
 
-export type TUser = {
+export type TCustomer = {
   id: string;
   version: number;
   email: string;

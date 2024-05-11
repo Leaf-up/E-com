@@ -1,11 +1,14 @@
-import type { TCredentials, TUser } from './types';
+import type { TCredentials, TCustomer } from './types';
 import { getToken } from './token';
 
 const API_URL = import.meta.env.VITE_CTP_API_URL;
 const PROJECT_KEY = import.meta.env.VITE_CTP_PROJECT_KEY;
 const endpoint = `${API_URL}/${PROJECT_KEY}/login`;
 
-function getUserData(credentials: TCredentials, token: string): Promise<{ data?: TUser; error?: string }> {
+function getUserData(
+  credentials: TCredentials,
+  token: string,
+): Promise<{ customer: TCustomer | null; error: string | null }> {
   const info: { status: number; error?: string } = { status: 500 };
   const body = JSON.stringify({
     email: credentials.email,
@@ -24,25 +27,29 @@ function getUserData(credentials: TCredentials, token: string): Promise<{ data?:
       }
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
-        throw new Error(`(${info.status}) ${info.error ?? 'Havent got a JSON'}`);
+        throw new Error(info.error || 'Havent got a JSON');
       }
       return response.json();
     })
     .then((data) => {
-      if (info.status !== 200) return { error: `(${info.status}) ${data.message ?? info.error}` };
-      return { data } as { data: TUser };
+      if (info.status !== 200) return { customer: null, error: `(${info.status}) ${data.message ?? info.error}` };
+      const { customer } = data as { customer: TCustomer };
+      return { customer, error: null };
     })
-    .catch((error) => ({ error: `(${info.status}) ${error instanceof Error ? error.message : info.error}` }));
+    .catch((error) => ({
+      customer: null,
+      error: `(${info.status}) ${error instanceof Error ? error.message : info.error}`,
+    }));
 }
 
-export default function performLogin(credentials: TCredentials): Promise<TUser | string> {
+export default function performLogin(
+  credentials: TCredentials,
+): Promise<{ customer: TCustomer | null; error: string | null }> {
   return getToken().then((bearer) => {
-    if (bearer.error) return bearer.error;
+    if (bearer.error) return { customer: null, error: bearer.error };
     const token = bearer.data!.access_token;
     return getUserData(credentials, token).then((user) => {
-      if (user.error) return user.error;
-      if (user.data) return user.data;
-      return '(500) Unknown error';
+      return user;
     });
   });
 }

@@ -6,7 +6,9 @@ import eyeClosedIcon from '../../assets/icons/eye-closed.svg';
 import eyeIcon from '../../assets/icons/eye.svg';
 import styles from './input-password.module.css';
 
-const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).password().finalize();
+const passwordRules = validationRules().notEmpty().noSpaces().minSize(3).finalize();
+// Temporary disabled some rules
+// const passwordRules = validationRules().notEmpty().noSpaces().minSize(6).password().finalize();
 const validatePassword = (password: string | null) => checkRules(password, passwordRules);
 
 export function InputPassword({ setValid }: InputPasswordProps) {
