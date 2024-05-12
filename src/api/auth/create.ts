@@ -30,7 +30,9 @@ export function createCustomer(
       return response.json();
     })
     .then((data) => {
-      if (info.status !== 200) return { customer: null, error: `(${info.status}) ${data.message ?? info.error}` };
+      if (Math.floor(info.status / 100) !== 2) {
+        return { customer: null, error: `(${info.status}) ${data.message ?? info.error}` };
+      }
       const { customer } = data as { customer: TCustomer };
       return { customer, error: null };
     })

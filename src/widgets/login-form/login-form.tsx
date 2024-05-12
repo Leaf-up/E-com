@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { InputEmail, InputPassword } from '~/ui';
+import { InputEmail, InputPassword, ButtonSubmit, FormError } from '~/ui';
 import { TCredentials } from '~/api/auth/types';
 import { performLogin } from '~/api';
 import styles from './login-form.module.css';
@@ -34,10 +34,10 @@ export function LoginForm() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <InputEmail setValid={setEmailValid} />
       <InputPassword setValid={setPasswordValid} />
-      <button className={styles.form__button} type="submit" disabled={!emailValid || !passwordValid}>
-        {loading ? <div className={styles.form__button_loader} /> : 'Login'}
-      </button>
-      {error && <span className={styles.form__error}>{error}</span>}
+      <FormError error={error} />
+      <ButtonSubmit loading={loading} disabled={!emailValid || !passwordValid}>
+        Login
+      </ButtonSubmit>
     </form>
   );
 }
