@@ -1,6 +1,6 @@
-import type { TCustomer } from '~/api/auth/types';
-import { makeAutoObservable, reaction } from 'mobx';
 import { useState, useEffect } from 'react';
+import { makeAutoObservable, reaction } from 'mobx';
+import type { TCustomer } from '~/api/auth/types';
 
 class CustomerStore {
   private _user: TCustomer | null = null;
@@ -22,7 +22,7 @@ class CustomerStore {
 export const customerStore = new CustomerStore();
 
 export const useCustomer = () => {
-  const [user, setUser] = useState<TCustomer | null>(null);
+  const [user, setUser] = useState<TCustomer | null>(customerStore.user);
 
   useEffect(() => {
     reaction(
@@ -31,8 +31,6 @@ export const useCustomer = () => {
         setUser(value);
       },
     );
-
-    if (customerStore.user) setUser(customerStore.user);
   }, []);
 
   return { user };

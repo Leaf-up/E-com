@@ -1,4 +1,5 @@
 import { customerStore, useCustomer } from '~/entities';
+import { objectKeys } from '~/utils';
 
 export function Test() {
   const { user } = useCustomer();
@@ -9,7 +10,7 @@ export function Test() {
 
   const handleSet = () => {
     customerStore.user = {
-      id: '',
+      id: '01',
       version: 1,
       email: 'john@example.com',
       firstName: 'John',
@@ -25,11 +26,29 @@ export function Test() {
     <section>
       <h1>Customer state test</h1>
       <h3>Customer:</h3>
-      <p style={{ wordBreak: 'break-all', maxWidth: '30em' }}>{JSON.stringify(user)}</p>
+      {/* <p style={{ wordBreak: 'break-all', maxWidth: '30em' }}>{JSON.stringify(user)}</p> */}
+      <table>
+        <tbody>
+          {user &&
+            objectKeys(user).map((key) => {
+              const val = user[key];
+              return typeof val === 'string' ? (
+                <tr key={key}>
+                  <td>{key}</td>
+                  <td>{val}</td>
+                </tr>
+              ) : null;
+            })}
+        </tbody>
+      </table>
       <hr />
-      <button onClick={handleSet}>Set example customer</button>
+      <button type="button" onClick={handleSet}>
+        Set example customer
+      </button>
       <br />
-      <button onClick={handleDelete}>Delete customer</button>
+      <button type="button" onClick={handleDelete}>
+        Delete customer
+      </button>
     </section>
   );
 }
