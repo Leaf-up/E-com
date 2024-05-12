@@ -26,7 +26,6 @@ export function Test() {
     <section>
       <h1>Customer state test</h1>
       <h3>Customer:</h3>
-      {/* <p style={{ wordBreak: 'break-all', maxWidth: '30em' }}>{JSON.stringify(user)}</p> */}
       <table>
         <tbody>
           {user &&
