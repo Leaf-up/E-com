@@ -1,4 +1,4 @@
-import styles from './error.module.css';
+import styles from './form-error.module.css';
 
 export default function FormError({ error }: { error: string }) {
   if (!error) return null;
