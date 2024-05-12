@@ -11,7 +11,7 @@ export function InputEmail({ setValid }: InputEmailProps) {
 
   return (
     <Input
-      label="Email"
+      label="Email*"
       name="email"
       id="email"
       placeholder="Enter your email"

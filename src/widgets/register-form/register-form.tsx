@@ -1,37 +1,67 @@
 import { useState, type FormEvent } from 'react';
-import { InputDate, InputEmail, InputPassword, InputText, InputPostalCode, DropDownCountry, InputStreet } from '~/ui';
+import {
+  InputDate,
+  InputEmail,
+  InputPassword,
+  InputText,
+  InputPostalCode,
+  DropDownCountry,
+  InputStreet,
+  ButtonSubmit,
+  FormError,
+} from '~/ui';
+import { TRegisterData } from '~/api/auth/types';
+import performRegister from '~/api/auth/create';
 import styles from './register-form.module.css';
 
 export function RegistrationForm() {
-  const [emailValid, setEmailValid] = useState<boolean>(false);
-  const [passwordValid, setPasswordValid] = useState<boolean>(false);
-  const [dateValid, setDateValid] = useState<boolean>(false);
-  const [firstNameValid, setFirstNameValid] = useState<boolean>(false);
-  const [lastNameValid, setLastNameValid] = useState<boolean>(false);
-  const [cityValid, setCityValid] = useState<boolean>(false);
-  const [streetValid, setStreetValid] = useState<boolean>(false);
-  const [postalCodeValid, setPostalCodeValid] = useState<boolean>(false);
-  const [countryValid, setCountryValid] = useState<boolean>(false);
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [dateValid, setDateValid] = useState(false);
+  const [firstNameValid, setFirstNameValid] = useState(false);
+  const [lastNameValid, setLastNameValid] = useState(false);
+  const [cityValid, setCityValid] = useState(false);
+  const [streetValid, setStreetValid] = useState(false);
+  const [postalCodeValid, setPostalCodeValid] = useState(false);
+  const [countryValid, setCountryValid] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   console.log(!dateValid || !cityValid || !streetValid || !postalCodeValid || !countryValid);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // TODO: Perform login
+    setError('');
+    setLoading(true);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data: TRegisterData = {
+      email: formData.get('email')?.toString() ?? '',
+      password: formData.get('password')?.toString() ?? '',
+      firstName: formData.get('first-name')?.toString() ?? '',
+      lastName: formData.get('last-name')?.toString() ?? '',
+    };
+    performRegister(data).then((response) => {
+      if (response.error) {
+        setError(response.error);
+        setLoading(false);
+        return;
+      }
+      console.log(response.customer);
+      setLoading(false);
+    });
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <InputText
-        label="First name"
+        label="First name*"
         name="first-name"
         id="first-name"
         placeholder="Enter your first name"
         setValid={setFirstNameValid}
       />
       <InputText
-        label="Last name"
+        label="Last name*"
         name="last-name"
         id="last-name"
         placeholder="Enter your last name"
@@ -44,13 +74,10 @@ export function RegistrationForm() {
       <InputText label="City" name="city" id="city" placeholder="Enter your city" setValid={setCityValid} />
       <InputStreet setValid={setStreetValid} />
       <InputPostalCode setValid={setPostalCodeValid} />
-      <button
-        className={styles.form__button}
-        type="submit"
-        disabled={!emailValid || !passwordValid || !firstNameValid || !lastNameValid}
-      >
+      <FormError error={error} />
+      <ButtonSubmit loading={loading} disabled={!emailValid || !passwordValid || !firstNameValid || !lastNameValid}>
         Sign up
-      </button>
+      </ButtonSubmit>
     </form>
   );
 }

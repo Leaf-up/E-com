@@ -1,3 +1,7 @@
+import ButtonSubmit from './submit/submit';
+import FormError from './auth-error/error';
+
+export { ButtonSubmit, FormError };
 export { InputEmail } from './input-email/input-email';
 export { InputPassword } from './input-password/input-password';
 export { InputDate } from './input-date/input-date';

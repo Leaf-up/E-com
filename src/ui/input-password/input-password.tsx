@@ -17,7 +17,7 @@ export function InputPassword({ setValid }: InputPasswordProps) {
 
   return (
     <Input
-      label="Password"
+      label="Password*"
       type={show ? 'text' : 'password'}
       name="password"
       id="password"
