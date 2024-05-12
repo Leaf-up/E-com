@@ -1,5 +1,6 @@
 import type { TCredentials, TCustomer } from './types';
 import { getToken } from './token';
+import { customerStore } from '~/entities';
 
 const API_URL = import.meta.env.VITE_CTP_API_URL;
 const PROJECT_KEY = import.meta.env.VITE_CTP_PROJECT_KEY;
@@ -22,7 +23,7 @@ function getUserData(
   return fetch(endpoint, { method: 'POST', headers, body })
     .then((response) => {
       info.status = response.status;
-      if (~~(response.status / 100) !== 2) {
+      if (Math.floor(response.status / 100) !== 2) {
         info.error = response.statusText;
       }
       const contentType = response.headers.get('content-type');
@@ -48,8 +49,9 @@ export default function performLogin(
   return getToken().then((bearer) => {
     if (bearer.error) return { customer: null, error: bearer.error };
     const token = bearer.data!.access_token;
-    return getUserData(credentials, token).then((user) => {
-      return user;
+    return getUserData(credentials, token).then((response) => {
+      if (response.customer) customerStore.user = response.customer;
+      return response;
     });
   });
 }
