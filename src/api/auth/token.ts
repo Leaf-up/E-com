@@ -18,7 +18,7 @@ export function getToken(): Promise<{ data?: TToken; error?: string }> {
   return fetch(endpoint, { method: 'POST', headers, body })
     .then((response) => {
       info.status = response.status;
-      if (~~(response.status / 100) !== 2) {
+      if (Math.floor(response.status / 100) !== 2) {
         info.error = response.statusText;
       }
       const contentType = response.headers.get('content-type');
