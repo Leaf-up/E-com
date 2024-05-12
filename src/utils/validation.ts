@@ -47,12 +47,74 @@ export const validationRules = () => {
 
       return builder;
     },
+    maxSize: (size: number, message: string | null = null) => {
+      rules.push({
+        message: message ?? `Maximum size should be ${size} characters`,
+        test: (value: string | null) => !value || value.length > size,
+      });
+
+      return builder;
+    },
     password: (message: string | null = null) => {
       rules.push({
         message:
           message ??
           'Password must contain latin letters, at least one uppercase letter, one lowercase letter and one number',
         test: (value: string | null) => !value || !value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]*$/),
+      });
+
+      return builder;
+    },
+    date: (message: string | null = null) => {
+      rules.push({
+        message: message ?? 'Enter the correct date in the format mm.dd.yyyy',
+        test: (value: string | null) =>
+          !value || !value.match(/^(0[1-9]|1[012])[.](0[1-9]|[12][0-9]|3[01])[.](19|20)\d\d$/),
+      });
+
+      return builder;
+    },
+    minAge: (minAge: number, message: string | null = null) => {
+      rules.push({
+        message: message ?? `Minimum age must be ${minAge} years old`,
+        test: (value: string | null) => {
+          const birthday = value && new Date(value);
+          const currentDate = new Date();
+          const age = birthday && currentDate.getFullYear() - birthday.getFullYear();
+
+          return (
+            !value ||
+            !age ||
+            age < minAge ||
+            (age === minAge &&
+              (currentDate.getMonth() < birthday.getMonth() ||
+                (currentDate.getMonth() === birthday.getMonth() && currentDate.getDate() < birthday.getDate())))
+          );
+        },
+      });
+
+      return builder;
+    },
+    onlyLetters: (message: string | null = null) => {
+      rules.push({
+        message: message ?? 'Field must contain only latin letters',
+        test: (value: string | null) => !value || !value.match(/^[a-zA-Z]*$/),
+      });
+
+      return builder;
+    },
+    onlyNumbers: (message: string | null = null) => {
+      rules.push({
+        message: message ?? 'Field must contain only numbers',
+        test: (value: string | null) => !value || !value.match(/^[\d]*$/),
+      });
+
+      return builder;
+    },
+    string: (message: string | null = null) => {
+      rules.push({
+        message: message ?? 'The field must contain at least one latin letter',
+        test: (value: string | null) => !value || !value.match(/[a-zA-Z]+/),
       });
 
       return builder;

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import eyeClosedIcon from '/public/icons/eye-closed.svg';
+import eyeIcon from '/public/icons/eye.svg';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
 import InputPasswordProps from './types';
-import eyeClosedIcon from '../../assets/icons/eye-closed.svg';
-import eyeIcon from '../../assets/icons/eye.svg';
 import styles from './input-password.module.css';
 
 const passwordRules = validationRules().notEmpty().noSpaces().minSize(3).finalize();
@@ -12,14 +12,8 @@ const passwordRules = validationRules().notEmpty().noSpaces().minSize(3).finaliz
 const validatePassword = (password: string | null) => checkRules(password, passwordRules);
 
 export function InputPassword({ setValid }: InputPasswordProps) {
-  const [value, setValue] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [show, setShow] = useState(false);
-
-  const errorMessage = validatePassword(value);
-
-  useEffect(() => {
-    setValid(!errorMessage);
-  }, [errorMessage, setValid]);
 
   return (
     <Input
@@ -27,7 +21,7 @@ export function InputPassword({ setValid }: InputPasswordProps) {
       type={show ? 'text' : 'password'}
       name="password"
       id="password"
-      errorMessage={value !== null ? errorMessage : null}
+      errorMessage={errorMessage}
       placeholder="Enter your password"
       inputIcon={
         <div className={styles.icon__container} onClick={() => setShow(!show)} aria-hidden="true">
@@ -38,7 +32,11 @@ export function InputPassword({ setValid }: InputPasswordProps) {
           )}
         </div>
       }
-      onInput={(password) => setValue(password)}
+      onChange={(password) => {
+        const error = validatePassword(password);
+        setErrorMessage(error);
+        setValid(!error);
+      }}
     />
   );
 }
