@@ -1,12 +1,11 @@
 .field__container {
   display: flex;
   flex-direction: column;
-  row-gap: 0.3em;
 }
 
 .label {
   font-weight: 500;
-  font-size: 1.2em;
+  margin-left: 0.5em;
 }
 
 .input__container {
