@@ -3,6 +3,7 @@
   flex-direction: column;
   row-gap: 1.2em;
   width: 340px;
+  margin: 1em 0;
 }
 
 .form__button {
@@ -14,21 +15,6 @@
   font-size: 1.2em;
   font-weight: 500;
   cursor: pointer;
-}
-
-.form__button_loader {
-  width: 1em;
-  height: 1em;
-  margin: 0 auto;
-  background-image: url('./icons/loading.svg');
-  background-size: cover;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotateZ(360deg);
-  }
 }
 
 .form__button:active {
@@ -55,8 +41,4 @@
 .form__button:disabled:active {
   background-color: var(--color20);
   color: var(--color90);
-}
-
-.form__error {
-  color: red;
 }
