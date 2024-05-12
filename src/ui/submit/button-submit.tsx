@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import type ButtonSubmitProps from './types';
-import styles from './submit.module.css';
+import styles from './button-submit.module.css';
 
 const ButtonSubmit: FC<ButtonSubmitProps> = ({ children, loading, disabled }) => {
   return (
