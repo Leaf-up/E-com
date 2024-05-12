@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2015: true },
+  env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
     'airbnb',
@@ -18,7 +18,7 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       parserOptions: {
-        ecmaVersion: 2015,
+        ecmaVersion: 2020,
         sourceType: 'module',
         project: ['**/tsconfig.json'],
       },
@@ -44,7 +44,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     'object-curly-newline': 'off',
-    'no-bitwise': 'off',
     'lines-between-class-members': 'off',
     'prefer-destructuring': ['error', { object: true, array: false }],
     '@typescript-eslint/no-explicit-any': 'error',
