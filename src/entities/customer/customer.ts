@@ -10,7 +10,6 @@ class CustomerStore {
   }
 
   set user(value: TCustomer | null) {
-    console.log('Store: user updated');
     this._user = value;
   }
 
