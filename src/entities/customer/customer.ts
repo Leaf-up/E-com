@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { autorun, makeAutoObservable, reaction } from 'mobx';
+import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/auth/types';
 
 const STORAGE_KEY = 'customer';
@@ -13,14 +13,11 @@ class CustomerStore {
     const customer = localStorage.getItem(STORAGE_KEY);
 
     if (customer) this._user = JSON.parse(customer);
-
-    autorun(() => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this._user));
-    });
   }
 
   set user(value: TCustomer | null) {
     this._user = value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this._user));
   }
 
   get user() {
