@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import arrowIcon from '/public/icons/arrow.svg';
+import arrowIcon from '/icons/arrow.svg';
 import { Input } from '~/shared';
 import DropDownProps from './types';
 import styles from './drop-down.module.css';

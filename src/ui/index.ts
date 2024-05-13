@@ -1,5 +1,5 @@
-import ButtonSubmit from './submit/submit';
-import FormError from './auth-error/error';
+import ButtonSubmit from './submit/button-submit';
+import FormError from './auth-error/form-error';
 
 export { ButtonSubmit, FormError };
 export { InputEmail } from './input-email/input-email';
