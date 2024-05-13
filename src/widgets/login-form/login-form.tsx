@@ -14,18 +14,21 @@ export function LoginForm() {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const formData = new FormData(e.target as HTMLFormElement);
+
+    const formData = new FormData(e.currentTarget);
     const credentials: TCredentials = {
       email: formData.get('email')?.toString() ?? '',
       password: formData.get('password')?.toString() ?? '',
     };
+
     performLogin(credentials).then((response) => {
       if (response.error) {
         setError(response.error);
         setLoading(false);
+
         return;
       }
-      console.log(response.customer);
+
       setLoading(false);
     });
   };
