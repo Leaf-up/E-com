@@ -23,10 +23,15 @@ const menu = [
     route: '/test',
     customer: true,
   },
+  {
+    title: 'Logout',
+    action: 'logout',
+    customer: true,
+  },
 ];
 
 export function Header() {
-  const { user } = useCustomer();
+  const { user, logout } = useCustomer();
   const getLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? styles.nav__link_active : styles.nav__link);
 
   return (
@@ -39,9 +44,16 @@ export function Header() {
               .filter((el) => el.customer === Boolean(user))
               .map((item) => (
                 <li key={item.title}>
-                  <NavLink to={item.route} className={getLinkClass}>
-                    {item.title}
-                  </NavLink>
+                  {item.route && (
+                    <NavLink to={item.route} className={getLinkClass}>
+                      {item.title}
+                    </NavLink>
+                  )}
+                  {item.action === 'logout' && (
+                    <button type="button" className={styles.nav__link} onClick={logout}>
+                      {item.title}
+                    </button>
+                  )}
                 </li>
               ))}
           </ul>
