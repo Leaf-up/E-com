@@ -45,6 +45,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'object-curly-newline': 'off',
     'lines-between-class-members': 'off',
+    '@typescript-eslint/lines-between-class-members': 'off',
     'prefer-destructuring': ['error', { object: true, array: false }],
     '@typescript-eslint/no-explicit-any': 'error',
     'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
