@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import eyeClosedIcon from '/public/icons/eye-closed.svg';
-import eyeIcon from '/public/icons/eye.svg';
+import eyeClosedIcon from '/icons/eye-closed.svg';
+import eyeIcon from '/icons/eye.svg';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
 import InputPasswordProps from './types';
