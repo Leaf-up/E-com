@@ -30,8 +30,14 @@
 }
 
 .nav__link {
+  font-size: 1em;
   text-decoration: none;
   color: var(--color10);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
 .nav__link_active {
