@@ -1,23 +1,21 @@
 import { useState, useEffect } from 'react';
 import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/auth/types';
-
-const STORAGE_KEY = 'customer';
+import store from '~/utils/store';
 
 class CustomerStore {
   private _user: TCustomer | null = null;
 
   constructor() {
+    const user = store.get<TCustomer>('user');
+    if (user) this._user = user;
+
     makeAutoObservable(this);
-
-    const customer = localStorage.getItem(STORAGE_KEY);
-
-    if (customer) this._user = JSON.parse(customer);
   }
 
   set user(value: TCustomer | null) {
     this._user = value;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this._user));
+    store.set('user', this._user);
   }
 
   get user() {
@@ -30,6 +28,10 @@ export const customerStore = new CustomerStore();
 export const useCustomer = () => {
   const [user, setUser] = useState<TCustomer | null>(customerStore.user);
 
+  const logout = () => {
+    customerStore.user = null;
+  };
+
   useEffect(() => {
     reaction(
       () => customerStore.user,
@@ -39,5 +41,5 @@ export const useCustomer = () => {
     );
   }, []);
 
-  return { user };
+  return { user, logout };
 };
