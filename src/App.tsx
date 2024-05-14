@@ -19,10 +19,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route element={<ProtectedRoute isRedirect={!user} redirectTo="/login" />}>
-          <Route index element={<Home />} />
-          <Route path="/test" element={<Test />} />
-        </Route>
+        <Route index element={<Home />} />
+        <Route path="/test" element={<Test />} />
         <Route element={<ProtectedRoute isRedirect={Boolean(user)} redirectTo="/" />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

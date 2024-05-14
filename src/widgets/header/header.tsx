@@ -9,6 +9,11 @@ const menu = [
     customer: true,
   },
   {
+    title: 'Test',
+    route: '/test',
+    customer: true,
+  },
+  {
     title: 'Login',
     route: '/login',
     customer: false,
@@ -17,11 +22,6 @@ const menu = [
     title: 'Register',
     route: '/register',
     customer: false,
-  },
-  {
-    title: 'Test',
-    route: '/test',
-    customer: true,
   },
   {
     title: 'Logout',
@@ -41,10 +41,10 @@ export function Header() {
           <NavLink to="/" className={styles.header__logo_img} />
           <span className={styles.header__logo_title}>E-com</span>
         </div>
-        <nav>
+        <nav className={styles.nav}>
           <ul className={styles.nav__list}>
             {menu
-              .filter((el) => el.customer === Boolean(user))
+              .filter((el) => (user ? el.customer === Boolean(user) : !el.action))
               .map((item) => (
                 <li key={item.title}>
                   {item.route && (
