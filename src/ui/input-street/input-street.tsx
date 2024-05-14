@@ -11,7 +11,7 @@ export function InputStreet({ setValid }: InputStreetProps) {
 
   return (
     <Input
-      label="Street"
+      label="Street*"
       name="street"
       id="street"
       placeholder="Enter your street"

@@ -11,7 +11,7 @@ export function DropDownCountry({ setValid }: DropDownCountryProps) {
 
   return (
     <DropDown
-      label="Country"
+      label="Country*"
       name="country"
       id="country"
       placeholder="Select a country"
