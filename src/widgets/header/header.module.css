@@ -11,6 +11,7 @@
 .header__content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   column-gap: 2em;
   max-width: 1400px;
   width: 100%;
@@ -18,6 +19,23 @@
 }
 
 .header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+  width: 9em;
+}
+
+.header__logo_img {
+  display: inline-block;
+  width: 2.5em;
+  height: 2.5em;
+  background-color: var(--color100);
+  background-image: url(./image/leafup.svg);
+  background-size: cover;
+  border-radius: 0.25em;
+}
+
+.header__logo_title {
   font-size: 1.6em;
 }
 

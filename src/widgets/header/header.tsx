@@ -37,7 +37,10 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.header__content}>
-        <div className={styles.header__logo}>E-com</div>
+        <div className={styles.header__logo}>
+          <NavLink to={'/'} className={styles.header__logo_img} />
+          <span className={styles.header__logo_title}>E-com</span>
+        </div>
         <nav>
           <ul className={styles.nav__list}>
             {menu
@@ -58,6 +61,7 @@ export function Header() {
               ))}
           </ul>
         </nav>
+        <div className={styles.header__logo} />
       </div>
     </header>
   );
