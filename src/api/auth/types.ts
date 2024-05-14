@@ -15,6 +15,8 @@ export type TRegisterData = {
   firstName: string;
   lastName: string;
   password: string;
+  dateOfBirth: string;
+  addresses: TAddress[];
 };
 
 type TAddress = {

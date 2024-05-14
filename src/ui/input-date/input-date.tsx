@@ -11,7 +11,7 @@ export function InputDate({ setValid }: InputDateProps) {
 
   return (
     <Input
-      label="Date of birth"
+      label="Date of birth*"
       name="date-of-birth"
       id="date-of-birth"
       placeholder="MM.DD.YYYY"
