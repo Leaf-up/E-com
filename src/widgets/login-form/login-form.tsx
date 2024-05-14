@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Link } from 'react-router-dom';
-import { InputEmail, InputPassword, ButtonSubmit, FormError } from '~/ui';
+import { InputEmail, InputPassword, ButtonSubmit, FormError, FormLink } from '~/ui';
 import { TCredentials } from '~/api/auth/types';
 import { performLogin } from '~/api';
 import styles from './login-form.module.css';
@@ -42,12 +41,7 @@ export function LoginForm() {
       <ButtonSubmit loading={loading} disabled={!emailValid || !passwordValid}>
         Login
       </ButtonSubmit>
-      <div className={styles.register}>
-        No account?
-        <Link to="/register" className={styles.register__link}>
-          Create a new account
-        </Link>
-      </div>
+      <FormLink text="No account?" linkText="Create a new account" path="/register" />
     </form>
   );
 }
