@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Layout } from './layout';
-import { Home, Login, Register, Test } from './pages';
+import { Home, Login, Register, Test, Page404 } from './pages';
 import { useCustomer } from './entities';
 import './styles.css';
 
@@ -27,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
+        <Route path="/*" element={<Page404 />} />
       </Route>
     </Routes>
   );
