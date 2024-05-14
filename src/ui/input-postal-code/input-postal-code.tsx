@@ -11,7 +11,7 @@ export function InputPostalCode({ setValid }: InputTextProps) {
 
   return (
     <Input
-      label="Postal code"
+      label="Postal code*"
       name="postal-code"
       id="postal-code"
       placeholder="Enter your postal code"
