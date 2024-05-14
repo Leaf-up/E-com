@@ -9,6 +9,7 @@ import {
   InputStreet,
   ButtonSubmit,
   FormError,
+  FormLink,
 } from '~/ui';
 import { TRegisterData } from '~/api/auth/types';
 import performRegister from '~/api/auth/create';
@@ -105,6 +106,7 @@ export function RegistrationForm() {
       >
         Sign up
       </ButtonSubmit>
+      <FormLink text="Already have an account?" linkText="Login" path="/login" />
     </form>
   );
 }
