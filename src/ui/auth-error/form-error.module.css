@@ -1,8 +1,5 @@
 .form__error {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  margin-bottom: 2.2em;
   font-size: smaller;
+  height: 1.5em;
   color: red;
 }
