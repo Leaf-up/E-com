@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Layout } from './layout';
-import { Home, Login, Register, Test, Page404 } from './pages';
+import { Home, Login, Register, PageTest, Page404 } from './pages';
 import { useCustomer } from './entities';
 import './styles.css';
 
@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/test" element={<PageTest />} />
         <Route element={<ProtectedRoute isRedirect={Boolean(user)} redirectTo="/" />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
