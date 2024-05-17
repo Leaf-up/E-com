@@ -1,25 +1,25 @@
 type TFunc = (...args: unknown[]) => void;
 
 export function throttle(func: TFunc, delay = 1000) {
-  let timerFlag = 0;
+  let timerFlag: ReturnType<typeof setTimeout> | null = null;
 
   return (...args: unknown[]) => {
-    if (timerFlag === 0) {
+    if (timerFlag === null) {
       func(...args);
-      timerFlag = window.setTimeout(() => {
-        timerFlag = 0;
+      timerFlag = setTimeout(() => {
+        timerFlag = null;
       }, delay);
     }
   };
 }
 
 export function debounce(func: TFunc, delay = 1000) {
-  let timer = 0;
+  let timerFlag: ReturnType<typeof setTimeout> | null = null;
 
   return (...args: unknown[]) => {
-    clearTimeout(timer);
+    if (timerFlag !== null) clearTimeout(timerFlag);
 
-    timer = window.setTimeout(() => {
+    timerFlag = setTimeout(() => {
       func(...args);
     }, delay);
   };
