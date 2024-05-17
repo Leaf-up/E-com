@@ -7,7 +7,7 @@ const clientToken = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
 
 const endpoint = `${AUTH_URL}/oauth/token`;
 
-export function getToken(): Promise<{ data?: TToken; error?: string }> {
+export default function getToken(): Promise<{ data?: TToken; error?: string }> {
   const info: { status: number; error?: string } = { status: 500 };
   const body = 'grant_type=client_credentials';
   const headers = {

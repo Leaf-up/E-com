@@ -1,5 +1,5 @@
 import { AUTH_URL } from '~/api/constants';
-import { getToken } from '~/api/auth/token';
+import getToken from '~/api/auth/token';
 
 const endpoint = `${AUTH_URL}/oauth/token`;
 
