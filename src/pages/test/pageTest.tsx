@@ -1,7 +1,7 @@
 import { customerStore, useCustomer } from '~/entities';
 import { objectKeys } from '~/utils';
 
-export function Test() {
+export function PageTest() {
   const { user } = useCustomer();
 
   const handleDelete = () => {
