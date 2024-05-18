@@ -53,19 +53,19 @@ export function RegistrationForm() {
   const onChange = () => {
     const data = getFormData();
     if (!data || !ref.current || !ref.current.checkbox.checked) return;
-    ref.current['billing-city'].value = data.shippingCity;
-    ref.current['billing-country'].value = data.shippingCountry;
-    ref.current['billing-postal-code'].value = data.shippingPostalCode;
-    ref.current['billing-street'].value = data.shippingStreetName;
+    if (ref.current['billing-city']) ref.current['billing-city'].value = data.shippingCity;
+    if (ref.current['billing-country']) ref.current['billing-country'].value = data.shippingCountry;
+    if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = data.shippingPostalCode;
+    if (ref.current['billing-street']) ref.current['billing-street'].value = data.shippingStreetName;
   };
 
   useEffect(() => {
     const data = getFormData();
     if (!data || !ref.current || isChecked) return;
-    ref.current['billing-city'].value = '';
-    ref.current['billing-country'].value = '';
-    ref.current['billing-postal-code'].value = '';
-    ref.current['billing-street'].value = '';
+    if (ref.current['billing-city']) ref.current['billing-city'].value = '';
+    if (ref.current['billing-country']) ref.current['billing-country'].value = '';
+    if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = '';
+    if (ref.current['billing-street']) ref.current['billing-street'].value = '';
   }, [isChecked]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

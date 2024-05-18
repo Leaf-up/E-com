@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { RegistrationForm } from '~/widgets';
 
-it('DOM: Login form component', () => {
+it('DOM: Register form component', () => {
   const { asFragment } = render(
     <BrowserRouter>
       <RegistrationForm />

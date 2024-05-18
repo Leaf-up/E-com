@@ -18,6 +18,8 @@ const registerData: TRegisterData = {
       country: 'country',
     },
   ],
+  shippingAddresses: [1],
+  billingAddresses: [1],
 };
 const testToken = 'Og==';
 const testResponse = { customer: registerData };
