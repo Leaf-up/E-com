@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import arrowIcon from '/icons/arrow.svg';
 import { Input } from '~/shared';
 import DropDownProps from './types';
-import styles from './drop-down.module.css';
+import styles from './dropdown.module.css';
 
-export function DropDown({ label, id, name, placeholder, options, errorMessage, onClick }: DropDownProps) {
-  const [value, setValue] = useState<string>('');
+export function Dropdown({ label, id, name, placeholder, options, errorMessage, onClick, isDisabled }: DropDownProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<boolean | null>(null);
+  const ref = useRef<HTMLInputElement>(null);
 
   return (
     <div className={styles.dropdown}>
@@ -16,11 +16,13 @@ export function DropDown({ label, id, name, placeholder, options, errorMessage, 
         id={id}
         name={name}
         placeholder={placeholder}
-        value={value}
+        ref={ref}
         readonly
+        disabled={isDisabled}
         errorMessage={selected !== null ? errorMessage : null}
         onClick={() => {
           setOpen(!open);
+          const value = ref.current?.value ?? '';
           open && setSelected(value.length > 0);
           onClick(value);
         }}
@@ -37,7 +39,9 @@ export function DropDown({ label, id, name, placeholder, options, errorMessage, 
             type="button"
             key={option}
             onClick={() => {
-              setValue(option);
+              if (ref.current) {
+                ref.current.value = option;
+              }
               setOpen(!open);
               onClick(option);
             }}

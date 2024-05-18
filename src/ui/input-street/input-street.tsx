@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
 import InputStreetProps from './types';
@@ -6,21 +6,33 @@ import InputStreetProps from './types';
 const streetRules = validationRules().notEmpty().string().finalize();
 const validateStreet = (email: string | null) => checkRules(email, streetRules);
 
-export function InputStreet({ setValid }: InputStreetProps) {
+export function InputStreet({ setValid, type, isDisabled }: InputStreetProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const onChange = (street: string) => {
+    if (isDisabled) return;
+
+    const error = validateStreet(street);
+    setErrorMessage(error);
+    setValid(!error);
+  };
+
+  useEffect(() => {
+    if (isDisabled) {
+      setErrorMessage(null);
+      setValid(true);
+    }
+  }, [isDisabled, setValid]);
 
   return (
     <Input
       label="Street*"
-      name="street"
-      id="street"
+      name={`${type}-street`}
+      id={`${type}-street`}
       placeholder="Enter your street"
       errorMessage={errorMessage}
-      onChange={(inputValue) => {
-        const error = validateStreet(inputValue);
-        setErrorMessage(error);
-        setValid(!error);
-      }}
+      disabled={isDisabled}
+      onChange={onChange}
     />
   );
 }

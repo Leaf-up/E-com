@@ -5,5 +5,6 @@ export default interface DropDownProps {
   placeholder: string;
   options: string[];
   errorMessage?: string | null;
+  isDisabled?: boolean;
   onClick: (value: string) => void;
 }

@@ -1,3 +1,5 @@
 export default interface DropDownCountryProps {
   setValid: (value: boolean) => void;
+  type: string;
+  isDisabled?: boolean;
 }

@@ -1,4 +1,4 @@
-export default interface InputTextProps {
+export default interface InputCityProps {
   setValid: (value: boolean) => void;
   type: string;
   isDisabled?: boolean;

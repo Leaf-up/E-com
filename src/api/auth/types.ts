@@ -17,6 +17,10 @@ export type TRegisterData = {
   password: string;
   dateOfBirth: string;
   addresses: TAddress[];
+  shippingAddresses: number[];
+  billingAddresses: number[];
+  defaultShippingAddress?: number;
+  defaultBillingAddress?: number;
 };
 
 type TAddress = {

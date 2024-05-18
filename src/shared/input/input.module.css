@@ -1,6 +1,13 @@
-.field__container {
+.field {
   display: flex;
   flex-direction: column;
+}
+
+.field_check {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .label {
@@ -8,7 +15,7 @@
   margin-left: 0.5em;
 }
 
-.input__container {
+.input_container {
   position: relative;
   display: flex;
   flex-direction: column;
