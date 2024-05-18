@@ -1,26 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
-import InputTextProps from './types';
+import type InputTextProps from './types';
 
 const textRules = validationRules().notEmpty().onlyNumbers().minSize(5).maxSize(5).finalize();
-const validatePostalCode = (email: string | null) => checkRules(email, textRules);
 
-export function InputPostalCode({ setValid }: InputTextProps) {
+export function InputPostalCode({ setValid, type, isDisabled }: InputTextProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const onChange = (postalCode: string) => {
+    if (isDisabled) return;
+
+    const error = checkRules(postalCode, textRules);
+    setErrorMessage(error);
+    setValid(!error);
+  };
+
+  useEffect(() => {
+    if (isDisabled) {
+      setErrorMessage(null);
+      setValid(true);
+    }
+  }, [isDisabled, setValid]);
 
   return (
     <Input
       label="Postal code*"
-      name="postal-code"
-      id="postal-code"
+      name={`${type}-postal-code`}
+      id={`${type}-postal-code`}
       placeholder="Enter your postal code"
       errorMessage={errorMessage}
-      onChange={(postalCode) => {
-        const error = validatePostalCode(postalCode);
-        setErrorMessage(error);
-        setValid(!error);
-      }}
+      disabled={isDisabled}
+      onChange={onChange}
     />
   );
 }

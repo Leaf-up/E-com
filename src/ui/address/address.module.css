@@ -1,0 +1,11 @@
+.address {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2em;
+}
+
+.address__title {
+  margin-bottom: -1em;
+  font-size: 1.2em;
+  font-weight: 500;
+}

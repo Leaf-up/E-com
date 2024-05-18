@@ -3,7 +3,7 @@ import eyeClosedIcon from '/icons/eye-closed.svg';
 import eyeIcon from '/icons/eye.svg';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
-import InputPasswordProps from './types';
+import type InputPasswordProps from './types';
 import styles from './input-password.module.css';
 
 const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).password().finalize();

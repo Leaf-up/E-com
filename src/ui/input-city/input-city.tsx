@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
-import type InputStreetProps from './types';
+import type InputCityProps from './types';
 
-const streetRules = validationRules().notEmpty().string().finalize();
-const validateStreet = (email: string | null) => checkRules(email, streetRules);
+const textRules = validationRules().notEmpty().onlyLetters().finalize();
+const validateCity = (email: string | null) => checkRules(email, textRules);
 
-export function InputStreet({ setValid, type, isDisabled }: InputStreetProps) {
+export function InputCity({ setValid, type, isDisabled }: InputCityProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const onChange = (street: string) => {
+  const onChange = (city: string) => {
     if (isDisabled) return;
 
-    const error = validateStreet(street);
+    const error = validateCity(city);
     setErrorMessage(error);
     setValid(!error);
   };
@@ -26,10 +26,10 @@ export function InputStreet({ setValid, type, isDisabled }: InputStreetProps) {
 
   return (
     <Input
-      label="Street*"
-      name={`${type}-street`}
-      id={`${type}-street`}
-      placeholder="Enter your street"
+      label="City*"
+      name={`${type}-city`}
+      id={`${type}-city`}
+      placeholder="Enter your city"
       errorMessage={errorMessage}
       disabled={isDisabled}
       onChange={onChange}

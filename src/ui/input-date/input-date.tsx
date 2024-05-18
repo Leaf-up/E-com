@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Input } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
-import InputDateProps from './types';
+import type InputDateProps from './types';
 
 const dateRules = validationRules().notEmpty().date().minAge(13).finalize();
 const validateDate = (email: string | null) => checkRules(email, dateRules);
