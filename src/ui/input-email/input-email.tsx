@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
-import InputEmailProps from './types';
+import type InputEmailProps from './types';
 
 const emailRules = validationRules().notEmpty().noSpaces().email().finalize();
 const validateEmail = (email: string | null) => checkRules(email, emailRules);

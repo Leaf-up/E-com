@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
-import InputCityProps from './types';
+import type InputCityProps from './types';
 
 const textRules = validationRules().notEmpty().onlyLetters().finalize();
 const validateCity = (email: string | null) => checkRules(email, textRules);

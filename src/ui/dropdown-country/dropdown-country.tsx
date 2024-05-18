@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Dropdown } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
-import DropDownCountryProps from './types';
+import type DropDownCountryProps from './types';
 
 const rules = validationRules().notEmpty().finalize();
 const validateDropDownCountry = (email: string | null) => checkRules(email, rules);

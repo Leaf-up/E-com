@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './form-link.module.css';
-import FormLinkProps from './types';
+import type FormLinkProps from './types';
 
 export function FormLink({ text, linkText, path }: FormLinkProps) {
   return (

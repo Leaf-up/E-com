@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import arrowIcon from '/icons/arrow.svg';
 import { Input } from '~/shared';
-import DropDownProps from './types';
+import type DropDownProps from './types';
 import styles from './dropdown.module.css';
 
 export function Dropdown({ label, id, name, placeholder, options, errorMessage, onClick, isDisabled }: DropDownProps) {

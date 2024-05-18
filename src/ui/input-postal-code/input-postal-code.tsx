@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
-import InputTextProps from './types';
+import type InputTextProps from './types';
 
 const textRules = validationRules().notEmpty().onlyNumbers().minSize(5).maxSize(5).finalize();
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
-import InputTextProps from './types';
+import type InputTextProps from './types';
 
 const textRules = validationRules().notEmpty().onlyLetters().finalize();
 const validateText = (email: string | null) => checkRules(email, textRules);

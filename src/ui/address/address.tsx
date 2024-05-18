@@ -3,7 +3,7 @@ import { DropdownCountry } from '../dropdown-country/dropdown-country';
 import { InputPostalCode } from '../input-postal-code/input-postal-code';
 import { InputStreet } from '../input-street/input-street';
 import { InputCity } from '../input-city/input-city';
-import AddressProps from './types';
+import type AddressProps from './types';
 import styles from './address.module.css';
 
 export function Address({
