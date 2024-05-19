@@ -111,7 +111,6 @@ export function RegistrationForm() {
         setLoading(false);
         return;
       }
-      console.log(response.customer);
       setLoading(false);
     });
   };
