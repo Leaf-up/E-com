@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useCustomer } from '~/entities';
+import styles from './home.module.css';
 
 const menu = [
   {
@@ -30,15 +31,28 @@ const menu = [
 ];
 
 export function Home() {
-  const { user } = useCustomer();
+  const { user, logout } = useCustomer();
+  const getLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? styles.nav__link_active : styles.nav__link);
+
   return (
     <div>
-      <nav>
-        <ul>
+      <nav className={styles.nav}>
+        <ul className={styles.nav__list}>
           {menu
-            .filter((el) => (user ? el.customer === Boolean(user) && !el.action : !el.action))
+            .filter((el) => (user ? el.customer === Boolean(user) : !el.action))
             .map((item) => (
-              <li key={item.title}>{item.route && <NavLink to={item.route}>{item.title}</NavLink>}</li>
+              <li key={item.title}>
+                {item.route && (
+                  <NavLink to={item.route} className={getLinkClass}>
+                    {item.title}
+                  </NavLink>
+                )}
+                {item.action === 'logout' && (
+                  <button type="button" className={styles.nav__link} onClick={logout}>
+                    {item.title}
+                  </button>
+                )}
+              </li>
             ))}
         </ul>
       </nav>
