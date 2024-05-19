@@ -12,7 +12,7 @@
     "prepare": "husky",
     "format": "prettier . --write",
     "ci:format": "prettier . --check",
-    "test": "export NODE_NO_WARNINGS=1 && jest"
+    "test": "jest"
   },
   "dependencies": {
     "react": "^18.2.0",

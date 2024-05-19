@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './404.module.css';
 
-const srcImg = './image/people-24.svg';
+const srcImg = '/image/people-24.svg';
 
 export default function Page404() {
   return (

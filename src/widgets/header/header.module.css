@@ -30,7 +30,7 @@
   width: 2.5em;
   height: 2.5em;
   background-color: var(--color100);
-  background-image: url(./image/leafup.svg);
+  background-image: url(/image/leafup.svg);
   background-size: cover;
   border-radius: 0.25em;
 }
@@ -79,4 +79,25 @@
   height: 2px;
   margin-bottom: -0.2em;
   background-color: var(--color00);
+}
+
+@media (max-width: 768px) {
+  .header__content {
+    column-gap: 1.5em;
+    width: 95%;
+  }
+
+  .header__logo_img {
+    width: 2em;
+    height: 2em;
+  }
+
+  .header__logo_title {
+    font-size: 1.2em;
+  }
+
+  .nav__list {
+    column-gap: 0.8em;
+    font-size: 1em;
+  }
 }
