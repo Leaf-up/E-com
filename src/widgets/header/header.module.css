@@ -29,7 +29,7 @@
   display: inline-block;
   width: 2.5em;
   height: 2.5em;
-  background-color: var(--color100);
+  background-color: var(--color00);
   background-image: url(/image/leafup.svg);
   background-size: cover;
   border-radius: 0.25em;
