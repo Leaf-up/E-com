@@ -1,0 +1,6 @@
+.home {
+  padding: 2em 6em;
+  border-radius: 1em;
+  background-color: var(--color10);
+  box-shadow: 3px 3px 6px 1px #bbdfc4;
+}
