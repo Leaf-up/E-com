@@ -160,7 +160,7 @@ export function RegistrationForm() {
         setCityValid={setBillingCityValid}
         setStreetValid={setBillingStreetValid}
         setPostalCodeValid={setBillingPostalCodeValid}
-        isDisabled={isChecked}
+        isReadonly={isChecked}
         radioLabel="Set billing address as default"
         value="billing-address"
         type="billing"
@@ -186,7 +186,7 @@ export function RegistrationForm() {
       >
         Sign up
       </ButtonSubmit>
-      <FormLink text="Already have an account?" linkText="Login" path="/login" />
+      <FormLink text="Already have an account?" linkText="Sign in" path="/login" />
     </form>
   );
 }

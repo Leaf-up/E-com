@@ -3,13 +3,13 @@ import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
 import type InputTextProps from './types';
 
-const textRules = validationRules().notEmpty().onlyNumbers().minSize(5).maxSize(5).finalize();
+const textRules = validationRules().notEmpty().onlyNumbers().minSize(4).maxSize(8).finalize();
 
-export function InputPostalCode({ setValid, type, isDisabled }: InputTextProps) {
+export function InputPostalCode({ setValid, type, isReadonly }: InputTextProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onChange = (postalCode: string) => {
-    if (isDisabled) return;
+    if (isReadonly) return;
 
     const error = checkRules(postalCode, textRules);
     setErrorMessage(error);
@@ -17,11 +17,11 @@ export function InputPostalCode({ setValid, type, isDisabled }: InputTextProps) 
   };
 
   useEffect(() => {
-    if (isDisabled) {
+    if (isReadonly) {
       setErrorMessage(null);
       setValid(true);
     }
-  }, [isDisabled, setValid]);
+  }, [isReadonly, setValid]);
 
   return (
     <Input
@@ -30,7 +30,7 @@ export function InputPostalCode({ setValid, type, isDisabled }: InputTextProps) 
       id={`${type}-postal-code`}
       placeholder="Enter your postal code"
       errorMessage={errorMessage}
-      disabled={isDisabled}
+      readonly={isReadonly}
       onChange={onChange}
     />
   );

@@ -3,7 +3,7 @@ import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
 import type InputTextProps from './types';
 
-const textRules = validationRules().notEmpty().onlyLetters().finalize();
+const textRules = validationRules().notEmpty().onlyLetters().minSize(3).finalize();
 const validateText = (email: string | null) => checkRules(email, textRules);
 
 export function InputText({ label, name, id, placeholder, setValid }: InputTextProps) {

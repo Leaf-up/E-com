@@ -6,11 +6,11 @@ import type DropDownCountryProps from './types';
 const rules = validationRules().notEmpty().finalize();
 const validateDropDownCountry = (email: string | null) => checkRules(email, rules);
 
-export function DropdownCountry({ setValid, type, isDisabled }: DropDownCountryProps) {
+export function DropdownCountry({ setValid, type, isReadonly }: DropDownCountryProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onClick = (country: string) => {
-    if (isDisabled) return;
+    if (isReadonly) return;
 
     const error = validateDropDownCountry(country);
     setErrorMessage(error);
@@ -18,11 +18,11 @@ export function DropdownCountry({ setValid, type, isDisabled }: DropDownCountryP
   };
 
   useEffect(() => {
-    if (isDisabled) {
+    if (isReadonly) {
       setErrorMessage(null);
       setValid(true);
     }
-  }, [isDisabled, setValid]);
+  }, [isReadonly, setValid]);
 
   return (
     <Dropdown
@@ -32,7 +32,7 @@ export function DropdownCountry({ setValid, type, isDisabled }: DropDownCountryP
       placeholder="Select a country"
       options={['US']}
       errorMessage={errorMessage}
-      isDisabled={isDisabled}
+      isReadonly={isReadonly}
       onClick={onClick}
     />
   );

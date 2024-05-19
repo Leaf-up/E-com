@@ -6,11 +6,11 @@ import type InputCityProps from './types';
 const textRules = validationRules().notEmpty().onlyLetters().finalize();
 const validateCity = (email: string | null) => checkRules(email, textRules);
 
-export function InputCity({ setValid, type, isDisabled }: InputCityProps) {
+export function InputCity({ setValid, type, isReadonly }: InputCityProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onChange = (city: string) => {
-    if (isDisabled) return;
+    if (isReadonly) return;
 
     const error = validateCity(city);
     setErrorMessage(error);
@@ -18,11 +18,11 @@ export function InputCity({ setValid, type, isDisabled }: InputCityProps) {
   };
 
   useEffect(() => {
-    if (isDisabled) {
+    if (isReadonly) {
       setErrorMessage(null);
       setValid(true);
     }
-  }, [isDisabled, setValid]);
+  }, [isReadonly, setValid]);
 
   return (
     <Input
@@ -31,7 +31,7 @@ export function InputCity({ setValid, type, isDisabled }: InputCityProps) {
       id={`${type}-city`}
       placeholder="Enter your city"
       errorMessage={errorMessage}
-      disabled={isDisabled}
+      readonly={isReadonly}
       onChange={onChange}
     />
   );

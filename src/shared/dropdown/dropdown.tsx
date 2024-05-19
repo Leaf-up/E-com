@@ -4,7 +4,7 @@ import { Input } from '~/shared';
 import type DropDownProps from './types';
 import styles from './dropdown.module.css';
 
-export function Dropdown({ label, id, name, placeholder, options, errorMessage, onClick, isDisabled }: DropDownProps) {
+export function Dropdown({ label, id, name, placeholder, options, errorMessage, onClick, isReadonly }: DropDownProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<boolean | null>(null);
   const ref = useRef<HTMLInputElement>(null);
@@ -18,9 +18,10 @@ export function Dropdown({ label, id, name, placeholder, options, errorMessage, 
         placeholder={placeholder}
         ref={ref}
         readonly
-        disabled={isDisabled}
         errorMessage={selected !== null ? errorMessage : null}
         onClick={() => {
+          if (isReadonly) return;
+
           setOpen(!open);
           const value = ref.current?.value ?? '';
           open && setSelected(value.length > 0);
@@ -39,6 +40,8 @@ export function Dropdown({ label, id, name, placeholder, options, errorMessage, 
             type="button"
             key={option}
             onClick={() => {
+              if (isReadonly) return;
+
               if (ref.current) {
                 ref.current.value = option;
               }
