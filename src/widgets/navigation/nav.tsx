@@ -31,23 +31,20 @@ const menu = [
   },
 ];
 
-export function Nav({ isColumn }: NavProps) {
+export function NavigationMenu({ isColumn }: NavProps) {
   const { user, logout } = useCustomer();
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? styles.nav__link_active : styles.nav__link);
 
-  const getColumnLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `${getLinkClass({ isActive })} ${styles.nav__link_dark}`;
-
   return (
-    <nav className={styles.nav}>
+    <nav>
       <ul className={!isColumn ? styles.nav__list : `${styles.nav__list} ${styles.nav__list_column}`}>
         {menu
           .filter((el) => (user ? el.customer === Boolean(user) : !el.action))
           .map((item) => (
             <li key={item.title}>
               {item.route && (
-                <NavLink to={item.route} className={isColumn ? getColumnLinkClass : getLinkClass}>
+                <NavLink to={item.route} className={getLinkClass}>
                   {item.title}
                 </NavLink>
               )}

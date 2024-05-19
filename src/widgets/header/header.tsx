@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.css';
-import { Nav } from '../nav/nav';
+import { NavigationMenu } from '../navigation/nav';
 
 export function Header() {
   return (
@@ -10,7 +10,7 @@ export function Header() {
           <NavLink to="/" className={styles.header__logo_img} />
           <span className={styles.header__logo_title}>E-com</span>
         </div>
-        <Nav />
+        <NavigationMenu />
         <div className={styles.header__logo} />
       </div>
     </header>
