@@ -6,11 +6,11 @@ import type InputStreetProps from './types';
 const streetRules = validationRules().notEmpty().string().finalize();
 const validateStreet = (email: string | null) => checkRules(email, streetRules);
 
-export function InputStreet({ setValid, type, isDisabled }: InputStreetProps) {
+export function InputStreet({ setValid, type, isReadonly }: InputStreetProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onChange = (street: string) => {
-    if (isDisabled) return;
+    if (isReadonly) return;
 
     const error = validateStreet(street);
     setErrorMessage(error);
@@ -18,11 +18,11 @@ export function InputStreet({ setValid, type, isDisabled }: InputStreetProps) {
   };
 
   useEffect(() => {
-    if (isDisabled) {
+    if (isReadonly) {
       setErrorMessage(null);
       setValid(true);
     }
-  }, [isDisabled, setValid]);
+  }, [isReadonly, setValid]);
 
   return (
     <Input
@@ -31,7 +31,7 @@ export function InputStreet({ setValid, type, isDisabled }: InputStreetProps) {
       id={`${type}-street`}
       placeholder="Enter your street"
       errorMessage={errorMessage}
-      disabled={isDisabled}
+      readonly={isReadonly}
       onChange={onChange}
     />
   );

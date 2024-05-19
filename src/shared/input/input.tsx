@@ -23,9 +23,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     return type === 'radio' || type === 'checkbox' ? (
-      <div className={styles.field_check}>
+      <div className={styles.field_check} style={{ cursor: !disabled ? 'pointer' : 'auto' }}>
         {label && (
-          <label className={styles.label} htmlFor={id}>
+          <label className={styles.label} htmlFor={id} style={{ cursor: !disabled ? 'pointer' : 'auto' }}>
             {label}
           </label>
         )}
@@ -40,6 +40,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             defaultChecked={defaultChecked}
             checked={checked}
             disabled={disabled}
+            readOnly={readonly}
             onChange={(e) => onChange?.(e.currentTarget.value)}
             ref={ref}
           />

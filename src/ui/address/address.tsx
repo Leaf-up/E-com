@@ -16,15 +16,15 @@ export function Address({
   value,
   defaultChecked,
   type,
-  isDisabled,
+  isReadonly,
 }: AddressProps) {
   return (
     <div className={styles.address}>
       <span className={styles.address__title}>{title}</span>
-      <DropdownCountry setValid={setCountryValid} type={type} isDisabled={isDisabled} />
-      <InputCity setValid={setCityValid} type={type} isDisabled={isDisabled} />
-      <InputStreet setValid={setStreetValid} type={type} isDisabled={isDisabled} />
-      <InputPostalCode setValid={setPostalCodeValid} type={type} isDisabled={isDisabled} />
+      <DropdownCountry setValid={setCountryValid} type={type} isReadonly={isReadonly} />
+      <InputCity setValid={setCityValid} type={type} isReadonly={isReadonly} />
+      <InputStreet setValid={setStreetValid} type={type} isReadonly={isReadonly} />
+      <InputPostalCode setValid={setPostalCodeValid} type={type} isReadonly={isReadonly} />
       <Input
         label={radioLabel}
         type="radio"

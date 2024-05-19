@@ -8,5 +8,5 @@ export default interface AddressProps {
   value: string;
   defaultChecked?: boolean;
   type: string;
-  isDisabled?: boolean;
+  isReadonly?: boolean;
 }

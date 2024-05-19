@@ -39,7 +39,7 @@ export function LoginForm() {
       <InputPassword setValid={setPasswordValid} />
       <FormError error={error} />
       <ButtonSubmit loading={loading} disabled={!emailValid || !passwordValid}>
-        Login
+        Sign in
       </ButtonSubmit>
       <FormLink text="No account?" linkText="Create a new account" path="/register" />
     </form>
