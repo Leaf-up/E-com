@@ -1,6 +1,5 @@
 .form_link {
-  display: flex;
-  column-gap: 0.2em;
+  margin: 0 auto;
 }
 
 .form_link__item {

@@ -2,8 +2,8 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { InputDate, InputEmail, InputPassword, InputText, ButtonSubmit, FormError, FormLink, Address } from '~/ui';
 import { TRegisterData } from '~/api/auth/types';
 import performRegister from '~/api/auth/create';
+import { message } from '~/ui';
 import styles from './register-form.module.css';
-import { Input } from '~/shared';
 
 export function RegistrationForm() {
   const [emailValid, setEmailValid] = useState(false);
@@ -21,14 +21,11 @@ export function RegistrationForm() {
   const [billingCountryValid, setBillingCountryValid] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [sameAddress, setSameAddress] = useState(false);
   const ref = useRef<HTMLFormElement>(null);
 
   const getFormData = () => {
-    if (!ref.current) {
-      return null;
-    }
-
+    if (!ref.current) return null;
     const data = new FormData(ref.current);
 
     return {
@@ -45,8 +42,8 @@ export function RegistrationForm() {
       billingCountry: data.get('billing-country')?.toString() ?? '',
       billingPostalCode: data.get('billing-postal-code')?.toString() ?? '',
       billingStreetName: data.get('billing-street')?.toString() ?? '',
-      defaultShippingAddress: data.get('default-address')?.toString() === 'shipping-address' ? 0 : undefined,
-      defaultBillingAddress: data.get('default-address')?.toString() === 'billing-address' ? 1 : undefined,
+      defaultShippingAddress: data.get('shipping-address') ? 0 : undefined,
+      defaultBillingAddress: data.get('billing-address') ? 1 : undefined,
     };
   };
 
@@ -61,12 +58,12 @@ export function RegistrationForm() {
 
   useEffect(() => {
     const data = getFormData();
-    if (!data || !ref.current || isChecked) return;
+    if (!data || !ref.current || sameAddress) return;
     if (ref.current['billing-city']) ref.current['billing-city'].value = '';
     if (ref.current['billing-country']) ref.current['billing-country'].value = '';
     if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = '';
     if (ref.current['billing-street']) ref.current['billing-street'].value = '';
-  }, [isChecked]);
+  }, [sameAddress]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -112,28 +109,36 @@ export function RegistrationForm() {
         return;
       }
       setLoading(false);
+      if (response.customer) {
+        const { firstName, lastName } = response.customer;
+        message.show(`Successfully registered as ${firstName} ${lastName}`);
+      }
     });
   };
 
   return (
     <form className={styles.form} ref={ref} onSubmit={handleSubmit} onChange={onChange}>
-      <InputText
-        label="First name*"
-        name="first-name"
-        id="first-name"
-        placeholder="Enter your first name"
-        setValid={setFirstNameValid}
-      />
-      <InputText
-        label="Last name*"
-        name="last-name"
-        id="last-name"
-        placeholder="Enter your last name"
-        setValid={setLastNameValid}
-      />
-      <InputDate setValid={setDateValid} />
-      <InputEmail setValid={setEmailValid} />
-      <InputPassword setValid={setPasswordValid} />
+      <div className={styles.form__group}>
+        <InputText
+          label="First name*"
+          name="first-name"
+          id="first-name"
+          placeholder="Enter your first name"
+          setValid={setFirstNameValid}
+        />
+        <InputText
+          label="Last name*"
+          name="last-name"
+          id="last-name"
+          placeholder="Enter your last name"
+          setValid={setLastNameValid}
+        />
+        <InputDate setValid={setDateValid} />
+      </div>
+      <div className={styles.form__group}>
+        <InputEmail setValid={setEmailValid} />
+        <InputPassword setValid={setPasswordValid} />
+      </div>
       <Address
         title="Shipping address"
         setCountryValid={setCountryValid}
@@ -145,21 +150,24 @@ export function RegistrationForm() {
         defaultChecked
         type="shipping"
       />
-      <Input
-        type="checkbox"
-        name="checkbox"
-        label="Same shipping and billing addresses"
-        disabled={!cityValid || !streetValid || !postalCodeValid || !countryValid}
-        checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
-      />
+      <label>
+        <input
+          type="checkbox"
+          name="checkbox"
+          disabled={!cityValid || !streetValid || !postalCodeValid || !countryValid}
+          checked={sameAddress}
+          onChange={() => setSameAddress(!sameAddress)}
+        />
+        {' Same shipping and billing address'}
+      </label>
       <Address
         title="Billing address"
         setCountryValid={setBillingCountryValid}
         setCityValid={setBillingCityValid}
         setStreetValid={setBillingStreetValid}
         setPostalCodeValid={setBillingPostalCodeValid}
-        isReadonly={isChecked}
+        isReadonly={sameAddress}
+        isHidden={sameAddress}
         radioLabel="Set billing address as default"
         value="billing-address"
         type="billing"
