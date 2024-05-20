@@ -2,13 +2,18 @@ import { useState, useEffect } from 'react';
 import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/auth/types';
 import store from '~/utils/store';
+import { message } from '~/ui';
 
 class CustomerStore {
   private _user: TCustomer | null = null;
 
   constructor() {
     const user = store.get<TCustomer>('user');
-    if (user) this._user = user;
+    if (user) {
+      this._user = user;
+      const { firstName, lastName } = user;
+      message.show(`Successfully logged in as ${firstName} ${lastName}`);
+    }
 
     makeAutoObservable(this);
   }
