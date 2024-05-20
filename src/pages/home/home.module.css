@@ -1,6 +1,14 @@
 .home {
   padding: 2em 6em;
   border-radius: 1em;
-  background-color: var(--color10);
-  box-shadow: 3px 3px 6px 1px #bbdfc4;
+  background-color: var(--color30);
+  box-shadow: 3px 3px 6px 1px #0004;
+  color: var(--color90);
+  display: flex;
+  align-items: center;
+  column-gap: 4em;
+}
+
+.home__img {
+  width: 6em;
 }
