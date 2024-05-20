@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/auth/types';
 import store from '~/utils/store';
-import { message } from '~/ui';
+import { message } from '~/widgets';
 
 class CustomerStore {
   private _user: TCustomer | null = null;
