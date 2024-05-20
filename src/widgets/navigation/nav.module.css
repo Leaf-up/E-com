@@ -1,6 +1,7 @@
 .nav__list {
   list-style: none;
   display: flex;
+  align-items: center;
   column-gap: 1em;
   margin: 0;
   padding: 0;
