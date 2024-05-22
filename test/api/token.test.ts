@@ -1,5 +1,5 @@
 import { AUTH_URL } from '~/api/constants';
-import getToken from '~/api/token';
+import tokenHolder from '~/api/token/token';
 
 const endpoint = `${AUTH_URL}/oauth/token`;
 
@@ -38,7 +38,7 @@ describe('Token api:', () => {
   });
 
   test('Receive expected token', async () => {
-    const response = await getToken();
+    const response = await tokenHolder.get();
 
     expect(fetchMock).toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalledWith(endpoint, testFetchOptions);
