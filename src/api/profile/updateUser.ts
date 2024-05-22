@@ -1,21 +1,23 @@
-import type { TRegisterData } from './types';
+import type { TProfileAction } from './types';
 import type { TCustomer } from '~/api/types';
 import { API_URL, PROJECT_KEY } from '~/api/constants';
 
 const endpoint = `${API_URL}/${PROJECT_KEY}/customers`;
 
-export default function createCustomer(
-  registerData: TRegisterData,
+export default function updateCustomer(
+  id: string,
+  version: number,
+  actions: TProfileAction[],
   token: string,
 ): Promise<{ customer: TCustomer | null; error: string | null }> {
   const info: { status: number; error?: string } = { status: 500 };
-  return fetch(endpoint, {
+  return fetch(`${endpoint}/${id}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(registerData),
+    body: JSON.stringify({ version, actions }),
   })
     .then((response) => {
       info.status = response.status;
@@ -30,10 +32,10 @@ export default function createCustomer(
     })
     .then((data) => {
       if (Math.floor(info.status / 100) !== 2) {
+        console.error(data.errors);
         return { customer: null, error: `(${info.status}) ${data.message ?? info.error}` };
       }
-      const { customer } = data as { customer: TCustomer };
-      return { customer, error: null };
+      return { customer: data, error: null };
     })
     .catch((error) => ({
       customer: null,

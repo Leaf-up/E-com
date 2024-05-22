@@ -1,6 +1,7 @@
-import type { TRegisterData, TCustomer } from './types';
+import type { TRegisterData } from './types';
+import type { TCustomer } from '~/api/types';
 import { customerStore } from '~/entities';
-import getToken from './token';
+import getToken from '~/api/token';
 import createCustomer from './createUser';
 
 export default function performRegister(
