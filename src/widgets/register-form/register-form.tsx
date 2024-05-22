@@ -144,9 +144,10 @@ export function RegistrationForm() {
         defaultChecked
         type="shipping"
       />
-      <label>
+      <label htmlFor="same-address">
         <input
           type="checkbox"
+          id="same-address"
           name="same-address"
           disabled={!cityValid || !streetValid || !postalCodeValid || !countryValid}
           checked={sameAddress}
