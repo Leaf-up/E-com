@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 60px;
+  background-color: var(--color80);
+  color: var(--color00);
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 2em;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 2em;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+  width: 9em;
+}
+
+.header__logo_img {
+  display: inline-block;
+  width: 2.5em;
+  height: 2.5em;
+  background-color: var(--color00);
+  background-image: url(/image/leafup.svg);
+  background-size: cover;
+  border-radius: 0.25em;
+}
+
+.header__logo_title {
+  width: max-content;
+  font-size: 1.6em;
+}
+
+@media (max-width: 768px) {
+  .header__content {
+    column-gap: 1.5em;
+    width: 95%;
+  }
+
+  .header__logo_img {
+    width: 2em;
+    height: 2em;
+  }
+
+  .header__logo_title {
+    font-size: 1.2em;
+  }
+}

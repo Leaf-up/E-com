@@ -1,0 +1,22 @@
+.address {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2em;
+  transform-origin: top;
+}
+.address[aria-hidden='true'] {
+  transform: scaleY(0);
+  height: 0;
+}
+
+.address__group {
+  display: flex;
+  gap: 1.2em;
+  flex-wrap: wrap;
+}
+
+.address__title {
+  margin-bottom: -1em;
+  font-size: 1.2em;
+  font-weight: 500;
+}
