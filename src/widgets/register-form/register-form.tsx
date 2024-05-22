@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { InputDate, InputEmail, InputPassword, InputText, ButtonSubmit, FormError, FormLink, Address } from '~/ui';
 import { TRegisterData } from '~/api/auth/types';
 import performRegister from '~/api/auth/create';
@@ -49,21 +49,12 @@ export function RegistrationForm() {
 
   const onChange = () => {
     const data = getFormData();
-    if (!data || !ref.current || !ref.current.checkbox.checked) return;
+    if (!data || !ref.current || !ref.current['same-address'].checked) return;
     if (ref.current['billing-city']) ref.current['billing-city'].value = data.shippingCity;
     if (ref.current['billing-country']) ref.current['billing-country'].value = data.shippingCountry;
     if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = data.shippingPostalCode;
     if (ref.current['billing-street']) ref.current['billing-street'].value = data.shippingStreetName;
   };
-
-  useEffect(() => {
-    const data = getFormData();
-    if (!data || !ref.current || sameAddress) return;
-    if (ref.current['billing-city']) ref.current['billing-city'].value = '';
-    if (ref.current['billing-country']) ref.current['billing-country'].value = '';
-    if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = '';
-    if (ref.current['billing-street']) ref.current['billing-street'].value = '';
-  }, [sameAddress]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,32 +67,35 @@ export function RegistrationForm() {
       new Date(formData.dateOfBirth.getTime() - formData.dateOfBirth.getTimezoneOffset() * 60000)
         .toISOString()
         .slice(0, 10);
-
+    const addresses = [
+      {
+        city: formData?.shippingCity ?? '',
+        country: formData?.shippingCountry ?? '',
+        postalCode: formData?.shippingPostalCode ?? '',
+        streetName: formData?.shippingStreetName ?? '',
+      },
+    ];
+    if (!sameAddress) {
+      addresses.push({
+        city: formData?.billingCity ?? '',
+        country: formData?.billingCountry ?? '',
+        postalCode: formData?.billingPostalCode ?? '',
+        streetName: formData?.billingStreetName ?? '',
+      });
+    }
     const data: TRegisterData = {
       email: formData?.email ?? '',
       password: formData?.password ?? '',
       firstName: formData?.firstName ?? '',
       lastName: formData?.lastName ?? '',
       dateOfBirth: ISODateOfBirth ?? '',
-      addresses: [
-        {
-          city: formData?.shippingCity ?? '',
-          country: formData?.shippingCountry ?? '',
-          postalCode: formData?.shippingPostalCode ?? '',
-          streetName: formData?.shippingStreetName ?? '',
-        },
-        {
-          city: formData?.billingCity ?? '',
-          country: formData?.billingCountry ?? '',
-          postalCode: formData?.billingPostalCode ?? '',
-          streetName: formData?.billingStreetName ?? '',
-        },
-      ],
+      addresses,
       shippingAddresses: [0],
-      billingAddresses: [1],
+      billingAddresses: [sameAddress ? 0 : 1],
       defaultShippingAddress: formData?.defaultShippingAddress,
       defaultBillingAddress: formData?.defaultBillingAddress,
     };
+
     performRegister(data).then((response) => {
       if (response.error) {
         setError(response.error);
@@ -153,7 +147,7 @@ export function RegistrationForm() {
       <label>
         <input
           type="checkbox"
-          name="checkbox"
+          name="same-address"
           disabled={!cityValid || !streetValid || !postalCodeValid || !countryValid}
           checked={sameAddress}
           onChange={() => setSameAddress(!sameAddress)}
