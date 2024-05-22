@@ -27,7 +27,7 @@ export function Address({
         <InputStreet setValid={setStreetValid} type={type} isReadonly={isReadonly} />
         <InputPostalCode setValid={setPostalCodeValid} type={type} isReadonly={isReadonly} />
       </div>
-      <label>
+      <label htmlFor={value}>
         <input type="checkbox" name={value} id={value} defaultChecked={defaultChecked} />
         {` ${radioLabel}`}
       </label>
