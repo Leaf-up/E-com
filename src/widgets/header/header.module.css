@@ -23,7 +23,6 @@
   display: flex;
   align-items: center;
   column-gap: 1em;
-  width: 50%;
 }
 
 .header__logo_img {
@@ -44,7 +43,7 @@
 .header__nav {
   display: flex;
   justify-content: space-between;
-  width: calc(50% + 9em);
+  width: 100%;
 }
 
 .header__menu_button {

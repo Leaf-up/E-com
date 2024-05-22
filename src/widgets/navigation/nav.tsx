@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { Fragment } from 'react/jsx-runtime';
 import { useCustomer } from '~/entities';
 import type NavProps from './types';
 import logoutIcon from '/icons/logout.svg';
@@ -46,23 +45,25 @@ export function NavigationMenu({ isColumn, onClick }: NavProps) {
 
   return (
     <nav className={!isColumn ? styles.nav : `${styles.nav} ${styles.nav_column}`}>
-      <div className={!isColumn ? styles.nav__list : `${styles.nav__list} ${styles.nav__list_column}`}>
+      <ul className={!isColumn ? styles.nav__list : `${styles.nav__list} ${styles.nav__list_column}`}>
         {menu
           .filter((el) => el.customer === null)
           .map(
             (item) =>
               item.route && (
-                <NavLink to={item.route} className={getLinkClass} key={item.title} onClick={onClick}>
-                  {item.title}
-                </NavLink>
+                <li key={item.title}>
+                  <NavLink to={item.route} className={getLinkClass} onClick={onClick}>
+                    {item.title}
+                  </NavLink>
+                </li>
               ),
           )}
-      </div>
-      <div className={!isColumn ? styles.nav__list : `${styles.nav__list} ${styles.nav__list_column}`}>
+      </ul>
+      <ul className={!isColumn ? styles.nav__list : `${styles.nav__list} ${styles.nav__list_column}`}>
         {menu
           .filter((el) => el.customer === Boolean(user))
           .map((item) => (
-            <Fragment key={item.title}>
+            <li key={item.title}>
               {item.route && !item.customer && (
                 <NavLink to={item.route} className={getLinkClass} onClick={onClick}>
                   {item.title}
@@ -85,9 +86,9 @@ export function NavigationMenu({ isColumn, onClick }: NavProps) {
                   <img src={logoutIcon} alt="logout" className={styles.icon} />
                 </button>
               )}
-            </Fragment>
+            </li>
           ))}
-      </div>
+      </ul>
     </nav>
   );
 }

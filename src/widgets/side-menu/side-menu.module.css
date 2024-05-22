@@ -30,7 +30,7 @@
   transform: translateX(0);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .modal_overlay {
     display: none;
   }
