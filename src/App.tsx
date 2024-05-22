@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Layout } from './layout';
-import { Home, Login, Register, PageTest, Page404 } from './pages';
+import { Home, Login, Register, PageTest, Page404, Profile } from './pages';
 import { useCustomer } from './entities';
 import './styles.css';
 
@@ -21,6 +21,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/test" element={<PageTest />} />
+        <Route element={<ProtectedRoute isRedirect={!user} redirectTo="/" />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
         <Route element={<ProtectedRoute isRedirect={Boolean(user)} redirectTo="/" />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

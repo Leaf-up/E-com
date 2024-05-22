@@ -1,8 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import styles from './header.module.css';
+import { useState } from 'react';
 import { NavigationMenu } from '../navigation/nav';
+import { SideMenu } from '~/widgets/side-menu/side-menu';
+import menuIcon from '/icons/menu.svg';
+import styles from './header.module.css';
 
 export function Header() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <header className={styles.header}>
       <div className={styles.header__content}>
@@ -10,8 +15,13 @@ export function Header() {
           <NavLink to="/" className={styles.header__logo_img} />
           <span className={styles.header__logo_title}>E-com</span>
         </div>
-        <NavigationMenu />
-        <div className={styles.header__logo} />
+        <button type="button" className={styles.header__menu_button} onClick={() => setShowModal(!showModal)}>
+          <img src={menuIcon} alt="menu" />
+        </button>
+        <div className={styles.header__nav}>
+          <NavigationMenu />
+        </div>
+        <SideMenu isOpen={showModal} onClose={() => setShowModal(false)} />
       </div>
     </header>
   );

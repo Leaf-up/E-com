@@ -22,7 +22,7 @@ export function InputPassword({ setValid }: InputPasswordProps) {
       errorMessage={errorMessage}
       placeholder="Enter your password"
       inputIcon={
-        <div className={styles.icon__container} onClick={() => setShow(!show)} aria-hidden={true} tabIndex={-1}>
+        <div className={styles.icon__container} onClick={() => setShow(!show)} aria-hidden tabIndex={-1}>
           {show ? (
             <img className={styles.icon} src={eyeIcon} alt="eye" />
           ) : (

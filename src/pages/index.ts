@@ -5,3 +5,4 @@ export { Home } from './home/home';
 export { Login } from './login/login';
 export { Register } from './register/register';
 export { PageTest } from './test/pageTest';
+export { Profile } from './profile/profile';
