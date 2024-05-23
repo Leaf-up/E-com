@@ -1,4 +1,5 @@
-import type { TToken } from './types';
+import type { TToken } from '~/api/types';
+import type { TTokenResponse } from './types';
 import { AUTH_URL } from '~/api/constants';
 
 const CLIENT_ID = import.meta.env.VITE_CTP_CLIENT_ID;
@@ -7,7 +8,7 @@ const clientToken = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
 
 const endpoint = `${AUTH_URL}/oauth/token`;
 
-export default function getToken(): Promise<{ data?: TToken; error?: string }> {
+export default function getToken(): Promise<TTokenResponse> {
   const info: { status: number; error?: string } = { status: 500 };
   const body = 'grant_type=client_credentials';
   const headers = {

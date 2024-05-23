@@ -1,4 +1,5 @@
-import type { TCredentials, TCustomer } from './types';
+import type { TCredentials } from './types';
+import type { TCustomer } from '~/api/types';
 import { API_URL, PROJECT_KEY } from '~/api/constants';
 
 const endpoint = `${API_URL}/${PROJECT_KEY}`;

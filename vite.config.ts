@@ -7,6 +7,11 @@ export default defineConfig({
   base: './',
   build: {
     assetsDir: './',
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+    },
   },
   resolve: {
     alias: [
