@@ -12,6 +12,11 @@ const menu = [
     customer: null,
   },
   {
+    title: 'Catalog',
+    route: '/catalog',
+    customer: null,
+  },
+  {
     title: 'Test',
     route: '/test',
     customer: null,

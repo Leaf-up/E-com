@@ -1,6 +1,8 @@
-import ButtonSubmit from './form/submit/button-submit';
-import FormError from './form/error/form-error';
+import ButtonSubmit from './submit/button-submit';
+import FormError from './auth-error/form-error';
+import CardProduct from './card/product/product';
 
+export { CardProduct };
 export { ButtonSubmit, FormError };
 export { InputEmail } from './form/input-email/input-email';
 export { InputPassword } from './form/input-password/input-password';

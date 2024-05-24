@@ -60,6 +60,8 @@ module.exports = {
         unnamedComponents: ['arrow-function'],
       },
     ],
+    'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   noInlineConfig: true,
 };
