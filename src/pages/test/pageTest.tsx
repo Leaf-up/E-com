@@ -1,5 +1,5 @@
 import { customerStore, useCustomer } from '~/entities';
-import { performProfileUpdate } from '~/api';
+import { performProfileUpdate, performChangePassword } from '~/api';
 import type { TProfileAction } from '~/api/profile/types';
 import { objectKeys } from '~/utils';
 import { message } from '~/widgets';
@@ -56,6 +56,21 @@ export function PageTest() {
     }
   };
 
+  const handleChangePassword = () => {
+    const currentPassword = '123456aA';
+    const newPassword = '123456qQ';
+
+    if (customerStore.user) {
+      performChangePassword(customerStore.user, currentPassword, newPassword).then((response) => {
+        if (response.error) {
+          message.show(response.error, 'error');
+          return;
+        }
+        message.show('Used password was successfuly changed!');
+      });
+    }
+  };
+
   return (
     <section>
       <h1>Customer state test</h1>
@@ -91,6 +106,10 @@ export function PageTest() {
       <br />
       <button type="button" onClick={handleUpdateAddress}>
         Set example address using api (for real user only)
+      </button>
+      <br />
+      <button type="button" onClick={handleChangePassword}>
+        Change password using api (for real user only)
       </button>
       <br />
       <button type="button" onClick={logout}>
