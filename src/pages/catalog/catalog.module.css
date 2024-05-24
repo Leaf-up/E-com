@@ -1,0 +1,8 @@
+.products {
+  width: calc(100% - 2em);
+  margin: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
