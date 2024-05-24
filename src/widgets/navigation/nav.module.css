@@ -90,4 +90,9 @@
   .nav__list_column .icon {
     filter: invert(0);
   }
+  @media (min-width: 769px) {
+    .nav__list .icon {
+      filter: invert(1);
+    }
+  }
 }
