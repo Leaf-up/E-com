@@ -1,0 +1,43 @@
+.card {
+  width: calc(100% - 2em);
+  margin: 1em;
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: var(--color10);
+  display: flex;
+  column-gap: 1em;
+}
+
+.card__preview {
+  width: 10em;
+  height: 10em;
+  flex-shrink: 0;
+}
+
+.card__preview img {
+  width: 100%;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__info_title {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.card__info_attr_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  column-gap: 1em;
+}
+
+.card__info_attr_list li {
+  padding: 0;
+}
