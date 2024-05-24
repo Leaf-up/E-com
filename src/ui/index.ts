@@ -1,5 +1,5 @@
-import ButtonSubmit from './submit/button-submit';
-import FormError from './auth-error/form-error';
+import ButtonSubmit from './form/submit/button-submit';
+import FormError from './form/error/form-error';
 import CardProduct from './card/product/product';
 
 export { CardProduct };
