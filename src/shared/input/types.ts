@@ -13,6 +13,7 @@ export default interface InputProps {
   disabled?: boolean;
   checked?: boolean;
   inputIcon?: ReactNode;
+  inputClass?: string;
   onChange?: (value: string) => void;
   onClick?: (value: string) => void;
 }
