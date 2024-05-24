@@ -16,7 +16,7 @@ export type TProduct = {
 };
 
 type TProductData = {
-  name: string;
+  name: { 'en-US': string };
   categories: TCategory;
   slug: string; // User-defined identifier used in a deep-link URL for the Product
   description: { 'en-US': string };
@@ -30,7 +30,7 @@ type TProductData = {
 type TCategory = {
   id: string;
   typeId: 'category';
-  obj: {
+  obj?: {
     id: string;
     version: string;
     name: string;
@@ -69,7 +69,7 @@ type TMoney = {
   fractionDigits: number; // Number of digits after the decimal separator
 };
 
-type TProductImage = {
+export type TProductImage = {
   url: string;
   dimensions: { w: number; h: number };
   label?: string;
@@ -100,7 +100,7 @@ type TProductType = {
   };
 };
 
-type TProductAttribute = {
+export type TProductAttribute = {
   name: string;
   value: string;
 };
