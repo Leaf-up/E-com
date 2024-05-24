@@ -1,6 +1,7 @@
 import { useProducts } from '~/entities';
 import { TProduct } from '~/api/products/types';
 import { CardProduct } from '~/ui';
+import styles from './catalog.module.css';
 
 export default function Catalog() {
   const { products } = useProducts();
@@ -19,8 +20,10 @@ export default function Catalog() {
 
   return (
     <section aria-label="Catalog">
-      {!products || (!products.length && <p>Catalog is empty</p>)}
-      {products?.map(productMapper)}
+      <div className={styles.products}>
+        {!products || (!products.length && <p>Catalog is empty</p>)}
+        {products?.map(productMapper)}
+      </div>
     </section>
   );
 }
