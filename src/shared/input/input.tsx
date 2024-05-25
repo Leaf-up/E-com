@@ -17,6 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       disabled,
       checked,
       inputIcon,
+      inputClass,
       onChange,
       onClick,
     }: InputProps,
@@ -55,7 +56,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={styles.input_container}>
           <input
-            className={errorMessage ? `${styles.input} ${styles.input_invalid}` : styles.input}
+            className={
+              errorMessage ? `${styles.input} ${inputClass} ${styles.input_invalid}` : `${styles.input} ${inputClass}`
+            }
             type={type}
             name={name}
             id={id}
@@ -68,7 +71,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onClick={(e) => onClick?.(e.currentTarget.value)}
             ref={ref}
           />
-          {errorMessage && <div className={styles.message}>{errorMessage}</div>}
+          {errorMessage && !disabled && !readonly && <div className={styles.message}>{errorMessage}</div>}
           {inputIcon && inputIcon}
         </div>
       </div>

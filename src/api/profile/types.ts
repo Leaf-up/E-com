@@ -20,3 +20,10 @@ export type TProfileAction = {
   lastName?: string; // setLastName
   dateOfBirth?: string; // setDateOfBirth
 };
+
+export type TProfileData = {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  dateOfBirth?: string;
+};
