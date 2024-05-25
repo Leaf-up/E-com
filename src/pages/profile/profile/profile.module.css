@@ -49,7 +49,7 @@
 }
 
 .tabs__button_active {
-  text-shadow: 1px 1px 1px #155d274a;
+  text-shadow: 1px 1px 1px var(--color80a);
   cursor: auto;
 }
 

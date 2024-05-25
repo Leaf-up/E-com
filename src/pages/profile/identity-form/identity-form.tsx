@@ -1,8 +1,8 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { performProfileUpdate } from '~/api';
-import { TProfileData } from '~/api/profile/types';
+import type { TProfileData } from '~/api/profile/types';
 import { useCustomer } from '~/entities';
-import { ButtonSubmit, InputDate, InputEmail, InputText } from '~/ui';
+import { ButtonSubmit, FormError, InputDate, InputEmail, InputText } from '~/ui';
 import { message } from '~/widgets';
 import type IdentityFormProps from './types';
 import styles from './identity-form.module.css';
@@ -14,6 +14,7 @@ export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
   const [firstNameValid, setFirstNameValid] = useState(true);
   const [lastNameValid, setLastNameValid] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
     const formData = getFormData();
     const ISODateOfBirth =
@@ -88,12 +90,15 @@ export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
     ]).then((response) => {
       if (response.error) {
         setLoading(false);
+        setError(response.error);
+        message.show(response.error, 'error');
         return;
       }
       setLoading(false);
       if (response.customer) {
-        message.show(`Successfully saved`);
+        message.show('User details was successfully updated');
       }
+      onCancelClick();
     });
   };
 
@@ -133,11 +138,19 @@ export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
           label={`Date of birth${isEdit ? '*' : ''}`}
         />
       </div>
+      <FormError error={error} />
       <div className={isEdit ? styles.form__buttons : styles.form__buttons_hidden}>
         <ButtonSubmit loading={loading} disabled={!firstNameValid || !lastNameValid || !dateValid || !emailValid}>
           Save
         </ButtonSubmit>
-        <button type="button" className={styles.form__buttons_cancel} onClick={onCancelClick}>
+        <button
+          type="button"
+          className={styles.form__buttons_cancel}
+          onClick={() => {
+            setError('');
+            onCancelClick();
+          }}
+        >
           Cancel
         </button>
       </div>

@@ -47,6 +47,7 @@
   --color60: #25a244;
   --color70: #208b3a;
   --color80: #155d27;
+  --color80a: #155d274a;
   --color90: #10451d;
   --color100: #041107;
 }
@@ -62,6 +63,7 @@
     --color60: #166cc3;
     --color70: #2885e2;
     --color80: #4ba3fb;
+    --color80a: #4ba3fb4a;
     --color90: #88c2fb;
     --color100: #fff;
   }
