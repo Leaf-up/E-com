@@ -1,3 +1,8 @@
 export default interface PasswordFormProps {
-  onCancelClick: () => void;
+  disableEditMode: () => void;
 }
+
+export type TPasswordsData = {
+  currentPassword: string;
+  newPassword: string;
+};

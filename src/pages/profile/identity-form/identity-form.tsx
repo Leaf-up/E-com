@@ -1,13 +1,13 @@
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { performProfileUpdate } from '~/api';
-import type { TProfileData } from '~/api/profile/types';
+import type { TProfileData } from './types';
 import { useCustomer } from '~/entities';
 import { ButtonSubmit, FormError, InputDate, InputEmail, InputText } from '~/ui';
 import { message } from '~/widgets';
 import type IdentityFormProps from './types';
 import styles from './identity-form.module.css';
 
-export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
+export function IdentityForm({ isEdit, disableEditMode }: IdentityFormProps) {
   const { user } = useCustomer();
   const [emailValid, setEmailValid] = useState(true);
   const [dateValid, setDateValid] = useState(true);
@@ -66,40 +66,38 @@ export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
       dateOfBirth: ISODateOfBirth ?? '',
     };
 
-    if (!user) {
-      return;
-    }
-
-    performProfileUpdate(user, [
-      {
-        action: 'setFirstName',
-        firstName: data.firstName,
-      },
-      {
-        action: 'setLastName',
-        lastName: data.lastName,
-      },
-      {
-        action: 'changeEmail',
-        email: data.email,
-      },
-      {
-        action: 'setDateOfBirth',
-        dateOfBirth: data.dateOfBirth,
-      },
-    ]).then((response) => {
-      if (response.error) {
+    if (user) {
+      performProfileUpdate(user, [
+        {
+          action: 'setFirstName',
+          firstName: data.firstName,
+        },
+        {
+          action: 'setLastName',
+          lastName: data.lastName,
+        },
+        {
+          action: 'changeEmail',
+          email: data.email,
+        },
+        {
+          action: 'setDateOfBirth',
+          dateOfBirth: data.dateOfBirth,
+        },
+      ]).then((response) => {
+        if (response.error) {
+          setLoading(false);
+          setError(response.error);
+          message.show(response.error, 'error');
+          return;
+        }
         setLoading(false);
-        setError(response.error);
-        message.show(response.error, 'error');
-        return;
-      }
-      setLoading(false);
-      if (response.customer) {
-        message.show('User details was successfully updated');
-      }
-      onCancelClick();
-    });
+        if (response.customer) {
+          message.show('User details was successfully updated');
+        }
+        disableEditMode();
+      });
+    }
   };
 
   return (
@@ -148,7 +146,7 @@ export function IdentityForm({ isEdit, onCancelClick }: IdentityFormProps) {
           className={styles.form__buttons_cancel}
           onClick={() => {
             setError('');
-            onCancelClick();
+            disableEditMode();
           }}
         >
           Cancel

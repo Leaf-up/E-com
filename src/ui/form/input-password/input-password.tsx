@@ -9,7 +9,7 @@ import eyeIcon from '/icons/eye.svg';
 const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).password().finalize();
 const validatePassword = (password: string | null) => checkRules(password, passwordRules);
 
-export function InputPassword({ setValid, label, id, name }: InputPasswordProps) {
+export function InputPassword({ setValid, label, name }: InputPasswordProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [show, setShow] = useState(false);
 
@@ -18,7 +18,7 @@ export function InputPassword({ setValid, label, id, name }: InputPasswordProps)
       label={label ?? 'Password*'}
       type={show ? 'text' : 'password'}
       name={name ?? 'password'}
-      id={id ?? 'password'}
+      id={name ?? 'password'}
       errorMessage={errorMessage}
       placeholder="Enter your password"
       inputIcon={

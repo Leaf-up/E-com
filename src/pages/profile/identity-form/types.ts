@@ -1,4 +1,11 @@
 export default interface IdentityFormProps {
   isEdit: boolean;
-  onCancelClick: () => void;
+  disableEditMode: () => void;
 }
+
+export type TProfileData = {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  dateOfBirth?: string;
+};
