@@ -27,3 +27,8 @@ export type TProfileData = {
   lastName?: string;
   dateOfBirth?: string;
 };
+
+export type TPasswordsData = {
+  currentPassword: string;
+  newPassword: string;
+};

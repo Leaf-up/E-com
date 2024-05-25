@@ -9,16 +9,16 @@ import eyeIcon from '/icons/eye.svg';
 const passwordRules = validationRules().notEmpty().noSpaces().minSize(8).password().finalize();
 const validatePassword = (password: string | null) => checkRules(password, passwordRules);
 
-export function InputPassword({ setValid }: InputPasswordProps) {
+export function InputPassword({ setValid, label, id, name }: InputPasswordProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [show, setShow] = useState(false);
 
   return (
     <Input
-      label="Password*"
+      label={label ?? 'Password*'}
       type={show ? 'text' : 'password'}
-      name="password"
-      id="password"
+      name={name ?? 'password'}
+      id={id ?? 'password'}
       errorMessage={errorMessage}
       placeholder="Enter your password"
       inputIcon={
