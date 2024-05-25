@@ -59,7 +59,7 @@ export const validationRules = () => {
       rules.push({
         message:
           message ??
-          'Password must contain latin letters, at least one uppercase letter, one lowercase letter and one number',
+          'Password must contain latin letters without symbols, at least one uppercase letter, one lowercase letter and one number',
         test: (value: string | null) => !value || !value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]*$/),
       });
 

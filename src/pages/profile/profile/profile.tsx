@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import styles from './profile.module.css';
-import houseIcon from '/icons/house.svg';
-import userIcon from '/icons/user.svg';
-import editIcon from '/icons/edit.svg';
 import { IdentityForm } from '../identity-form/identity-form';
+import { PasswordForm } from '../password-form/password-form';
+import styles from './profile.module.css';
+
+const houseIcon = '/icons/house.svg';
+const userIcon = '/icons/user.svg';
+const editIcon = '/icons/edit.svg';
 
 export function Profile() {
   const [isIdentityEdit, setIsIdentityEdit] = useState(false);
+  const [isPasswordEdit, setIsPasswordEdit] = useState(false);
   const [tab, setTab] = useState<'personal' | 'addresses'>('personal');
   const addressesEl = <div>Addresses</div>;
 
@@ -33,19 +36,34 @@ export function Profile() {
       </div>
       <div className={styles.info}>
         {tab === 'personal' && (
-          <div className={styles.info__item}>
-            {!isIdentityEdit && (
-              <img
-                src={editIcon}
-                alt="edit"
-                className={styles.info__item_icon}
-                onClick={() => setIsIdentityEdit(true)}
-                aria-hidden
-              />
-            )}
-            <span className={styles.info__item_title}>Identity</span>
-            <IdentityForm isEdit={isIdentityEdit} onCancelClick={() => setIsIdentityEdit(false)} />
-          </div>
+          <>
+            <div className={styles.info__item}>
+              {!isIdentityEdit && (
+                <img
+                  src={editIcon}
+                  alt="edit"
+                  className={styles.info__item_icon}
+                  onClick={() => setIsIdentityEdit(true)}
+                  aria-hidden
+                />
+              )}
+              <span className={styles.info__item_title}>Identity</span>
+              <IdentityForm isEdit={isIdentityEdit} disableEditMode={() => setIsIdentityEdit(false)} />
+            </div>
+            <div className={styles.info__item}>
+              {!isPasswordEdit && (
+                <img
+                  src={editIcon}
+                  alt="edit"
+                  className={styles.info__item_icon}
+                  onClick={() => setIsPasswordEdit(true)}
+                  aria-hidden
+                />
+              )}
+              <span className={styles.info__item_title}>Change Password</span>
+              {isPasswordEdit && <PasswordForm disableEditMode={() => setIsPasswordEdit(false)} />}
+            </div>
+          </>
         )}
         {tab === 'addresses' && addressesEl}
       </div>
