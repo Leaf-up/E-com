@@ -2,7 +2,7 @@ export type TProduct = {
   id: string; // Unique identifier of the Product.
   version: number; // Current version of the Product.
   key?: string; // User-defined unique identifier of the Product.
-  productType: TProductType; // The Product Type defining the Attributes of the Product.
+  productType: TProductTypeInfo; // The Product Type defining the Attributes of the Product.
   masterData: {
     published: boolean;
     current: TProductData;
@@ -17,30 +17,32 @@ export type TProduct = {
 
 type TProductData = {
   name: { 'en-US': string };
-  categories: TCategory;
+  categories: TCategoryInfo;
   slug: string; // User-defined identifier used in a deep-link URL for the Product
   description: { 'en-US': string };
   masterVariant: TProductVariant;
   variants: TProductVariant[];
   searchKeywords: {
-    en: { text: string }[];
+    'en-US': { text: string }[];
   };
 };
 
-type TCategory = {
+type TCategoryInfo = {
   id: string;
   typeId: 'category';
-  obj?: {
-    id: string;
-    version: string;
-    name: string;
-    slug: string;
-    ancestors: TCategory;
-    parent?: TCategory;
-    orderHint: string; // Decimal value between 0 and 1
-    createdAt: string;
-    lastModifiedAt: string;
-  };
+};
+
+export type TCategory = {
+  id: string;
+  version: string;
+  key?: string;
+  name: { 'en-US': string };
+  slug: { 'en-US': string };
+  ancestors: TCategoryInfo;
+  parent?: TCategoryInfo;
+  orderHint: string; // Decimal value between 0 and 1
+  createdAt: string;
+  lastModifiedAt: string;
 };
 
 type TProductVariant = {
@@ -58,7 +60,7 @@ type TPrice = {
   value: TMoney;
   discounted?: {
     value: TMoney;
-    discount: TDiscount;
+    discount: TDiscountInfo;
   };
 };
 
@@ -75,9 +77,29 @@ export type TProductImage = {
   label?: string;
 };
 
-type TDiscount = {
+type TDiscountInfo = {
   id: string;
   typeId: 'product-discount';
+};
+
+export type TDiscount = {
+  id: string;
+  version: number;
+  name: { 'en-US': string }; // Name of the ProductType.
+  value: {
+    type: 'relative' | 'absolute' | 'external';
+    permyriad?: number;
+    money?: number;
+  };
+  predicate: string;
+  sortOrder: string;
+  isActive: boolean;
+  references: {
+    typeId: 'product';
+    id: string;
+  }[];
+  createdAt: string;
+  lastModifiedAt: string;
 };
 
 type TTaxCategory = {
@@ -85,19 +107,20 @@ type TTaxCategory = {
   typeId: 'tax-category';
 };
 
-type TProductType = {
+type TProductTypeInfo = {
   id: string;
   typeId: 'product-type';
-  obj?: {
-    id: string; // Unique identifier of the ProductType.
-    version: number; // Current version of the ProductType.
-    key?: string; // User-defined unique identifier of the ProductType.
-    name: string; // Name of the ProductType.
-    description: string; // Description of the ProductType.
-    attributes?: TProductAttribute[]; // Attributes specified for the ProductType.
-    createdAt: string;
-    lastModifiedAt: string;
-  };
+};
+
+export type TProductType = {
+  id: string; // Unique identifier of the ProductType.
+  version: number; // Current version of the ProductType.
+  key?: string; // User-defined unique identifier of the ProductType.
+  name: { 'en-US': string }; // Name of the ProductType.
+  description: string; // Description of the ProductType.
+  attributes?: TProductAttribute[]; // Attributes specified for the ProductType.
+  createdAt: string;
+  lastModifiedAt: string;
 };
 
 export type TProductAttribute = {
