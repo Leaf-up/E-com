@@ -102,7 +102,7 @@ type TProductType = {
 
 export type TProductAttribute = {
   name: string;
-  value: string;
+  value: string | { key: string; label: string };
 };
 
 type TCurrencyCode = 'USD';
