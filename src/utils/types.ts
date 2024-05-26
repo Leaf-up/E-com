@@ -7,3 +7,5 @@ export const objectEntries = <T extends Record<PropertyKey, unknown>, K extends 
 export const objectKeys = <T extends Record<PropertyKey, unknown>, K extends keyof T>(obj: T) => {
   return Object.keys(obj) as K[];
 };
+
+export const isObject = <T>(obj: unknown): obj is T => typeof obj === 'object' && !Array.isArray(obj) && obj !== null;
