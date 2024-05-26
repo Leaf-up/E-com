@@ -2,7 +2,6 @@ import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Layout } from './layout';
 import { Home, Login, Register, PageTest, Page404, Profile, Catalog } from './pages';
 import { useCustomer } from './entities';
-import './styles.css';
 
 interface ProtectedRouteProps {
   isRedirect: boolean;
