@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Page404 } from '..';
 import { requestProducts } from '~/api';
 import { TProduct } from '~/api/products/types';
+import { Page404 } from '~/pages';
+import Loader from '~/ui/loader/loader';
 import ProductInfo from './productInfo/productInfo';
 import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
 
@@ -35,7 +36,7 @@ export default function Product() {
     });
   }, [category, key]);
 
-  if (!product) return null;
+  if (!product) return <Loader />;
   if (product === '404') return <Page404 />;
   return productMapper(product, 0);
 }

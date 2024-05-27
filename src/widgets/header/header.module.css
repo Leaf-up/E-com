@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   flex: 0 0 auto;
-  height: 60px;
+  height: 3.75em;
   background-color: var(--color80);
   color: var(--color00);
 }
