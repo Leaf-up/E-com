@@ -6,5 +6,6 @@ export type TCardProductProps = {
   attributes?: TProductAttribute[];
   images: TProductImage[];
   price: number;
-  link: string;
+  category: string | null;
+  rating?: number;
 };

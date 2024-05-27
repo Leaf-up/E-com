@@ -58,7 +58,6 @@ describe('Create user api:', () => {
 
   test('Receive expected user data', async () => {
     const response = await updateCustomer(userId, version, actions, testToken);
-    console.log(response);
 
     expect(fetchMock).toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalledWith(endpoint, testFetchOptions);

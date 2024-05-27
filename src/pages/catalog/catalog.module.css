@@ -1,5 +1,17 @@
+.catalog {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.filters {
+  flex: 0 0 16em;
+  padding: 1em;
+  background-color: var(--color30);
+}
+
 .products {
-  width: calc(100% - 2em);
+  width: calc(100% - 18em);
   margin: 1em;
   display: flex;
   flex-wrap: wrap;

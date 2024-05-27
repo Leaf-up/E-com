@@ -12,7 +12,7 @@ class CustomerStore {
     if (user) {
       this._user = user;
       const { firstName, lastName } = user;
-      message.show(`Successfully logged in as ${firstName} ${lastName}`);
+      message.show(`Logged in as ${firstName} ${lastName}`);
     }
 
     makeAutoObservable(this);
