@@ -12,7 +12,7 @@ export default function CardProduct({ name, description, attributes, images, pri
     if (tagNames.includes(item.name)) {
       if (isObject<{ label: string }>(item.value)) {
         acc.push(item.value.label);
-      } else if (item.name === 'charm') {
+      } else if (item.name === 'charm' && item.value) {
         acc.push('charmed');
       } else {
         acc.push(item.value);

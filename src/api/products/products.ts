@@ -8,7 +8,7 @@ export default function requestProducts(key?: string): Promise<{ data: TProduct[
     const token = bearer.data!.access_token;
     return getProducts(token, key).then((response) => {
       if (response.data) {
-        console.log(response.data);
+        // console.log('Products:', response.data);
       }
       return response;
     });

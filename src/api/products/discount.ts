@@ -8,7 +8,7 @@ export default function requestDiscount(): Promise<{ data: TDiscount[] | null; e
     const token = bearer.data!.access_token;
     return getDiscount(token).then((response) => {
       if (response.data) {
-        console.log(response.data);
+        // console.log('Discount:', response.data);
       }
       return response;
     });

@@ -14,6 +14,7 @@ export default function Select({ name, options, value, onChange, isReadonly }: S
         onClick={() => {
           if (!isReadonly) setOpen(!open);
         }}
+        aria-hidden="true"
       >
         <div>
           {name && <div className={styles.dropdown__title}>{name}</div>}
@@ -46,6 +47,7 @@ export default function Select({ name, options, value, onChange, isReadonly }: S
                 if (onChange) onChange(i);
               }
             }}
+            aria-hidden="true"
           >
             {option}
           </li>
