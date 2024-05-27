@@ -44,6 +44,7 @@
   --color30: #6ede8a;
   --color40: #4ad66d;
   --color50: #2dc653;
+  --color50a: #2dc65380;
   --color60: #25a244;
   --color70: #208b3a;
   --color80: #155d27;
@@ -60,6 +61,7 @@
     --color30: #002855;
     --color40: #023e7d;
     --color50: #0353a4;
+    --color50a: #0353a480;
     --color60: #166cc3;
     --color70: #2885e2;
     --color80: #4ba3fb;

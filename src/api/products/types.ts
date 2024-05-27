@@ -17,7 +17,7 @@ export type TProduct = {
 
 type TProductData = {
   name: { 'en-US': string };
-  categories: TCategoryInfo;
+  categories: TCategoryInfo[];
   slug: string; // User-defined identifier used in a deep-link URL for the Product
   description: { 'en-US': string };
   masterVariant: TProductVariant;

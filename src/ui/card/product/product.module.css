@@ -1,5 +1,8 @@
 .card {
   flex: 0 0 21em;
+  height: 32em;
+  color: var(--color100);
+  text-decoration: none;
   padding: 1em;
   border-radius: 0.5em;
   background-color: var(--color10);

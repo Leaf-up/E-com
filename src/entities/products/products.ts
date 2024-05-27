@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { runInAction, makeAutoObservable, reaction } from 'mobx';
-import type { TProduct, TCategory, TDiscount } from '~/api/products/types';
+import type { TProduct, TDiscount } from '~/api/products/types';
 import { requestProducts, requestCategoty, requestDiscount } from '~/api';
 
 class ProductsStore {
   private _products: TProduct[] | null = null;
-  private _category: TCategory[] | null = null;
+  private _category: Record<string, string> | null = null;
   private _discount: TDiscount[] | null = null;
 
   constructor() {
@@ -19,7 +19,10 @@ class ProductsStore {
     requestCategoty().then((response) => {
       if (response.data) {
         runInAction(() => {
-          this._category = response.data;
+          this._category = (response.data || []).reduce<Record<string, string>>((acc, item) => {
+            acc[item.id] = item.slug['en-US'];
+            return acc;
+          }, {});
         });
       }
     });
@@ -43,7 +46,7 @@ class ProductsStore {
     return this._products;
   }
 
-  set category(value: TCategory[] | null) {
+  set category(value: Record<string, string> | null) {
     this._category = value;
     console.log('Category update:', value);
   }
@@ -66,7 +69,7 @@ export const productsStore = new ProductsStore();
 
 export const useProducts = () => {
   const [products, setProducts] = useState<TProduct[] | null>(productsStore.products);
-  const [category, setCategory] = useState<TCategory[] | null>(productsStore.category);
+  const [category, setCategory] = useState<Record<string, string> | null>(productsStore.category);
   const [discount, setDiscount] = useState<TDiscount[] | null>(productsStore.discount);
 
   useEffect(() => {
