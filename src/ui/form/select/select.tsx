@@ -10,28 +10,17 @@ export default function Select({ name, options, value, onChange, isReadonly }: S
   return (
     <div className={`${styles.dropdown} ${name ? styles.dropdown_l : styles.dropdown_m}`}>
       <div
-        className={styles.dropdown__current}
+        className={styles.dropdown__control}
         onClick={() => {
           if (!isReadonly) setOpen(!open);
         }}
         aria-hidden="true"
+        aria-label={open ? 'open' : 'closed'}
       >
         <div>
           {name && <div className={styles.dropdown__title}>{name}</div>}
           <div>{options[selected]}</div>
         </div>
-        <svg
-          className={open ? styles.icon_rotated : ''}
-          xmlns="http://www.w3.org/2000/svg"
-          width="1.5em"
-          height="1.5em"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M12 13.1722L16.95 8.22217L18.364 9.63617L12 16.0002L5.63599 9.63617L7.04999 8.22217L12 13.1722Z"
-            fill="#888"
-          />
-        </svg>
       </div>
       <ul className={open ? `${styles.options} ${styles.options_show}` : styles.options}>
         {options.map((option, i) => (
