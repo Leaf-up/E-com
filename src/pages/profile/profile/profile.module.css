@@ -10,7 +10,7 @@
   row-gap: 0.8em;
   padding: 2em;
   margin-top: 1px;
-  background-color: var(--color10);
+  background-color: var(--color30a);
 }
 
 .tabs__title {
@@ -35,6 +35,10 @@
   text-align: left;
   line-height: 1;
   cursor: pointer;
+}
+
+.tabs__button img {
+  filter: invert(var(--dark-theme));
 }
 
 .tabs__button_active::after {
@@ -82,7 +86,16 @@
   position: absolute;
   right: 1em;
   top: 1em;
+  filter: invert(var(--dark-theme));
   cursor: pointer;
+}
+
+.tabs__theme {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4em;
+  font-size: 1.2em;
+  color: var(--color90);
 }
 
 @media (hover: hover) {
@@ -115,21 +128,5 @@
 
   .tabs__title {
     display: none;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .tabs__button img {
-    filter: hue-rotate(110deg) brightness(4);
-  }
-
-  .info__item {
-    background-color: var(--color20);
-    border: 2px solid var(--color20);
-    box-shadow: none;
-  }
-
-  .info__item_icon {
-    filter: invert(1);
   }
 }

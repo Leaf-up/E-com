@@ -4,8 +4,11 @@ import type { TCustomer } from '~/api/types';
 import store from '~/utils/store';
 import { message } from '~/widgets';
 
+type TTheme = 'light' | 'dark';
+
 class CustomerStore {
   private _user: TCustomer | null = null;
+  private _theme: TTheme;
 
   constructor() {
     const user = store.get<TCustomer>('user');
@@ -14,6 +17,8 @@ class CustomerStore {
       const { firstName, lastName } = user;
       message.show(`Logged in as ${firstName} ${lastName}`);
     }
+    const theme = store.get<TTheme>('theme');
+    this._theme = theme ? theme : 'light';
 
     makeAutoObservable(this);
   }
@@ -27,12 +32,22 @@ class CustomerStore {
   get user() {
     return this._user;
   }
+
+  set theme(value: TTheme) {
+    this._theme = value;
+    store.set('theme', this._theme);
+  }
+
+  get theme() {
+    return this._theme;
+  }
 }
 
 export const customerStore = new CustomerStore();
 
 export const useCustomer = () => {
   const [user, setUser] = useState<TCustomer | null>(customerStore.user);
+  const [theme, setTheme] = useState<TTheme>(customerStore.theme);
 
   const logout = () => {
     customerStore.user = null;
@@ -45,7 +60,13 @@ export const useCustomer = () => {
         setUser(value);
       },
     );
+    reaction(
+      () => customerStore.theme,
+      (value) => {
+        setTheme(value);
+      },
+    );
   }, []);
 
-  return { user, logout };
+  return { user, logout, theme };
 };

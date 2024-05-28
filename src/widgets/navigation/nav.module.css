@@ -34,8 +34,8 @@
   display: contents;
 }
 
-.nav__list_column .icon {
-  filter: invert(1);
+.nav__list .icon {
+  filter: invert(var(--dark-theme));
 }
 
 .nav__list_column:last-child > *:first-child .nav__link:has(.icon) {
@@ -83,16 +83,5 @@
 @media (max-width: 768px) {
   .nav__list {
     column-gap: 0.8em;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .nav__list_column .icon {
-    filter: invert(0);
-  }
-  @media (min-width: 769px) {
-    .nav__list .icon {
-      filter: invert(1);
-    }
   }
 }

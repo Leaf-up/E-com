@@ -15,3 +15,4 @@ export { InputCity } from './form/input-city/input-city';
 export { DropdownCountry } from './form/dropdown-country/dropdown-country';
 export { FormLink } from './form/form-link/form-link';
 export { Address } from './form/address/address';
+export { ThemeSwitcher, themeInit } from './theme/theme';

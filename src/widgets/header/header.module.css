@@ -6,8 +6,8 @@
   align-items: center;
   flex: 0 0 auto;
   height: 3.75em;
-  background-color: var(--color80);
-  color: var(--color00);
+  background-color: var(--color80a);
+  color: var(--color100);
 }
 
 .header__content {
@@ -50,16 +50,12 @@
   display: none;
   border: none;
   background-color: transparent;
+  filter: invert(var(--dark-theme));
   cursor: pointer;
   transition: opacity 0.25s linear;
 }
 .header__menu_button:hover {
   opacity: 0.65;
-}
-@media (prefers-color-scheme: dark) {
-  .header__menu_button {
-    filter: invert(1);
-  }
 }
 
 @media (max-width: 768px) {

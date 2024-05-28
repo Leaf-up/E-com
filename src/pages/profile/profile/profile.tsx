@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { IdentityForm } from '../identity-form/identity-form';
 import { PasswordForm } from '../password-form/password-form';
+import { ThemeSwitcher } from '~/ui';
 import styles from './profile.module.css';
 
 const houseIcon = '/icons/house.svg';
@@ -33,6 +34,10 @@ export function Profile() {
           <img src={houseIcon} alt="house" />
           Addresses
         </button>
+        <div className={styles.tabs__theme}>
+          <ThemeSwitcher />
+          <span>Theme</span>
+        </div>
       </div>
       <div className={styles.info}>
         {tab === 'personal' && (
