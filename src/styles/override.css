@@ -1,3 +1,4 @@
+/* Pagination */
 .ant-pagination {
   margin-top: 1em;
   text-align: center;
@@ -26,4 +27,10 @@
 .ant-pagination-options {
   float: right;
   margin-right: 0.5em;
+}
+
+/* Image */
+.ant-image .ant-image-img,
+.ant-image .ant-image-mask {
+  border-radius: 0.5em !important;
 }

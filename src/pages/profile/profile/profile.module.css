@@ -71,10 +71,10 @@
   row-gap: 0.8em;
   height: fit-content;
   margin: 0 2em;
-  border: 2px solid var(--color10);
+  border: 1px solid var(--color10);
   padding: 1em;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px var(--color10);
+  box-shadow: 0 0 4px #0008;
 }
 
 .info__item_title {
