@@ -1,13 +1,36 @@
 import { useCustomer } from '~/entities';
 import type TableProps from './types';
 import styles from './table.module.css';
+import { performProfileUpdate } from '~/api';
+import { message } from '~/widgets';
 
 const editIcon = '/icons/edit.svg';
 const trashIcon = '/icons/trash.svg';
 
 export function Table({ type, onEditClick }: TableProps) {
   const { user } = useCustomer();
-  return (
+
+  const removeAddress = (id: string | undefined) => {
+    if (user) {
+      performProfileUpdate(user, [
+        {
+          action: 'removeAddress',
+          addressId: id,
+        },
+      ]).then((response) => {
+        if (response.error) {
+          message.show(response.error, 'error');
+          return;
+        }
+
+        if (response.customer) {
+          message.show(`Address was successfully removed`);
+        }
+      });
+    }
+  };
+
+  return user && (type === 'billing' ? user.billingAddressIds.length !== 0 : user.shippingAddressIds.length !== 0) ? (
     <table className={styles.table}>
       <thead className={styles.thead}>
         <tr className={styles.tr}>
@@ -20,18 +43,18 @@ export function Table({ type, onEditClick }: TableProps) {
           <th className={styles.th_hidden}>Delete</th>
         </tr>
       </thead>
-      {user &&
-        user.addresses
-          .filter(
-            (address) =>
-              address.id &&
-              (type === 'billing'
-                ? user.billingAddressIds.includes(address.id)
-                : user.shippingAddressIds.includes(address.id)),
-          )
-          .map((el) => (
-            <tbody className={styles.tbody} key={el.id}>
-              <tr className={styles.tr}>
+      <tbody className={styles.tbody}>
+        {user &&
+          user.addresses
+            .filter(
+              (address) =>
+                address.id &&
+                (type === 'billing'
+                  ? user.billingAddressIds.includes(address.id)
+                  : user.shippingAddressIds.includes(address.id)),
+            )
+            .map((el) => (
+              <tr className={styles.tr} key={el.id}>
                 <td className={styles.td}>{el.country}</td>
                 <td className={styles.td}>{el.city}</td>
                 <td className={styles.td}>{el.streetName}</td>
@@ -51,11 +74,19 @@ export function Table({ type, onEditClick }: TableProps) {
                   />
                 </td>
                 <td className={`${styles.td} ${styles.td_icon}`}>
-                  <img src={trashIcon} alt="trash" className={styles.td__icon} aria-hidden />
+                  <img
+                    src={trashIcon}
+                    alt="trash"
+                    className={styles.td__icon}
+                    onClick={() => removeAddress(el.id)}
+                    aria-hidden
+                  />
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+      </tbody>
     </table>
+  ) : (
+    <span>The address list is empty</span>
   );
 }
