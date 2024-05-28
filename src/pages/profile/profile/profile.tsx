@@ -4,6 +4,7 @@ import { PasswordForm } from '../password-form/password-form';
 import { type TAddress } from '~/api/types';
 import { ModalAddressEdit } from '../address/modal-address-edit/modal-address-edit';
 import { Table } from '../address/table/table';
+import { ModalAddressCreate } from '../address/modal-address-create/modal-address-create';
 import styles from './profile.module.css';
 
 const houseIcon = '/icons/house.svg';
@@ -16,6 +17,7 @@ export function Profile() {
   const [isPasswordEdit, setIsPasswordEdit] = useState(false);
   const [tab, setTab] = useState<'personal' | 'addresses'>('personal');
   const [isModalAddressEditOpen, setIsModalAddressEditOpen] = useState(false);
+  const [isModalAddressCreateOpen, setIsModalAddressCreateOpen] = useState(false);
   const [editingAddress, setEditingAddress] = useState<TAddress | null>(null);
   const [addressType, setAddressType] = useState<'shipping' | 'billing'>('shipping');
 
@@ -81,6 +83,7 @@ export function Profile() {
                   className={styles.info__item_icon}
                   onClick={() => {
                     setAddressType('shipping');
+                    setIsModalAddressCreateOpen(true);
                   }}
                   aria-hidden
                 />
@@ -102,6 +105,7 @@ export function Profile() {
                 className={styles.info__item_icon}
                 onClick={() => {
                   setAddressType('billing');
+                  setIsModalAddressCreateOpen(true);
                 }}
                 aria-hidden
               />
@@ -120,6 +124,11 @@ export function Profile() {
               type={addressType}
               address={editingAddress}
               closeModal={() => setIsModalAddressEditOpen(false)}
+            />
+            <ModalAddressCreate
+              isOpen={isModalAddressCreateOpen}
+              type={addressType}
+              closeModal={() => setIsModalAddressCreateOpen(false)}
             />
           </>
         )}

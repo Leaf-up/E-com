@@ -4,7 +4,15 @@ import { Address, ButtonSubmit, FormError } from '~/ui';
 import { type TAddress } from '~/api/types';
 import styles from './form.module.css';
 
-export function Form({ type, address, loading, error, sendRequest, onCancelButtonClick }: FormProps) {
+export function Form({
+  type,
+  address,
+  loading,
+  error,
+  resetOnSuccessSubmit,
+  sendRequest,
+  onCancelButtonClick,
+}: FormProps) {
   const [cityValid, setCityValid] = useState(true);
   const [streetValid, setStreetValid] = useState(true);
   const [postalCodeValid, setPostalCodeValid] = useState(true);
@@ -21,6 +29,17 @@ export function Form({ type, address, loading, error, sendRequest, onCancelButto
     ref.current[`${type}-city`].value = address.city ?? '';
     ref.current[`${type}-street`].value = address.streetName ?? '';
   }, [ref, address?.postalCode, address?.country, address?.city, address?.streetName, type, address]);
+
+  const resetFormData = () => {
+    if (!ref.current) {
+      return;
+    }
+
+    ref.current[`${type}-postal-code`].value = '';
+    ref.current[`${type}-country`].value = '';
+    ref.current[`${type}-city`].value = '';
+    ref.current[`${type}-street`].value = '';
+  };
 
   const getFormData = () => {
     if (!ref.current) return null;
@@ -47,7 +66,14 @@ export function Form({ type, address, loading, error, sendRequest, onCancelButto
       postalCode: formData?.postalCode ?? '',
     };
 
-    sendRequest(data);
+    const result = sendRequest(data);
+    if (result) {
+      result.then(() => {
+        if (resetOnSuccessSubmit) {
+          resetFormData();
+        }
+      });
+    }
   };
 
   return (

@@ -9,7 +9,9 @@ export type TProfileActionName =
   | 'addAddress'
   | 'changeAddress'
   | 'setDefaultShippingAddress'
-  | 'setDefaultBillingAddress';
+  | 'setDefaultBillingAddress'
+  | 'addShippingAddressId'
+  | 'addBillingAddressId';
 
 export type TProfileAction = {
   action: TProfileActionName;
