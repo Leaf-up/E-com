@@ -1,6 +1,7 @@
 import message from './message/message';
+import Slider from './slider/slider';
 
-export { message };
+export { Slider, message };
 export { Header } from './header/header';
 export { NavigationMenu } from './navigation/nav';
 export { LoginForm } from './login-form/login-form';

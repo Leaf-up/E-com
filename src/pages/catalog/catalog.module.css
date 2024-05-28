@@ -5,9 +5,21 @@
 }
 
 .filters {
+  position: relative;
   flex: 0 0 16em;
   padding: 2em;
   background-color: var(--color30a);
+}
+
+.filters__title {
+  font-weight: 500;
+}
+
+.filters__img {
+  position: fixed;
+  bottom: 2em;
+  left: 3em;
+  width: 10em;
 }
 
 .products {

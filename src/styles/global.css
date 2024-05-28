@@ -12,7 +12,12 @@ html {
   background-color: var(--color00);
   color: var(--color100);
 }
-.main::after {
+
+.body {
+  height: 100%;
+  margin: 0;
+}
+.body::after {
   content: '';
   position: absolute;
   top: 0;
@@ -23,11 +28,6 @@ html {
   background-size: cover;
   opacity: 0.4;
   z-index: -1;
-}
-
-.body {
-  height: 100%;
-  margin: 0;
 }
 
 #root {

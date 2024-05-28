@@ -13,7 +13,7 @@ export function Header() {
       <div className={styles.header__content}>
         <div className={styles.header__logo}>
           <NavLink to="/" className={styles.header__logo_img} />
-          <span className={styles.header__logo_title}>E-com</span>
+          <span className={styles.header__logo_title}>Magic seeds</span>
         </div>
         <button type="button" className={styles.header__menu_button} onClick={() => setShowModal(!showModal)}>
           <img src={menuIcon} alt="menu" />

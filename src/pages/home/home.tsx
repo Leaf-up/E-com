@@ -1,56 +1,42 @@
-import { NavLink } from 'react-router-dom';
+import type { TProduct } from '~/api/products/types';
+import { CardSlider, CardCategory } from '~/ui';
+import { Slider } from '~/widgets';
+import { useProducts } from '~/entities';
+import { CATEGORY_SLUG, CATEGORY_NAME } from '~/constants/constants';
 import styles from './home.module.css';
 
-const imgSrc = '/image/people-02.svg';
+const productMapper = (item: TProduct, i: number) => {
+  const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
+  const {
+    name: { 'en-US': name },
+    description: { 'en-US': description },
+    masterVariant: { attributes, images, prices },
+  } = productData;
 
-const menu = [
-  {
-    title: 'Home',
-    route: '/',
-    customer: true,
-  },
-  {
-    title: 'Test',
-    route: '/test',
-    customer: true,
-  },
-  {
-    title: 'Login',
-    route: '/login',
-    customer: false,
-  },
-  {
-    title: 'Register',
-    route: '/register',
-    customer: false,
-  },
-];
-
-export function NavigationMenu() {
-  const getLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? styles.nav__link_active : styles.nav__link);
-
-  return (
-    <nav>
-      <ul className={styles.nav__list}>
-        {menu.map((item) => (
-          <li key={item.title}>
-            {item.route && (
-              <NavLink to={item.route} className={getLinkClass}>
-                {item.title}
-              </NavLink>
-            )}
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
+  // Render
+  const link = `/products/${item.key}`;
+  const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
+  const product = { name, description, attributes, images, price, link };
+  return <CardSlider {...product} key={i} />;
+};
 
 export function Home() {
+  const { products } = useProducts();
+
+  const sliderItems = (products ?? []).slice(0, 7).map(productMapper);
+
   return (
-    <div className={styles.home}>
-      <NavigationMenu />
-      <img className={styles.home__img} src={imgSrc} alt="welcome" />
-    </div>
+    <>
+      <section className={styles.welcome}>
+        <h1 className={styles.welcome__title}>Welcome to "Magic seeds" online shop!</h1>
+        <Slider items={sliderItems} />
+      </section>
+      <section className={styles.category} aria-label="Category">
+        {CATEGORY_SLUG.reduce<JSX.Element[]>((acc, slug, i) => {
+          if (slug) acc.push(<CardCategory key={slug} slug={slug} name={CATEGORY_NAME[i]} />);
+          return acc;
+        }, [])}
+      </section>
+    </>
   );
 }

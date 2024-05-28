@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
 import { TProduct } from '~/api/products/types';
@@ -7,12 +8,14 @@ import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
 
 import styles from './catalog.module.css';
 
+const hatSrc = '/image/hat.png';
 const pageSize = 10;
 
 export default function Catalog() {
+  const { category: slug } = useParams();
   const { products, category } = useProducts();
   const [page, setPage] = useState(1);
-  const [selectedCategory, setCategory] = useState(2);
+  const [selectedCategory, setCategory] = useState(CATEGORY_SLUG.indexOf(slug) ?? 2);
 
   const filterCategory = (categories: { id: string }[]) =>
     categories.some(({ id }) => {
@@ -49,8 +52,9 @@ export default function Catalog() {
   return (
     <section className={styles.catalog} aria-label="Catalog">
       <div className={styles.filters}>
-        <h3>Filters</h3>
-        <Select name="Category" options={CATEGORY_NAME} value={2} onChange={setCategory} />
+        <h3 className={styles.filters__title}>Filters</h3>
+        <Select name="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
+        <img className={styles.filters__img} src={hatSrc} alt="hat" />
       </div>
       <div className={styles.products}>
         {!productList.length && <p>No products to show</p>}

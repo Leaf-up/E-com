@@ -19,7 +19,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog/:category?" element={<Catalog />} />
         <Route path="/products/:category?/:key" element={<Product />} />
         <Route path="/test" element={<PageTest />} />
         <Route element={<ProtectedRoute isRedirect={!user} redirectTo="/" />}>

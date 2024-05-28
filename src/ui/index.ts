@@ -1,9 +1,11 @@
 import ButtonSubmit from './form/submit/button-submit';
 import FormError from './form/error/form-error';
 import CardProduct from './card/product/product';
+import CardSlider from './card/slider/slider';
+import CardCategory from './card/category/category';
 import Select from './form/select/select';
 
-export { CardProduct };
+export { CardProduct, CardSlider, CardCategory };
 export { ButtonSubmit, FormError, Select };
 export { InputEmail } from './form/input-email/input-email';
 export { InputPassword } from './form/input-password/input-password';
