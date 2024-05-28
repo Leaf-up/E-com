@@ -12,8 +12,11 @@
 }
 
 .welcome__title {
-  max-width: 15em;
-  font-weight: 500;
+  font-family: Spyced, sans-serif;
+  font-size: 2.5rem;
+  color: var(--color80);
+  max-width: 420px;
+  margin: 0;
   text-align: center;
 }
 

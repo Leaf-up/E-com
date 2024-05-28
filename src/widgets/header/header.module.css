@@ -36,8 +36,10 @@
 }
 
 .header__logo_title {
-  width: max-content;
+  font-family: Spyced, sans-serif;
   font-size: 1.6em;
+  color: var(--color80);
+  white-space: nowrap;
 }
 
 .header__nav {
