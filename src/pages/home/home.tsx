@@ -31,11 +31,17 @@ export function Home() {
         <h1 className={styles.welcome__title}>Welcome to "Magic seeds" online shop!</h1>
         <Slider items={sliderItems} />
       </section>
-      <section className={styles.category} aria-label="Category">
+      <section className={styles.category}>
         {CATEGORY_SLUG.reduce<JSX.Element[]>((acc, slug, i) => {
           if (slug) acc.push(<CardCategory key={slug} slug={slug} name={CATEGORY_NAME[i]} />);
           return acc;
         }, [])}
+      </section>
+      <section className={styles.about}>
+        <div>It is a fun project (not a real shop)</div>
+        <div>
+          Developed by the <a href="https://github.com/Leaf-up">Leaf up</a> team in 2024
+        </div>
       </section>
     </>
   );

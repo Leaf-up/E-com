@@ -12,8 +12,8 @@ export default function CardSlider({ name, description, attributes, images, pric
     if (tagNames.includes(item.name)) {
       if (isObject<{ label: string }>(item.value)) {
         acc.push(item.value.label);
-      } else if (item.name === 'charm' && item.value) {
-        acc.push('charmed');
+      } else if (item.name === 'charm') {
+        if (item.value) acc.push('charmed');
       } else {
         acc.push(item.value);
       }
@@ -32,13 +32,13 @@ export default function CardSlider({ name, description, attributes, images, pric
           <div>{`Brand: ${brand}`}</div>
           <p>{description}</p>
         </div>
+        <p className={styles.card__info_price}>{`price: ${price.toFixed(2)}$`}</p>
         <ul className={styles.card__info_attr_list}>
           {tags.map((tag, i) => (
             <li className={styles.card__info_tag} key={i}>
               {tag}
             </li>
           ))}
-          <li>{`price: ${price.toFixed(2)}$`}</li>
         </ul>
       </div>
     </NavLink>
