@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { IdentityForm } from '../identity-form/identity-form';
 import { PasswordForm } from '../password-form/password-form';
+import { type TAddress } from '~/api/types';
+import { ModalAddressEdit } from '../address/modal-address-edit/modal-address-edit';
+import { Table } from '../address/table/table';
 import styles from './profile.module.css';
 
 const houseIcon = '/icons/house.svg';
 const userIcon = '/icons/user.svg';
 const editIcon = '/icons/edit.svg';
+const circlePlusIcon = '/icons/circle-plus.svg';
 
 export function Profile() {
   const [isIdentityEdit, setIsIdentityEdit] = useState(false);
   const [isPasswordEdit, setIsPasswordEdit] = useState(false);
   const [tab, setTab] = useState<'personal' | 'addresses'>('personal');
-  const addressesEl = <div>Addresses</div>;
+  const [isModalAddressEditOpen, setIsModalAddressEditOpen] = useState(false);
+  const [editingAddress, setEditingAddress] = useState<TAddress | null>(null);
+  const [addressType, setAddressType] = useState<'shipping' | 'billing'>('shipping');
 
   return (
     <div className={styles.profile}>
@@ -65,7 +71,58 @@ export function Profile() {
             </div>
           </>
         )}
-        {tab === 'addresses' && addressesEl}
+        {tab === 'addresses' && (
+          <>
+            <div className={styles.info__item}>
+              {!isIdentityEdit && (
+                <img
+                  src={circlePlusIcon}
+                  alt="circle"
+                  className={styles.info__item_icon}
+                  onClick={() => {
+                    setAddressType('shipping');
+                  }}
+                  aria-hidden
+                />
+              )}
+              <span className={styles.info__item_title}>Shipping addresses</span>
+              <Table
+                type="shipping"
+                onEditClick={(address) => {
+                  setIsModalAddressEditOpen(true);
+                  setEditingAddress(address);
+                  setAddressType('shipping');
+                }}
+              />
+            </div>
+            <div className={styles.info__item}>
+              <img
+                src={circlePlusIcon}
+                alt="circle"
+                className={styles.info__item_icon}
+                onClick={() => {
+                  setAddressType('billing');
+                }}
+                aria-hidden
+              />
+              <span className={styles.info__item_title}>Billing addresses</span>
+              <Table
+                type="billing"
+                onEditClick={(address) => {
+                  setIsModalAddressEditOpen(true);
+                  setEditingAddress(address);
+                  setAddressType('billing');
+                }}
+              />
+            </div>
+            <ModalAddressEdit
+              isOpen={isModalAddressEditOpen}
+              type={addressType}
+              address={editingAddress}
+              closeModal={() => setIsModalAddressEditOpen(false)}
+            />
+          </>
+        )}
       </div>
     </div>
   );
