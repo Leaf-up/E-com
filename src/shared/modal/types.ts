@@ -1,7 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 export default interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: ReactElement;
+  children: ReactNode;
 }

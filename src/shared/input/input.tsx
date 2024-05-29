@@ -71,7 +71,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onClick={(e) => onClick?.(e.currentTarget.value)}
             ref={ref}
           />
-          {errorMessage && !disabled && !readonly && <div className={styles.message}>{errorMessage}</div>}
+          {errorMessage && !disabled && <div className={styles.message}>{errorMessage}</div>}
           {inputIcon && inputIcon}
         </div>
       </div>

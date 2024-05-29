@@ -4,19 +4,11 @@ import { Address, ButtonSubmit, FormError } from '~/ui';
 import { type TAddress } from '~/api/types';
 import styles from './form.module.css';
 
-export function Form({
-  type,
-  address,
-  loading,
-  error,
-  resetOnSuccessSubmit,
-  sendRequest,
-  onCancelButtonClick,
-}: FormProps) {
-  const [cityValid, setCityValid] = useState(true);
-  const [streetValid, setStreetValid] = useState(true);
-  const [postalCodeValid, setPostalCodeValid] = useState(true);
-  const [countryValid, setCountryValid] = useState(true);
+export function Form({ type, address, loading, error, sendRequest, onCancelButtonClick }: FormProps) {
+  const [cityValid, setCityValid] = useState(!!address);
+  const [streetValid, setStreetValid] = useState(!!address);
+  const [postalCodeValid, setPostalCodeValid] = useState(!!address);
+  const [countryValid, setCountryValid] = useState(!!address);
   const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -29,17 +21,6 @@ export function Form({
     ref.current[`${type}-city`].value = address.city ?? '';
     ref.current[`${type}-street`].value = address.streetName ?? '';
   }, [ref, address?.postalCode, address?.country, address?.city, address?.streetName, type, address]);
-
-  const resetFormData = () => {
-    if (!ref.current) {
-      return;
-    }
-
-    ref.current[`${type}-postal-code`].value = '';
-    ref.current[`${type}-country`].value = '';
-    ref.current[`${type}-city`].value = '';
-    ref.current[`${type}-street`].value = '';
-  };
 
   const getFormData = () => {
     if (!ref.current) return null;
@@ -61,19 +42,12 @@ export function Form({
 
     const data: TAddress = {
       country: formData?.country ?? '',
-      city: formData?.city ?? '',
-      streetName: formData?.streetName ?? '',
+      city: formData?.city.trim() ?? '',
+      streetName: formData?.streetName.trim() ?? '',
       postalCode: formData?.postalCode ?? '',
     };
 
-    const result = sendRequest(data);
-    if (result) {
-      result.then(() => {
-        if (resetOnSuccessSubmit) {
-          resetFormData();
-        }
-      });
-    }
+    sendRequest(data);
   };
 
   return (
@@ -90,7 +64,7 @@ export function Form({
         <ButtonSubmit loading={loading} disabled={!countryValid || !cityValid || !streetValid || !postalCodeValid}>
           Save
         </ButtonSubmit>
-        <button type="button" className={styles.form__buttons_cancel} onClick={onCancelButtonClick}>
+        <button type="button" className={styles.form__buttons_cancel} onClick={() => onCancelButtonClick()}>
           Cancel
         </button>
       </div>

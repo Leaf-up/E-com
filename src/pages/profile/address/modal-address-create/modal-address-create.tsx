@@ -4,7 +4,7 @@ import { Form } from '../form/form';
 import { performProfileUpdate } from '~/api';
 import { useCustomer } from '~/entities';
 import { message } from '~/widgets';
-import { type TAddress } from '~/api/types';
+import type { TAddress } from '~/api/types';
 import type ModalAddressCreateProps from './types';
 
 export function ModalAddressCreate({ isOpen, closeModal, type }: ModalAddressCreateProps) {
@@ -12,12 +12,12 @@ export function ModalAddressCreate({ isOpen, closeModal, type }: ModalAddressCre
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const sendRequest = async (data: TAddress): Promise<void> => {
+  const sendRequest = (data: TAddress) => {
     setLoading(true);
     setError('');
 
     if (user) {
-      const addAddressResponse = await performProfileUpdate(user, [
+      performProfileUpdate(user, [
         {
           action: 'addAddress',
           address: {
@@ -27,52 +27,41 @@ export function ModalAddressCreate({ isOpen, closeModal, type }: ModalAddressCre
             postalCode: data.postalCode,
           },
         },
-      ]);
-
-      if (addAddressResponse.error) {
-        setLoading(false);
-        setError(addAddressResponse.error);
-        message.show(addAddressResponse.error, 'error');
-        return Promise.reject();
-      }
-      setLoading(false);
-
-      if (addAddressResponse.customer) {
-        const addressId = addAddressResponse.customer.addresses.at(-1)?.id ?? null;
-        message.show('Address was successfully added');
-
-        if (addressId) {
-          const addAddressIdResponse = await performProfileUpdate(addAddressResponse.customer, [
-            {
-              action: type === 'billing' ? 'addBillingAddressId' : 'addShippingAddressId',
-              addressId,
-            },
-          ]);
-
-          if (addAddressIdResponse.error) {
-            setLoading(false);
-            setError(addAddressIdResponse.error);
-            message.show(addAddressIdResponse.error, 'error');
-            return Promise.reject();
-          }
+      ]).then((response) => {
+        if (response.error) {
           setLoading(false);
-          closeModal();
+          setError(response.error);
+          message.show(response.error, 'error');
+          return;
         }
-      }
+        setLoading(false);
+        if (response.customer) {
+          const addressId = response.customer.addresses.at(-1)?.id ?? null;
+          message.show('Address was successfully added');
+          addressId &&
+            performProfileUpdate(response.customer, [
+              {
+                action: type === 'billing' ? 'addBillingAddressId' : 'addShippingAddressId',
+                addressId,
+              },
+            ]).then((resp) => {
+              if (resp.error) {
+                setError(resp.error);
+                message.show(resp.error, 'error');
+                return;
+              }
+              closeModal();
+            });
+        }
+      });
     }
-    return Promise.resolve();
   };
 
   return (
     <Modal isOpen={isOpen} onClose={closeModal}>
-      <Form
-        type={type}
-        sendRequest={sendRequest}
-        onCancelButtonClick={closeModal}
-        loading={loading}
-        error={error}
-        resetOnSuccessSubmit
-      />
+      {isOpen && (
+        <Form type={type} sendRequest={sendRequest} onCancelButtonClick={closeModal} loading={loading} error={error} />
+      )}
     </Modal>
   );
 }

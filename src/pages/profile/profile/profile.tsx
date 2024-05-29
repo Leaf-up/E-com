@@ -123,7 +123,10 @@ export function Profile() {
               isOpen={isModalAddressEditOpen}
               type={addressType}
               address={editingAddress}
-              closeModal={() => setIsModalAddressEditOpen(false)}
+              closeModal={() => {
+                setIsModalAddressEditOpen(false);
+                setEditingAddress(null);
+              }}
             />
             <ModalAddressCreate
               isOpen={isModalAddressCreateOpen}

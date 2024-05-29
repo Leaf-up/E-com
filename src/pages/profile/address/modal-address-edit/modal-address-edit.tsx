@@ -5,7 +5,7 @@ import { performProfileUpdate } from '~/api';
 import { useCustomer } from '~/entities';
 import { message } from '~/widgets';
 import type ModalAddressEditProps from './types';
-import { type TAddress } from '~/api/types';
+import type { TAddress } from '~/api/types';
 
 export function ModalAddressEdit({ isOpen, closeModal, address, type }: ModalAddressEditProps) {
   const { user } = useCustomer();
@@ -46,14 +46,16 @@ export function ModalAddressEdit({ isOpen, closeModal, address, type }: ModalAdd
 
   return (
     <Modal isOpen={isOpen} onClose={closeModal}>
-      <Form
-        type={type}
-        address={address}
-        sendRequest={sendRequest}
-        onCancelButtonClick={closeModal}
-        loading={loading}
-        error={error}
-      />
+      {isOpen && (
+        <Form
+          type={type}
+          address={address}
+          sendRequest={sendRequest}
+          onCancelButtonClick={closeModal}
+          loading={loading}
+          error={error}
+        />
+      )}
     </Modal>
   );
 }

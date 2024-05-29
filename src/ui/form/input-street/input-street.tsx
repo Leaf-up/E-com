@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
 import type InputStreetProps from './types';
@@ -16,13 +16,6 @@ export function InputStreet({ setValid, type, isReadonly }: InputStreetProps) {
     setErrorMessage(error);
     setValid(!error);
   };
-
-  useEffect(() => {
-    if (isReadonly) {
-      setErrorMessage(null);
-      setValid(true);
-    }
-  }, [isReadonly, setValid]);
 
   return (
     <Input
