@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { isObject } from '~/utils/types';
-import { TCardProductProps } from './types';
+import type { isObject } from '~/utils/types';
+import type { TCardProductProps } from './types';
 import styles from './slider.module.css';
 
 const tagNames = ['weight', 'color', 'size', 'charm'];
