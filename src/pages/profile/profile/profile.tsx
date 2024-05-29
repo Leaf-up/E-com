@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { IdentityForm } from '../identity-form/identity-form';
 import { PasswordForm } from '../password-form/password-form';
+import { ThemeSwitcher } from '~/ui';
 import { type TAddress } from '~/api/types';
 import { ModalAddressEdit } from '../address/modal-address-edit/modal-address-edit';
 import { Table } from '../address/table/table';
@@ -10,6 +11,7 @@ import styles from './profile.module.css';
 const houseIcon = '/icons/house.svg';
 const userIcon = '/icons/user.svg';
 const editIcon = '/icons/edit.svg';
+const witchSrc = '/image/witch2.png';
 const circlePlusIcon = '/icons/circle-plus.svg';
 
 export function Profile() {
@@ -41,6 +43,11 @@ export function Profile() {
           <img src={houseIcon} alt="house" />
           Addresses
         </button>
+        <div className={styles.tabs__theme}>
+          <ThemeSwitcher />
+          <span>Theme</span>
+        </div>
+        <img className={styles.tabs__img} src={witchSrc} alt="witch" />
       </div>
       <div className={styles.info}>
         {tab === 'personal' && (

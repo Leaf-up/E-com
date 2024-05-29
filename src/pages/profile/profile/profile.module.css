@@ -10,7 +10,7 @@
   row-gap: 0.8em;
   padding: 2em;
   margin-top: 1px;
-  background-color: var(--color10);
+  background-color: var(--color30a);
 }
 
 .tabs__title {
@@ -35,6 +35,10 @@
   text-align: left;
   line-height: 1;
   cursor: pointer;
+}
+
+.tabs__button img {
+  filter: invert(var(--dark-theme));
 }
 
 .tabs__button_active::after {
@@ -67,10 +71,10 @@
   row-gap: 0.8em;
   height: fit-content;
   margin: 0 2em;
-  border: 2px solid var(--color10);
+  border: 1px solid var(--color10);
   padding: 1em;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px var(--color10);
+  box-shadow: 0 0 4px #0008;
 }
 
 .info__item_title {
@@ -82,7 +86,23 @@
   position: absolute;
   right: 1em;
   top: 1em;
+  filter: invert(var(--dark-theme));
   cursor: pointer;
+}
+
+.tabs__theme {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4em;
+  font-size: 1.2em;
+  color: var(--color90);
+}
+
+.tabs__img {
+  position: fixed;
+  bottom: 2em;
+  left: 3em;
+  width: 10em;
 }
 
 @media (hover: hover) {

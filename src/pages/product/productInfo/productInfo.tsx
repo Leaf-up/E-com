@@ -5,6 +5,7 @@ import styles from './product.module.css';
 
 const starYellow = '/icons/star.svg';
 const starGray = '/icons/star_gray.svg';
+const bottleSrc = '/image/bottle1.png';
 const tagNames = ['weight', 'color', 'size', 'charm'];
 
 export default function ProductInfo({
@@ -18,12 +19,20 @@ export default function ProductInfo({
 }: TCardProductProps) {
   const image = images[0];
   let brand = '';
-  const tags = (attributes ?? []).reduce<Record<'name' | 'value', string>[]>((acc, item) => {
+  const tags = (attributes ?? []).reduce<{ name: string; value: string | JSX.Element }[]>((acc, item) => {
     if (tagNames.includes(item.name)) {
       if (isObject<{ label: string }>(item.value)) {
-        acc.push({ name: item.name, value: item.value.label });
+        if (item.name === 'color') {
+          acc.push({ name: 'color', value: <div className={styles[`card__info_attr_${item.value.label}`]} /> });
+        } else {
+          acc.push({ name: item.name, value: item.value.label });
+        }
       } else if (item.name === 'charm') {
-        acc.push({ name: 'charmed', value: item.value ? 'yes' : 'no' });
+        if (item.value) {
+          acc.push({ name: 'charmed', value: <img className={styles.card__info_attr_img} src={bottleSrc} alt="" /> });
+        }
+      } else if (item.name === 'color') {
+        acc.push({ name: 'color', value: <span className={styles[`card__info_attr_${item.value}`]} /> });
       } else {
         acc.push({ name: item.name, value: item.value });
       }
@@ -54,7 +63,7 @@ export default function ProductInfo({
               {tags.map((item, i) => (
                 <tr key={i}>
                   <td className={styles.card__info_attr_name}>{item.name}</td>
-                  <td>{item.value}</td>
+                  <td className={styles.card__info_attr_value}>{item.value}</td>
                 </tr>
               ))}
             </tbody>
