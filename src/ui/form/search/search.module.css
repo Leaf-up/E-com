@@ -13,9 +13,6 @@
   color: var(--color100);
   transition: border-color 0.25s;
 }
-.search:hover {
-  border-color: var(--color50);
-}
 
 .input {
   font-size: 1em;
@@ -59,9 +56,6 @@
   right: 1em;
   cursor: pointer;
 }
-.submit:hover {
-  opacity: 0.65;
-}
 .submit img {
   width: 1.5em;
   height: 1.5em;
@@ -78,9 +72,6 @@
   right: 3em;
   cursor: pointer;
 }
-.clear:hover {
-  opacity: 0.65;
-}
 .clear img {
   width: 1em;
   height: 1em;
@@ -89,4 +80,16 @@
 .input:valid ~ .submit,
 .input:valid ~ .clear {
   display: block;
+}
+
+@media (hover: hover) {
+  .submit:hover {
+    opacity: 0.65;
+  }
+  .clear:hover {
+    opacity: 0.65;
+  }
+  .search:hover {
+    border-color: var(--color50);
+  }
 }

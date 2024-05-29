@@ -2,7 +2,7 @@ import { type FormEvent, useState, useRef } from 'react';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
 import { search } from '~/api';
-import { TProduct } from '~/api/products/types';
+import type { TProduct } from '~/api/products/types';
 import { CardProduct, Select, Search } from '~/ui';
 import { message } from '~/widgets';
 import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';

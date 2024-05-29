@@ -21,7 +21,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(({ searchClear }
         placeholder=""
         minLength={3}
         maxLength={18}
-        required={true}
+        required
       />
       <label className={styles.label} htmlFor="search">
         Search

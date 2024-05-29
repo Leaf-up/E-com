@@ -12,7 +12,6 @@ export default function getSearch(
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
-  // const searchParam = encodeURIComponent(`&text.en-US="${keyword}"`);
   const url = `${endpoint}/search?staged=true&fuzzy=true&limit=10&text.en-US="${keyword}"`;
 
   return fetch(url, { method: 'GET', headers })
