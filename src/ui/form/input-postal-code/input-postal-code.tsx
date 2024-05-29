@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
 import type InputTextProps from './types';
 
-const textRules = validationRules().notEmpty().onlyNumbers().minSize(4).maxSize(8).finalize();
+const textRules = validationRules().notEmpty().postalCode().finalize();
 
 export function InputPostalCode({ setValid, type, isReadonly }: InputTextProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -15,13 +15,6 @@ export function InputPostalCode({ setValid, type, isReadonly }: InputTextProps) 
     setErrorMessage(error);
     setValid(!error);
   };
-
-  useEffect(() => {
-    if (isReadonly) {
-      setErrorMessage(null);
-      setValid(true);
-    }
-  }, [isReadonly, setValid]);
 
   return (
     <Input

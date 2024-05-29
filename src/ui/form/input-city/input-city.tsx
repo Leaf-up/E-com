@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Input } from '~/shared';
 import { validationRules, checkRules } from '~/utils';
 import type InputCityProps from './types';
 
-const textRules = validationRules().notEmpty().onlyLetters().finalize();
+const textRules = validationRules().notEmpty().string().finalize();
 const validateCity = (email: string | null) => checkRules(email, textRules);
 
 export function InputCity({ setValid, type, isReadonly }: InputCityProps) {
@@ -16,13 +16,6 @@ export function InputCity({ setValid, type, isReadonly }: InputCityProps) {
     setErrorMessage(error);
     setValid(!error);
   };
-
-  useEffect(() => {
-    if (isReadonly) {
-      setErrorMessage(null);
-      setValid(true);
-    }
-  }, [isReadonly, setValid]);
 
   return (
     <Input

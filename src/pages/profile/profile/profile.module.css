@@ -137,3 +137,36 @@
     display: none;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .tabs__button img {
+    filter: hue-rotate(110deg) brightness(4);
+  }
+
+  .info__item {
+    background-color: var(--color20);
+    border: 2px solid var(--color20);
+    box-shadow: none;
+  }
+
+  .info__item_icon {
+    filter: invert(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .info__item {
+    margin: 0 1em;
+    padding: 0.5em;
+  }
+
+  .info__item_title {
+    font-size: 1em;
+  }
+
+  .info__item_icon {
+    right: 0.5em;
+    top: 0.5em;
+    width: 1.6em;
+  }
+}

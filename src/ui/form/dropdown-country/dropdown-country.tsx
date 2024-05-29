@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Dropdown } from '~/shared';
 import { checkRules, validationRules } from '~/utils';
 import type DropDownCountryProps from './types';
@@ -16,13 +16,6 @@ export function DropdownCountry({ setValid, type, isReadonly }: DropDownCountryP
     setErrorMessage(error);
     setValid(!error);
   };
-
-  useEffect(() => {
-    if (isReadonly) {
-      setErrorMessage(null);
-      setValid(true);
-    }
-  }, [isReadonly, setValid]);
 
   return (
     <Dropdown

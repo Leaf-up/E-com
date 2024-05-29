@@ -119,6 +119,14 @@ export const validationRules = () => {
 
       return builder;
     },
+    postalCode: (message: string | null = null) => {
+      rules.push({
+        message: message ?? 'The field must contain only numbers in "xxxxx" or "xxxxx-xxxx" format',
+        test: (value: string | null) => !value || !value.match(/^[0-9]{5}(?:-[0-9]{4})?$/),
+      });
+
+      return builder;
+    },
     finalize: () => rules,
   };
 
