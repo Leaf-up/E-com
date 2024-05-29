@@ -8,7 +8,7 @@ import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
 
 import styles from './catalog.module.css';
 
-const hatSrc = '/image/hat.png';
+const hatSrc = '/image/hat2.png';
 const pageSize = 10;
 
 export default function Catalog() {

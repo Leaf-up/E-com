@@ -27,6 +27,9 @@ export function Home() {
 
   return (
     <>
+      <div className={styles.bottle1} />
+      <div className={styles.bottle2} />
+      <div className={styles.bottle3} />
       <section className={styles.welcome}>
         <h1 className={styles.welcome__title}>Welcome to "Magic seeds" online shop!</h1>
         <Slider items={sliderItems} />

@@ -34,13 +34,12 @@
   width: 1em;
   height: 1em;
   border-radius: 0.75em;
-  border: 1px solid black;
 }
 .card__info_attr_red {
-  background-color: red;
+  background: radial-gradient(at 30% 30%, #0000, #000a) red;
 }
 .card__info_attr_green {
-  background-color: green;
+  background: radial-gradient(at 30% 30%, #0000, #000a) green;
 }
 
 .card__info_attr_img {

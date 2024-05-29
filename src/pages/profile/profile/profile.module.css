@@ -98,6 +98,13 @@
   color: var(--color90);
 }
 
+.tabs__img {
+  position: fixed;
+  bottom: 2em;
+  left: 3em;
+  width: 10em;
+}
+
 @media (hover: hover) {
   .info__item_icon:hover {
     transform: translateY(-1px);

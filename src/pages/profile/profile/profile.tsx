@@ -7,6 +7,7 @@ import styles from './profile.module.css';
 const houseIcon = '/icons/house.svg';
 const userIcon = '/icons/user.svg';
 const editIcon = '/icons/edit.svg';
+const witchSrc = '/image/witch2.png';
 
 export function Profile() {
   const [isIdentityEdit, setIsIdentityEdit] = useState(false);
@@ -38,6 +39,7 @@ export function Profile() {
           <ThemeSwitcher />
           <span>Theme</span>
         </div>
+        <img className={styles.tabs__img} src={witchSrc} alt="witch" />
       </div>
       <div className={styles.info}>
         {tab === 'personal' && (
