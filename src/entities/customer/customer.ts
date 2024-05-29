@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/types';
+import { getSystemTheme } from '~/utils';
 import store from '~/utils/store';
 import { message } from '~/widgets';
 
@@ -18,7 +19,7 @@ class CustomerStore {
       message.show(`Logged in as ${firstName} ${lastName}`);
     }
     const theme = store.get<TTheme>('theme');
-    this._theme = theme ? theme : 'light';
+    this._theme = theme ? theme : getSystemTheme();
 
     makeAutoObservable(this);
   }
