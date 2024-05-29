@@ -3,7 +3,7 @@ import { useCustomer } from '~/entities';
 import type TableProps from './types';
 import { performProfileUpdate } from '~/api';
 import { message } from '~/widgets';
-import { type TAddress } from '~/api/types';
+import type { TAddress } from '~/api/types';
 import { Popup } from '~/shared';
 import styles from './table.module.css';
 
@@ -78,7 +78,9 @@ export function Table({ type, onEditClick }: TableProps) {
     }
   };
 
-  return user && (type === 'billing' ? user.billingAddressIds.length !== 0 : user.shippingAddressIds.length !== 0) ? (
+  return !user || (type === 'billing' ? !user.billingAddressIds.length : !user.shippingAddressIds.length) ? (
+    <span>The address list is empty</span>
+  ) : (
     <>
       <table className={styles.table}>
         <thead className={styles.thead}>
@@ -174,7 +176,5 @@ export function Table({ type, onEditClick }: TableProps) {
         </button>
       </Popup>
     </>
-  ) : (
-    <span>The address list is empty</span>
   );
 }

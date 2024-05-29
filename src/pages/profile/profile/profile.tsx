@@ -76,18 +76,16 @@ export function Profile() {
         {tab === 'addresses' && (
           <>
             <div className={styles.info__item}>
-              {!isIdentityEdit && (
-                <img
-                  src={circlePlusIcon}
-                  alt="circle"
-                  className={styles.info__item_icon}
-                  onClick={() => {
-                    setAddressType('shipping');
-                    setIsModalAddressCreateOpen(true);
-                  }}
-                  aria-hidden
-                />
-              )}
+              <img
+                src={circlePlusIcon}
+                alt="circle"
+                className={styles.info__item_icon}
+                onClick={() => {
+                  setAddressType('shipping');
+                  setIsModalAddressCreateOpen(true);
+                }}
+                aria-hidden
+              />
               <span className={styles.info__item_title}>Shipping addresses</span>
               <Table
                 type="shipping"

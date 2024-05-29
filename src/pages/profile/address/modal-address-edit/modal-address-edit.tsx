@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Modal } from '~/shared';
 import { Form } from '../form/form';
 import { performProfileUpdate } from '~/api';
@@ -9,15 +8,10 @@ import type { TAddress } from '~/api/types';
 
 export function ModalAddressEdit({ isOpen, closeModal, address, type }: ModalAddressEditProps) {
   const { user } = useCustomer();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
-  const sendRequest = (data: TAddress) => {
-    setLoading(true);
-    setError('');
-
+  const sendRequest = async (data: TAddress): Promise<void> => {
     if (user && address) {
-      performProfileUpdate(user, [
+      const response = await performProfileUpdate(user, [
         {
           action: 'changeAddress',
           addressId: address?.id,
@@ -28,34 +22,24 @@ export function ModalAddressEdit({ isOpen, closeModal, address, type }: ModalAdd
             postalCode: data.postalCode,
           },
         },
-      ]).then((response) => {
-        if (response.error) {
-          setLoading(false);
-          setError(response.error);
-          message.show(response.error, 'error');
-          return;
-        }
-        setLoading(false);
-        if (response.customer) {
-          message.show(`User ${type} address was successfully updated`);
-        }
-        closeModal();
-      });
+      ]);
+
+      if (response.error) {
+        message.show(response.error, 'error');
+        return Promise.reject(response.error);
+      }
+
+      if (response.customer) {
+        message.show(`User ${type} address was successfully updated`);
+      }
+      closeModal();
     }
+    return Promise.resolve();
   };
 
   return (
     <Modal isOpen={isOpen} onClose={closeModal}>
-      {isOpen && (
-        <Form
-          type={type}
-          address={address}
-          sendRequest={sendRequest}
-          onCancelButtonClick={closeModal}
-          loading={loading}
-          error={error}
-        />
-      )}
+      {isOpen && <Form type={type} address={address} sendRequest={sendRequest} onCancelButtonClick={closeModal} />}
     </Modal>
   );
 }

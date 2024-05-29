@@ -1,14 +1,16 @@
 import { type FormEvent, useState, useRef, useEffect } from 'react';
 import type FormProps from './types';
 import { Address, ButtonSubmit, FormError } from '~/ui';
-import { type TAddress } from '~/api/types';
+import type { TAddress } from '~/api/types';
 import styles from './form.module.css';
 
-export function Form({ type, address, loading, error, sendRequest, onCancelButtonClick }: FormProps) {
-  const [cityValid, setCityValid] = useState(!!address);
-  const [streetValid, setStreetValid] = useState(!!address);
-  const [postalCodeValid, setPostalCodeValid] = useState(!!address);
-  const [countryValid, setCountryValid] = useState(!!address);
+export function Form({ type, address, sendRequest, onCancelButtonClick }: FormProps) {
+  const [cityValid, setCityValid] = useState(Boolean(address));
+  const [streetValid, setStreetValid] = useState(Boolean(address));
+  const [postalCodeValid, setPostalCodeValid] = useState(Boolean(address));
+  const [countryValid, setCountryValid] = useState(Boolean(address));
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export function Form({ type, address, loading, error, sendRequest, onCancelButto
     };
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = getFormData();
@@ -47,7 +49,19 @@ export function Form({ type, address, loading, error, sendRequest, onCancelButto
       postalCode: formData?.postalCode ?? '',
     };
 
-    sendRequest(data);
+    setLoading(true);
+    setError('');
+
+    const result = sendRequest(data);
+    if (result) {
+      result
+        .catch((reason: string) => {
+          setError(reason);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   return (
