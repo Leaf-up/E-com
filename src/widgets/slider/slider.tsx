@@ -14,7 +14,7 @@ export default function Slider({ items, itemsToShow = 1 }: { items: JSX.Element[
   }
 
   const inputs: JSX.Element[] = Array.from({ length }, (_, i) => (
-    <input key={i} type="radio" name={`slider${counter}`} id={`slider${counter}_${i}`} aria-hidden={true} />
+    <input key={i} type="radio" name={`slider${counter}`} id={`slider${counter}_${i}`} aria-hidden />
   ));
 
   const slides: JSX.Element[] = Array.from({ length }, (_, i) => {
@@ -22,7 +22,7 @@ export default function Slider({ items, itemsToShow = 1 }: { items: JSX.Element[
     const next = i + 1 > length - 1 ? 0 : i + 1;
     return (
       <li key={i} className={styles.slider__item}>
-        {chunks[i]?.map((item, i) => cloneElement(item, { key: i }))}
+        {chunks[i]?.map((item, id) => cloneElement(item, { key: id }))}
         <div className={styles.slider__ctrl}>
           <label htmlFor={`slider${counter}_${prev}`} className={styles.slider__ctrl_prev} />
           <label htmlFor={`slider${counter}_${next}`} className={styles.slider__ctrl_next} />

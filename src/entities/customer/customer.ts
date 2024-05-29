@@ -19,7 +19,7 @@ class CustomerStore {
       message.show(`Logged in as ${firstName} ${lastName}`);
     }
     const theme = store.get<TTheme>('theme');
-    this._theme = theme ? theme : getSystemTheme();
+    this._theme = theme ?? getSystemTheme();
 
     makeAutoObservable(this);
   }

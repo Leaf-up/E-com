@@ -2,12 +2,6 @@ import React from 'react';
 import { customerStore } from '~/entities';
 import styles from './theme.module.css';
 
-export const themeInit = () => {
-  const { theme } = customerStore;
-  document.documentElement.classList.toggle('dark', theme === 'dark');
-  document.documentElement.style.setProperty('--dark-theme', theme === 'dark' ? '1' : '0');
-};
-
 export function ThemeSwitcher() {
   const [dark, setDark] = React.useState(customerStore.theme === 'dark');
 
