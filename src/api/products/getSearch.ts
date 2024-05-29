@@ -1,18 +1,18 @@
 import type { TProduct } from './types';
 import { API_URL, PROJECT_KEY } from '~/api/constants';
 
-const endpoint = `${API_URL}/${PROJECT_KEY}/products`;
+const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections`;
 
-export default function getProducts(
+export default function getSearch(
+  keyword: string,
   token: string,
-  key?: string,
 ): Promise<{ data: TProduct[] | null; error: string | null }> {
   const info: { status: number; error?: string } = { status: 500 };
   const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
-  const url = key ? `${endpoint}?where=${encodeURIComponent(`key="${key}"`)}` : endpoint;
+  const url = `${endpoint}/search?staged=true&fuzzy=true&limit=10&text.en-US="${keyword}"`;
 
   return fetch(url, { method: 'GET', headers })
     .then((response) => {
@@ -28,6 +28,7 @@ export default function getProducts(
     })
     .then((data) => {
       if (Math.floor(info.status / 100) !== 2) {
+        console.error(data.errors);
         return { data: null, error: `(${info.status}) ${data.message ?? info.error}` };
       }
       const { results } = data as { results: TProduct[]; total: number };

@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { type FormEvent, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
-import { TProduct } from '~/api/products/types';
-import { CardProduct, Select } from '~/ui';
+import { search } from '~/api';
+import type { TProduct } from '~/api/products/types';
+import { CardProduct, Select, Search } from '~/ui';
+import { message } from '~/widgets';
 import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
 
 import styles from './catalog.module.css';
@@ -15,7 +17,9 @@ export default function Catalog() {
   const { category: slug } = useParams();
   const { products, category } = useProducts();
   const [page, setPage] = useState(1);
-  const [selectedCategory, setCategory] = useState(CATEGORY_SLUG.indexOf(slug) ?? 2);
+  const [selectedCategory, setCategory] = useState(2);
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+  const searchFieldRef = useRef<HTMLInputElement>(null);
 
   const filterCategory = (categories: { id: string }[]) =>
     categories.some(({ id }) => {
@@ -35,6 +39,7 @@ export default function Catalog() {
 
     // Filters
     if (!filterCategory(categories)) return null;
+    if (searchResults.length && !searchResults.includes(item.id)) return null;
 
     // Render
     const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : ''}/${item.key}`;
@@ -49,9 +54,42 @@ export default function Catalog() {
     return acc;
   }, []);
 
+  const searchSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchFieldRef.current) searchFieldRef.current.blur();
+
+    const formData = new FormData(e.currentTarget);
+    const keyword = formData.get('search')?.toString() ?? '';
+    search(keyword).then((response) => {
+      if (response.error) {
+        message.show(response.error, 'error');
+        return;
+      }
+      if (response.data) {
+        if (!response.data.length) {
+          message.show(`Found nothing with keyword "${keyword}"`, 'error');
+          return;
+        }
+        const arr = response.data.reduce<string[]>((acc, item) => {
+          acc.push(item.id);
+          return acc;
+        }, []);
+        setSearchResults(arr);
+      }
+    });
+  };
+
+  const searchClear = () => {
+    if (searchFieldRef.current) searchFieldRef.current.value = '';
+    setSearchResults([]);
+  };
+
   return (
     <section className={styles.catalog} aria-label="Catalog">
       <div className={styles.filters}>
+        <form onSubmit={searchSubmitHandler}>
+          <Search searchClear={searchClear} ref={searchFieldRef} />
+        </form>
         <h3 className={styles.filters__title}>Filters</h3>
         <Select name="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
         <img className={styles.filters__img} src={hatSrc} alt="hat" />
