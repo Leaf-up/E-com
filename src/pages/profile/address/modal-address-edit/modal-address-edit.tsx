@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from '~/shared/modal/modal';
+import { Modal } from '~/shared';
 import { Form } from '../form/form';
 import { performProfileUpdate } from '~/api';
 import { useCustomer } from '~/entities';
