@@ -1,7 +1,7 @@
 .input {
   border: 1px solid transparent;
   background-color: var(--color10);
-  box-shadow: none;
+  color: inherit;
 }
 
 .form {
@@ -44,16 +44,4 @@
   gap: 1.2em;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-@media (prefers-color-scheme: dark) {
-  .form__buttons_cancel:hover {
-    border: 1px solid var(--color60);
-    background-color: var(--color60);
-  }
-
-  .form__buttons_cancel:active {
-    border: 1px solid var(--color50);
-    background-color: var(--color50);
-  }
 }

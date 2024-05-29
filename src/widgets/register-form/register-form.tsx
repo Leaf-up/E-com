@@ -69,10 +69,10 @@ export function RegistrationForm() {
         .slice(0, 10);
     const addresses = [
       {
-        city: formData?.shippingCity ?? '',
+        city: formData?.shippingCity.trim() ?? '',
         country: formData?.shippingCountry ?? '',
         postalCode: formData?.shippingPostalCode ?? '',
-        streetName: formData?.shippingStreetName ?? '',
+        streetName: formData?.shippingStreetName.trim() ?? '',
       },
     ];
     if (!sameAddress) {

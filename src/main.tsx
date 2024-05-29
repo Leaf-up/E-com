@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { message } from './widgets';
+import { themeInit } from './ui';
 import App from './App';
 
 const root = document.createElement('div');
@@ -15,3 +16,5 @@ ReactDOM.createRoot(root).render(
     </React.StrictMode>
   </BrowserRouter>,
 );
+
+themeInit();

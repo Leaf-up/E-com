@@ -20,17 +20,19 @@ export function Address({
 }: AddressProps) {
   return (
     <div className={styles.address} aria-hidden={isHidden ?? false}>
-      <h3 className={styles.address__title}>{title}</h3>
+      {title && <h3 className={styles.address__title}>{title}</h3>}
       <div className={styles.address__group}>
         <DropdownCountry setValid={setCountryValid} type={type} isReadonly={isReadonly} />
         <InputCity setValid={setCityValid} type={type} isReadonly={isReadonly} />
         <InputStreet setValid={setStreetValid} type={type} isReadonly={isReadonly} />
         <InputPostalCode setValid={setPostalCodeValid} type={type} isReadonly={isReadonly} />
       </div>
-      <label htmlFor={value}>
-        <input type="checkbox" name={value} id={value} defaultChecked={defaultChecked} />
-        {` ${radioLabel}`}
-      </label>
+      {value && (
+        <label htmlFor={value}>
+          <input type="checkbox" name={value} id={value} defaultChecked={defaultChecked} />
+          {` ${radioLabel}`}
+        </label>
+      )}
     </div>
   );
 }

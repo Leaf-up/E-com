@@ -9,7 +9,7 @@
 }
 
 .card__info {
-  width: calc(360px - 2em);
+  max-width: calc(360px - 2em);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,6 +23,27 @@
 
 .card__info_attr_name {
   width: 10em;
+}
+
+.card__info_attr_value {
+  text-align: center;
+}
+
+.card__info_attr_red,
+.card__info_attr_green {
+  width: 1em;
+  height: 1em;
+  border-radius: 0.75em;
+}
+.card__info_attr_red {
+  background: radial-gradient(at 30% 30%, #0000, #000a) red;
+}
+.card__info_attr_green {
+  background: radial-gradient(at 30% 30%, #0000, #000a) green;
+}
+
+.card__info_attr_img {
+  height: 1.5em;
 }
 
 @media (max-width: 768px) {

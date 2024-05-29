@@ -1,69 +1,102 @@
-.home {
-  padding: 2em 6em;
-  border-radius: 1em;
-  background-color: var(--color30);
-  box-shadow: 3px 3px 6px 1px #0004;
-  color: var(--color90);
-  display: flex;
-  align-items: center;
-  column-gap: 4em;
-  transition: padding 0.25s ease-out;
-}
-
-.home__img {
-  width: 6em;
-}
-
-.nav__list {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  column-gap: 1em;
-  margin: 0;
-  padding: 0;
-  font-size: 1.2em;
-  flex-direction: column;
-  row-gap: 0.8em;
-}
-
-.nav__link {
-  display: block;
-  font-size: 1em;
-  text-decoration: none;
-  color: inherit;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  padding: 0;
-  cursor: pointer;
-}
-
-.nav__link:hover {
-  transform: translateY(-1px);
-  filter: drop-shadow(1px 1px 1px #0004);
-}
-
-.nav__link_active {
-  position: relative;
-  text-decoration: none;
-  color: inherit;
-  filter: hue-rotate(40deg);
-  pointer-events: none;
-}
-
-.nav__link_active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
+.welcome {
   width: 100%;
-  height: 2px;
-  margin-bottom: -0.2em;
-  background-color: #fff8;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4em;
+  background-image: url('/image/witch1.png');
+  background-position: 95% 0;
+  background-size: 20%;
+  background-repeat: no-repeat;
 }
 
-@media (max-width: 768px) {
-  .home {
-    padding: 2em 3em;
+.welcome__title {
+  font-family: Spyced, sans-serif;
+  font-size: 2.5rem;
+  color: var(--color80);
+  max-width: 420px;
+  margin: 0;
+  text-align: center;
+}
+
+.category {
+  max-width: 832px;
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+}
+
+.about {
+  width: 100%;
+  max-width: 832px;
+  padding: 2em;
+  text-align: right;
+}
+
+.about a {
+  color: inherit;
+}
+
+.bottle1,
+.bottle2,
+.bottle3 {
+  position: fixed;
+  width: 2em;
+  height: 2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 0;
+}
+.bottle1 {
+  background-image: url(/image/bottle1.png);
+  top: 9em;
+  animation:
+    x 10s linear infinite alternate,
+    y1 5s infinite cubic-bezier(0.5, 100, 0.5, -100);
+}
+.bottle2 {
+  background-image: url(/image/bottle2.png);
+  top: 70%;
+  animation:
+    x 15s linear infinite alternate,
+    y2 5s infinite cubic-bezier(0.5, 100, 0.5, -100);
+}
+.bottle3 {
+  background-image: url(/image/bottle3.png);
+  top: 9.5em;
+  left: calc(100% - 40px);
+  animation:
+    x3 12.5s linear infinite alternate,
+    y3 5s infinite cubic-bezier(0.5, 100, 0.5, -100);
+}
+
+@keyframes x {
+  to {
+    left: calc(100% - 40px);
+    transform: rotate(540deg);
+  }
+}
+@keyframes y1 {
+  to {
+    top: 9.1em;
+  }
+}
+@keyframes y2 {
+  to {
+    top: 70.1%;
+  }
+}
+@keyframes x3 {
+  to {
+    left: 0;
+    transform: rotate(540deg);
+  }
+}
+@keyframes y3 {
+  to {
+    top: 9.6em;
   }
 }

@@ -1,4 +1,5 @@
 import { type FormEvent, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
 import { search } from '~/api';
@@ -9,9 +10,11 @@ import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
 
 import styles from './catalog.module.css';
 
+const hatSrc = '/image/hat2.png';
 const pageSize = 10;
 
 export default function Catalog() {
+  const { category: slug } = useParams();
   const { products, category } = useProducts();
   const [page, setPage] = useState(1);
   const [selectedCategory, setCategory] = useState(2);
@@ -87,8 +90,9 @@ export default function Catalog() {
         <form onSubmit={searchSubmitHandler}>
           <Search searchClear={searchClear} ref={searchFieldRef} />
         </form>
-        <h3>Filters</h3>
-        <Select name="Category" options={CATEGORY_NAME} value={2} onChange={setCategory} />
+        <h3 className={styles.filters__title}>Filters</h3>
+        <Select name="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
+        <img className={styles.filters__img} src={hatSrc} alt="hat" />
       </div>
       <div className={styles.products}>
         {!productList.length && <p>No products to show</p>}
