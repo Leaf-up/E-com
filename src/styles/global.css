@@ -34,7 +34,7 @@ html {
 }
 
 .dark .main {
-  background: var(--color30a) url('/image/bg_green.webp') center / cover;
+  background-color: var(--color30a);
   background-blend-mode: multiply;
 }
 

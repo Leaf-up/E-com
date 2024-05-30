@@ -138,6 +138,7 @@
 
   .tabs__button img {
     width: 1.25em;
+    filter: invert(var(--dark-theme));
   }
 
   .tabs__title {
