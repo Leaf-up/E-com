@@ -3,15 +3,18 @@ import { useParams } from 'react-router-dom';
 import { requestProducts } from '~/api';
 import { TProduct } from '~/api/products/types';
 import { Page404 } from '~/pages';
-import Loader from '~/ui/loader/loader';
+import { Loader, Breadcrumbs } from '~/ui';
 import ProductInfo from './productInfo/productInfo';
 import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
+
+import styles from './product.module.css';
 
 export default function Product() {
   const { category, key } = useParams();
   const [product, setProduct] = useState<TProduct | null | '404'>(null);
+  const categoryName = !category ? null : CATEGORY_NAME[CATEGORY_SLUG.indexOf(category)];
 
-  const productMapper = (item: TProduct, i: number) => {
+  const productMapper = (item: TProduct) => {
     const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
     const {
       name: { 'en-US': name },
@@ -19,11 +22,10 @@ export default function Product() {
       masterVariant: { attributes, images, prices },
     } = productData;
 
-    const categoryName = !category ? null : CATEGORY_NAME[CATEGORY_SLUG.indexOf(category)];
     const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
     const rating = Math.floor(Math.random() * 2) + 3;
     const props = { name, description, attributes, images, price, category: categoryName, rating };
-    return <ProductInfo {...props} key={i} />;
+    return <ProductInfo {...props} />;
   };
 
   useEffect(() => {
@@ -38,5 +40,24 @@ export default function Product() {
 
   if (!product) return <Loader />;
   if (product === '404') return <Page404 />;
-  return productMapper(product, 0);
+
+  const breadcrumbsItems = [
+    { title: 'Home', link: '/' },
+    { title: 'Catalog', link: '/catalog' },
+  ];
+  if (categoryName) {
+    breadcrumbsItems.push(
+      { title: categoryName, link: `/catalog/${category}` },
+      { title: product.masterData.current.name['en-US'], link: `/catalog/${category}/${key}` },
+    );
+  } else {
+    breadcrumbsItems.push({ title: product.masterData.current.name['en-US'], link: '' });
+  }
+
+  return (
+    <div className={styles.product}>
+      <Breadcrumbs items={breadcrumbsItems} />
+      {productMapper(product)}
+    </div>
+  );
 }

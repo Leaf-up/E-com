@@ -17,7 +17,7 @@ export default function Catalog() {
   const { category: slug } = useParams();
   const { products, category } = useProducts();
   const [page, setPage] = useState(1);
-  const [selectedCategory, setCategory] = useState(2);
+  const [selectedCategory, setCategory] = useState(slug ? CATEGORY_SLUG.indexOf(slug) : 2);
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const searchFieldRef = useRef<HTMLInputElement>(null);
 
