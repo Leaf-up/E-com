@@ -5,7 +5,7 @@ import { performProfileUpdate } from '~/api';
 import { message } from '~/widgets';
 import type { TAddress } from '~/api/types';
 import { Popup } from '~/shared';
-import styles from './table.module.css';
+import styles from './address.module.css';
 
 const dotsIcon = '/icons/dots.svg';
 
@@ -17,7 +17,7 @@ function OpenPopupButton({ setRef }: { setRef: (ref: React.RefObject<HTMLImageEl
   );
 }
 
-export function Table({ type, onEditClick }: TableProps) {
+export function Address({ type, onEditClick }: TableProps) {
   const { user } = useCustomer();
   const [popupState, setPopupState] = useState<{
     address: TAddress | null;

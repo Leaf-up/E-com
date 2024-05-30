@@ -3,6 +3,7 @@ import { performProfileUpdate, performChangePassword } from '~/api';
 import type { TProfileAction } from '~/api/profile/types';
 import { objectKeys } from '~/utils';
 import { message } from '~/widgets';
+import styles from './.module.css';
 
 const ban = ['versionModifiedAt', 'lastMessageSequenceNumber', 'createdAt', 'lastModifiedAt', 'password'];
 
@@ -72,7 +73,7 @@ export function PageTest() {
   };
 
   return (
-    <section>
+    <section className={styles.test}>
       <h1>Customer state test</h1>
       <table>
         <tbody>
