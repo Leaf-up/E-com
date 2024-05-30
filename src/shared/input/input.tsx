@@ -67,6 +67,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             autoComplete="off"
             disabled={disabled}
             readOnly={readonly}
+            maxLength={30}
             onChange={(e) => onChange?.(e.currentTarget.value)}
             onClick={(e) => onClick?.(e.currentTarget.value)}
             ref={ref}
