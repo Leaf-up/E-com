@@ -67,16 +67,22 @@
   .card {
     flex-direction: column;
   }
+
   .card__preview {
     height: 50%;
   }
+
   .card__info {
     padding-bottom: unset;
   }
+
   .card__info_price {
     margin-bottom: 0;
   }
+
   .card__info_attr_list {
     bottom: 1rem;
+    left: 1em;
+    justify-content: flex-start;
   }
 }

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { IdentityForm } from '../identity-form/identity-form';
-import { PasswordForm } from '../password-form/password-form';
+import { IdentityForm } from './identity-form/identity-form';
+import { PasswordForm } from './password-form/password-form';
 import { ThemeSwitcher } from '~/ui';
 import { type TAddress } from '~/api/types';
-import { ModalAddressEdit } from '../address/modal-address-edit/modal-address-edit';
-import { Table } from '../address/table/table';
-import { ModalAddressCreate } from '../address/modal-address-create/modal-address-create';
+import { ModalAddressEdit } from './address/modal-address-edit/modal-address-edit';
+import { Address } from './address/address';
+import { ModalAddressCreate } from './address/modal-address-create/modal-address-create';
 import styles from './profile.module.css';
 
 const houseIcon = '/icons/house.svg';
@@ -94,7 +94,7 @@ export function Profile() {
                 aria-hidden
               />
               <span className={styles.info__item_title}>Shipping addresses</span>
-              <Table
+              <Address
                 type="shipping"
                 onEditClick={(address) => {
                   setIsModalAddressEditOpen(true);
@@ -115,7 +115,7 @@ export function Profile() {
                 aria-hidden
               />
               <span className={styles.info__item_title}>Billing addresses</span>
-              <Table
+              <Address
                 type="billing"
                 onEditClick={(address) => {
                   setIsModalAddressEditOpen(true);
