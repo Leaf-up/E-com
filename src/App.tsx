@@ -19,8 +19,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/catalog/:category?" element={<Catalog />} />
-        <Route path="/products/:category?/:key" element={<Product />} />
+        <Route path="/catalog/:category?/:subcategory?" element={<Catalog />} />
+        <Route path="/products/:category?/:subcategory?/:key" element={<Product />} />
         <Route path="/test" element={<PageTest />} />
         <Route element={<ProtectedRoute isRedirect={!user} redirectTo="/" />}>
           <Route path="/profile" element={<Profile />} />

@@ -5,14 +5,15 @@ import { TProduct } from '~/api/products/types';
 import { Page404 } from '~/pages';
 import { Loader, Breadcrumbs } from '~/ui';
 import ProductInfo from './productInfo/productInfo';
-import { CATEGORY_NAME, CATEGORY_SLUG } from '~/constants/constants';
+import { CATEGORY_NAME, CATEGORY_SLUG, SUBCATEGORY_SLUG, SUBCATEGORY_NAME } from '~/constants/constants';
 
 import styles from './product.module.css';
 
 export default function Product() {
-  const { category, key } = useParams();
+  const { category, subcategory, key } = useParams();
   const [product, setProduct] = useState<TProduct | null | '404'>(null);
   const categoryName = !category ? null : CATEGORY_NAME[CATEGORY_SLUG.indexOf(category)];
+  const subCategoryName = !subcategory ? null : SUBCATEGORY_NAME[SUBCATEGORY_SLUG.indexOf(subcategory)];
 
   const productMapper = (item: TProduct) => {
     const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
@@ -46,13 +47,12 @@ export default function Product() {
     { title: 'Catalog', link: '/catalog' },
   ];
   if (categoryName) {
-    breadcrumbsItems.push(
-      { title: categoryName, link: `/catalog/${category}` },
-      { title: product.masterData.current.name['en-US'], link: `/catalog/${category}/${key}` },
-    );
-  } else {
-    breadcrumbsItems.push({ title: product.masterData.current.name['en-US'], link: '' });
+    breadcrumbsItems.push({ title: categoryName, link: `/catalog/${category}` });
+    if (subCategoryName) {
+      breadcrumbsItems.push({ title: subCategoryName, link: `/catalog/${category}/${subcategory}` });
+    }
   }
+  breadcrumbsItems.push({ title: product.masterData.current.name['en-US'], link: '' });
 
   return (
     <div className={styles.product}>

@@ -11,6 +11,7 @@ class ProductsStore {
   constructor() {
     requestProducts().then((response) => {
       if (response.data) {
+        // console.log(response.data);
         runInAction(() => {
           this._products = response.data;
         });
@@ -19,10 +20,12 @@ class ProductsStore {
     requestCategoty().then((response) => {
       if (response.data) {
         runInAction(() => {
-          this._category = (response.data || []).reduce<Record<string, string>>((acc, item) => {
+          const data = (response.data || []).reduce<Record<string, string>>((acc, item) => {
             acc[item.id] = item.slug['en-US'];
             return acc;
           }, {});
+          // console.log(data);
+          this._category = data;
         });
       }
     });
