@@ -6,12 +6,11 @@ import { CATEGORY_SLUG, CATEGORY_NAME } from '~/constants/constants';
 import styles from './home.module.css';
 
 const productMapper = (item: TProduct, i: number) => {
-  const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
   const {
     name: { 'en-US': name },
     description: { 'en-US': description },
     masterVariant: { attributes, images, prices },
-  } = productData;
+  } = item;
 
   // Render
   const link = `/products/${item.key}`;

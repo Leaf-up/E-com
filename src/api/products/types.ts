@@ -1,4 +1,4 @@
-export type TProduct = {
+export type TRawProduct = {
   id: string; // Unique identifier of the Product.
   version: number; // Current version of the Product.
   key?: string; // User-defined unique identifier of the Product.
@@ -18,13 +18,22 @@ export type TProduct = {
 type TProductData = {
   name: { 'en-US': string };
   categories: TCategoryInfo[];
-  slug: string; // User-defined identifier used in a deep-link URL for the Product
   description: { 'en-US': string };
   masterVariant: TProductVariant;
   variants: TProductVariant[];
   searchKeywords: {
     'en-US': { text: string }[];
   };
+};
+
+export type TProduct = TProductData & {
+  id: string;
+  version: number;
+  key?: string;
+  productType: TProductTypeInfo;
+  published: boolean;
+  slug: { 'en-US': string };
+  taxCategory?: TTaxCategory;
 };
 
 type TCategoryInfo = {
@@ -49,7 +58,6 @@ type TProductVariant = {
   id: number; // Sequential identifier
   key?: string; // User-defined unique identifier
   sku?: string; // User-defined unique SKU
-  price?: TPrice;
   prices?: TPrice[];
   attributes?: TProductAttribute[];
   images: TProductImage[];

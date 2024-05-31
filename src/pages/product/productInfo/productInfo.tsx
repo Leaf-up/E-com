@@ -54,7 +54,9 @@ export default function ProductInfo({
   return (
     <div className={styles.card}>
       <div className={styles.card__preview}>
-        <Image width={200} src={image.url} />
+        <Image.PreviewGroup items={images.map((item) => item.url)}>
+          <Image width={200} src={image.url} />
+        </Image.PreviewGroup>
       </div>
       <div className={styles.card__info}>
         <div>

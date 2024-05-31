@@ -13,6 +13,10 @@
   background-color: var(--color30a);
 }
 
+.filters__search {
+  margin: 0.5em 0;
+}
+
 .filters__title {
   margin-bottom: 0.2em;
   font-weight: 500;
@@ -26,9 +30,31 @@
 }
 
 .products {
-  width: calc(100% - 18em);
-  height: fit-content;
+  width: 100%;
+  padding: 1em;
+}
+
+.products__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1em;
   margin: 1em;
+  padding: 0.25em 1em;
+  background-color: var(--color30a);
+  border-radius: 0.5em;
+}
+
+.products__meta_sorting {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
+.products__meta_sorting > div {
+  flex: 0 0 12em;
+}
+
+.products__list {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;

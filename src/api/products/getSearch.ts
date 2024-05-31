@@ -4,15 +4,18 @@ import { API_URL, PROJECT_KEY } from '~/api/constants';
 const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections`;
 
 export default function getSearch(
-  keyword: string,
   token: string,
+  keyword?: string,
+  sort?: string[],
 ): Promise<{ data: TProduct[] | null; error: string | null }> {
   const info: { status: number; error?: string } = { status: 500 };
   const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
-  const url = `${endpoint}/search?staged=true&fuzzy=true&limit=10&text.en-US="${keyword}"`;
+  let url = `${endpoint}/search?staged=true&fuzzy=true`;
+  if (keyword) url = `${url}&text.en-US="${keyword}"`;
+  if (sort) sort.forEach((param) => (url = `${url}&sort=${param}`));
 
   return fetch(url, { method: 'GET', headers })
     .then((response) => {
