@@ -47,6 +47,14 @@
   height: 1.5em;
 }
 
+.card__info_old_price {
+  text-decoration: line-through;
+}
+
+.card__info_new_price {
+  color: var(--yellow);
+}
+
 @media (max-width: 768px) {
   .card {
     flex-direction: column;

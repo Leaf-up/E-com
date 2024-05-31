@@ -7,7 +7,15 @@ import styles from './product.module.css';
 const bottleSrc = '/image/bottle1.png';
 const tagNames = ['weight', 'color', 'size', 'charm'];
 
-export default function CardProduct({ name, description, attributes, images, price, link }: TCardProductProps) {
+export default function CardProduct({
+  name,
+  description,
+  attributes,
+  images,
+  price,
+  discounted,
+  link,
+}: TCardProductProps) {
   const image = images[0];
   let brand = '';
   const tags = (attributes ?? []).reduce<JSX.Element[]>((acc, item) => {
@@ -29,6 +37,15 @@ export default function CardProduct({ name, description, attributes, images, pri
     return acc;
   }, []);
 
+  const priceEl = discounted ? (
+    <>
+      <span className={styles.card__info_old_price}>{price.toFixed(2)}</span>
+      <span className={styles.card__info_new_price}>{` ${discounted.toFixed(2)}$`}</span>
+    </>
+  ) : (
+    <span>{`${price.toFixed(2)}$`}</span>
+  );
+
   return (
     <NavLink to={link} className={styles.card}>
       <div className={styles.card__preview}>
@@ -44,7 +61,10 @@ export default function CardProduct({ name, description, attributes, images, pri
           {tags.map((tag, i) => (
             <li key={i}>{tag}</li>
           ))}
-          <li>{`price: ${price.toFixed(2)}$`}</li>
+          <li>
+            {'price: '}
+            {priceEl}
+          </li>
         </ul>
       </div>
     </NavLink>

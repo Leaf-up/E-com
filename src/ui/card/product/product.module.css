@@ -83,3 +83,11 @@
 .card__info_attr_green {
   background: radial-gradient(at 30% 30%, #0000, #000a) green;
 }
+
+.card__info_old_price {
+  text-decoration: line-through;
+}
+
+.card__info_new_price {
+  color: var(--yellow);
+}
