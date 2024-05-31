@@ -3,19 +3,26 @@ import { isObject } from '~/utils/types';
 import type { TCardProductProps } from './types';
 import styles from './slider.module.css';
 
+const bottleSrc = '/image/bottle1.png';
 const tagNames = ['weight', 'color', 'size', 'charm'];
 
 export default function CardSlider({ name, description, attributes, images, price, link }: TCardProductProps) {
   const image = images[0];
   let brand = '';
-  const tags = (attributes ?? []).reduce<string[]>((acc, item) => {
+  const tags = (attributes ?? []).reduce<JSX.Element[]>((acc, item) => {
     if (tagNames.includes(item.name)) {
       if (isObject<{ label: string }>(item.value)) {
-        acc.push(item.value.label);
+        if (item.name === 'color') {
+          acc.push(<div className={styles[`card__info_attr_${item.value.label}`]} />);
+        } else {
+          acc.push(<div className={styles.card__info_attr_tag}>{item.value.label}</div>);
+        }
       } else if (item.name === 'charm') {
-        if (item.value) acc.push('charmed');
+        if (item.value) {
+          acc.push(<img className={styles.card__info_attr_img} src={bottleSrc} alt="" />);
+        }
       } else {
-        acc.push(item.value);
+        acc.push(<div className={styles.card__info_attr_tag}>{item.value}</div>);
       }
     } else if (item.name === 'brand') brand = item.value.toString();
     return acc;

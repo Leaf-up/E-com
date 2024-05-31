@@ -59,9 +59,27 @@
   margin-left: auto;
 }
 
-.card__info_tag {
-  height: fit-content;
+.card__info_attr_tag {
+  height: 1.5em;
   background-color: var(--color30);
   padding: 0 0.5em;
   border-radius: 2em;
+}
+
+.card__info_attr_img {
+  height: 1.5em;
+}
+
+.card__info_attr_red,
+.card__info_attr_green {
+  margin-top: 0.25em;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.75em;
+}
+.card__info_attr_red {
+  background: radial-gradient(at 30% 30%, #0000, #000a) red;
+}
+.card__info_attr_green {
+  background: radial-gradient(at 30% 30%, #0000, #000a) green;
 }

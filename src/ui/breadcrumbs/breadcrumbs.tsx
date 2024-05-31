@@ -1,14 +1,10 @@
 import { NavLink } from 'react-router-dom';
+import type { TRoute } from './types';
 import styles from './.module.css';
-
-export type TRoute = {
-  title: string;
-  link: string;
-};
 
 export const Breadcrumbs = ({ items = [] }: { items?: TRoute[] }) => {
   return (
-    <nav className={styles.nav}>
+    <nav>
       <p className={styles.title}>
         {items.length > 0 &&
           items.map((item, index) => {
