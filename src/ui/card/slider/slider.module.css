@@ -39,7 +39,7 @@
 .card__info_price {
   font-size: smaller;
   text-align: right;
-  margin: 0 0 2rem;
+  margin: 0 0 2.25rem;
 }
 
 .card__info_attr_list {
@@ -56,11 +56,29 @@
   list-style: none;
 }
 
-.card__info_tag {
-  height: fit-content;
-  background-color: var(--color20);
+.card__info_attr_tag {
+  height: 1.5em;
+  background-color: var(--color30);
   padding: 0 0.5em;
   border-radius: 2em;
+}
+
+.card__info_attr_img {
+  height: 1.5em;
+}
+
+.card__info_attr_red,
+.card__info_attr_green {
+  margin-top: 0.25em;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.75em;
+}
+.card__info_attr_red {
+  background: radial-gradient(at 30% 30%, #0000, #000a) red;
+}
+.card__info_attr_green {
+  background: radial-gradient(at 30% 30%, #0000, #000a) green;
 }
 
 @media screen and (max-width: 768px) {

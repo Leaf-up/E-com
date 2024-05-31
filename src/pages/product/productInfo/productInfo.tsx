@@ -31,8 +31,6 @@ export default function ProductInfo({
         if (item.value) {
           acc.push({ name: 'charmed', value: <img className={styles.card__info_attr_img} src={bottleSrc} alt="" /> });
         }
-      } else if (item.name === 'color') {
-        acc.push({ name: 'color', value: <span className={styles[`card__info_attr_${item.value}`]} /> });
       } else {
         acc.push({ name: item.name, value: item.value });
       }

@@ -4,9 +4,10 @@ import CardProduct from './card/product/product';
 import CardSlider from './card/slider/slider';
 import CardCategory from './card/category/category';
 import Select from './form/select/select';
+import Loader from './loader/loader';
 
 export { CardProduct, CardSlider, CardCategory };
-export { ButtonSubmit, FormError, Select };
+export { ButtonSubmit, FormError, Select, Loader };
 export { InputEmail } from './form/input-email/input-email';
 export { InputPassword } from './form/input-password/input-password';
 export { InputDate } from './form/input-date/input-date';
@@ -20,3 +21,4 @@ export { Address } from './form/address/address';
 export { Search } from './form/search/search';
 export { ThemeSwitcher } from './theme/theme';
 export { themeInit } from './theme/init';
+export { Breadcrumbs, type TRoute } from './breadcrumbs';
