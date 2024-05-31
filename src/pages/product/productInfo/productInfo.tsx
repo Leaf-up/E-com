@@ -1,5 +1,5 @@
-import { Image } from 'antd';
 import { isObject } from '~/utils/types';
+import ImageSlider from './imageSlider/slider';
 import { TCardProductProps } from './types';
 import styles from './product.module.css';
 
@@ -18,7 +18,6 @@ export default function ProductInfo({
   category,
   rating,
 }: TCardProductProps) {
-  const image = images[0];
   let brand = '';
   const tags = (attributes ?? []).reduce<{ name: string; value: string | JSX.Element }[]>((acc, item) => {
     if (tagNames.includes(item.name)) {
@@ -54,9 +53,7 @@ export default function ProductInfo({
   return (
     <div className={styles.card}>
       <div className={styles.card__preview}>
-        <Image.PreviewGroup items={images.map((item) => item.url)}>
-          <Image width={200} src={image.url} />
-        </Image.PreviewGroup>
+        <ImageSlider items={images.map((item) => item.url)} />
       </div>
       <div className={styles.card__info}>
         <div>
