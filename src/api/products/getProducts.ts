@@ -1,4 +1,4 @@
-import type { TProduct } from './types';
+import type { TRawProduct } from './types';
 import { API_URL, PROJECT_KEY } from '~/api/constants';
 
 const endpoint = `${API_URL}/${PROJECT_KEY}/products`;
@@ -6,7 +6,7 @@ const endpoint = `${API_URL}/${PROJECT_KEY}/products`;
 export default function getProducts(
   token: string,
   key?: string,
-): Promise<{ data: TProduct[] | null; error: string | null }> {
+): Promise<{ data: TRawProduct[] | null; error: string | null }> {
   const info: { status: number; error?: string } = { status: 500 };
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ export default function getProducts(
       if (Math.floor(info.status / 100) !== 2) {
         return { data: null, error: `(${info.status}) ${data.message ?? info.error}` };
       }
-      const { results } = data as { results: TProduct[]; total: number };
+      const { results } = data as { results: TRawProduct[]; total: number };
       return { data: results, error: null };
     })
     .catch((error) => ({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { requestProducts } from '~/api';
-import { TProduct } from '~/api/products/types';
+import { TRawProduct } from '~/api/products/types';
 import { Page404 } from '~/pages';
 import { Loader, Breadcrumbs } from '~/ui';
 import ProductInfo from './productInfo/productInfo';
@@ -11,11 +11,11 @@ import styles from './product.module.css';
 
 export default function Product() {
   const { category, subcategory, key } = useParams();
-  const [product, setProduct] = useState<TProduct | null | '404'>(null);
+  const [product, setProduct] = useState<TRawProduct | null | '404'>(null);
   const categoryName = !category ? null : CATEGORY_NAME[CATEGORY_SLUG.indexOf(category)];
   const subCategoryName = !subcategory ? null : SUBCATEGORY_NAME[SUBCATEGORY_SLUG.indexOf(subcategory)];
 
-  const productMapper = (item: TProduct) => {
+  const productMapper = (item: TRawProduct) => {
     const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
     const {
       name: { 'en-US': name },

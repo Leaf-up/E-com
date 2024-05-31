@@ -50,6 +50,7 @@ export default function CardProduct({
     <NavLink to={link} className={styles.card}>
       <div className={styles.card__preview}>
         <img src={image.url} alt={image.label} />
+        {discounted && <div className={styles.card__sale} />}
       </div>
       <div className={styles.card__info}>
         <div>
