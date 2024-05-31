@@ -15,7 +15,11 @@ export default function getSearch(
   };
   let url = `${endpoint}/search?staged=true&fuzzy=true`;
   if (keyword) url = `${url}&text.en-US="${keyword}"`;
-  if (sort) sort.forEach((param) => (url = `${url}&sort=${param}`));
+  if (sort) {
+    sort.forEach((param) => {
+      url = `${url}&sort=${param}`;
+    });
+  }
 
   return fetch(url, { method: 'GET', headers })
     .then((response) => {
