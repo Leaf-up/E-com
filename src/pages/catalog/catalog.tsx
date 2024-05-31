@@ -48,7 +48,11 @@ export default function Catalog() {
     // Render
     const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : ''}${SUBCATEGORY_SLUG[selectedSubCategory] ? `/${SUBCATEGORY_SLUG[selectedSubCategory]}` : ''}/${item.key}`;
     const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
-    const product = { name, description, attributes, images, price, link };
+    const discounted =
+      prices && prices[0] && prices[0].discounted
+        ? prices[0].discounted.value.centAmount / 10 ** prices[0].discounted.value.fractionDigits
+        : null;
+    const product = { name, description, attributes, images, price, discounted, link };
     return <CardProduct {...product} key={i} />;
   };
 

@@ -14,6 +14,7 @@ export default function ProductInfo({
   attributes,
   images,
   price,
+  discounted,
   category,
   rating,
 }: TCardProductProps) {
@@ -41,6 +42,15 @@ export default function ProductInfo({
     <img key={i} src={i < (rating ?? 0) ? starYellow : starGray} alt="" />
   ));
 
+  const priceEl = discounted ? (
+    <>
+      <span className={styles.card__info_old_price}>{price.toFixed(2)}</span>
+      <span className={styles.card__info_new_price}>{` ${discounted.toFixed(2)}$`}</span>
+    </>
+  ) : (
+    <span>{`${price.toFixed(2)}$`}</span>
+  );
+
   return (
     <div className={styles.card}>
       <div className={styles.card__preview}>
@@ -66,7 +76,10 @@ export default function ProductInfo({
               ))}
             </tbody>
           </table>
-          <p>{`price: ${price.toFixed(2)}$`}</p>
+          <p>
+            {'price: '}
+            {priceEl}
+          </p>
         </div>
       </div>
     </div>

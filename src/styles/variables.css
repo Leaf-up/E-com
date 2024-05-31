@@ -26,6 +26,7 @@
   --color100: #041107;
 
   --gray: #888;
+  --yellow: #990;
 }
 
 .dark {
@@ -43,4 +44,6 @@
   --color80a: #4ba3fb4a;
   --color90: #88c2fb;
   --color100: #fff;
+
+  --yellow: #ee0;
 }
