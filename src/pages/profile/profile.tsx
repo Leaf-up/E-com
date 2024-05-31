@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IdentityForm } from './identity-form/identity-form';
 import { PasswordForm } from './password-form/password-form';
-import { ThemeSwitcher } from '~/ui';
+import { ThemeSwitcher } from '~/ui/theme/theme';
 import { type TAddress } from '~/api/types';
 import { ModalAddressEdit } from './address/modal-address-edit/modal-address-edit';
 import { Address } from './address/address';

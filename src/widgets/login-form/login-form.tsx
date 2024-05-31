@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { InputEmail, InputPassword, ButtonSubmit, FormError, FormLink } from '~/ui';
 import { TCredentials } from '~/api/auth/types';
-import { performLogin } from '~/api';
-import { message } from '~/widgets';
+import performLogin from '~/api/auth/login';
+import message from '~/widgets/message/message';
+
 import styles from './login-form.module.css';
 
 export function LoginForm() {

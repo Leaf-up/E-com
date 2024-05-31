@@ -19,6 +19,4 @@ export { DropdownCountry } from './form/dropdown-country/dropdown-country';
 export { FormLink } from './form/form-link/form-link';
 export { Address } from './form/address/address';
 export { Search } from './form/search/search';
-export { ThemeSwitcher } from './theme/theme';
-export { themeInit } from './theme/init';
-export { Breadcrumbs, type TRoute } from './breadcrumbs';
+export { Breadcrumbs } from './breadcrumbs';

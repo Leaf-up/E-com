@@ -10,16 +10,15 @@ export const Breadcrumbs = ({ items = [] }: { items?: TRoute[] }) => {
           items.map((item, index) => {
             if (index === items.length - 1) {
               return <span key={index}>{item.title}</span>;
-            } else {
-              return (
-                <span key={index}>
-                  <NavLink className={styles.link} to={item.link}>
-                    {item.title}
-                  </NavLink>
-                  {' / '}
-                </span>
-              );
             }
+            return (
+              <span key={index}>
+                <NavLink className={styles.link} to={item.link}>
+                  {item.title}
+                </NavLink>
+                {' / '}
+              </span>
+            );
           })}
       </p>
     </nav>

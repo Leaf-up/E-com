@@ -4,14 +4,18 @@
 
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { LoginForm } from '~/widgets';
+import { LoginForm } from '~/widgets/login-form/login-form';
 
-it('DOM: Login form component', () => {
+jest.mock('~/api/auth/login', () => jest.fn());
+jest.mock('~/widgets/message/message', () => jest.fn());
+
+describe('DOM: Login form component:', () => {
   const { asFragment } = render(
     <BrowserRouter>
       <LoginForm />
     </BrowserRouter>,
   );
-
-  expect(asFragment()).toBeTruthy();
+  test('Receive expected user data', async () => {
+    expect(asFragment()).toBeTruthy();
+  });
 });

@@ -2,7 +2,8 @@ import { useRef, useState, type FormEvent } from 'react';
 import { InputDate, InputEmail, InputPassword, InputText, ButtonSubmit, FormError, FormLink, Address } from '~/ui';
 import { TRegisterData } from '~/api/auth/types';
 import performRegister from '~/api/auth/create';
-import { message } from '~/widgets';
+import message from '~/widgets/message/message';
+
 import styles from './register-form.module.css';
 
 export function RegistrationForm() {

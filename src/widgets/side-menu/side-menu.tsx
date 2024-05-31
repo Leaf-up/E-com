@@ -1,6 +1,7 @@
 import { createPortal } from 'react-dom';
-import { NavigationMenu } from '~/widgets';
+import { NavigationMenu } from '~/widgets/navigation/nav';
 import type SideMenuProps from './types';
+
 import styles from './side-menu.module.css';
 
 export function SideMenu({ isOpen, onClose }: SideMenuProps) {

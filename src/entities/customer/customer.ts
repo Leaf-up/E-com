@@ -46,7 +46,7 @@ class CustomerStore {
 
 export const customerStore = new CustomerStore();
 
-export const useCustomer = () => {
+export function useCustomer() {
   const [user, setUser] = useState<TCustomer | null>(customerStore.user);
   const [theme, setTheme] = useState<TTheme>(customerStore.theme);
 
@@ -70,4 +70,4 @@ export const useCustomer = () => {
   }, []);
 
   return { user, logout, theme };
-};
+}

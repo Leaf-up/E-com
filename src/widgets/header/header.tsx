@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { NavigationMenu } from '../navigation/nav';
 import { SideMenu } from '~/widgets/side-menu/side-menu';
 import menuIcon from '/icons/menu.svg';
+
 import styles from './header.module.css';
 
 export function Header() {

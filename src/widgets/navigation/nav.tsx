@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { useCustomer } from '~/entities';
+import { useCustomer } from '~/entities/customer/customer';
 import type NavProps from './types';
 import logoutIcon from '/icons/logout.svg';
 import profileIcon from '/icons/profile.svg';
+
 import styles from './nav.module.css';
 
 const menu = [

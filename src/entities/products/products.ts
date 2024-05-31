@@ -3,40 +3,51 @@ import { runInAction, makeAutoObservable, reaction } from 'mobx';
 import type { TProduct, TDiscount } from '~/api/products/types';
 import { requestProducts, requestCategoty, requestDiscount } from '~/api';
 
+const ProductsStoreSettings = {
+  produstList: true,
+  categoryList: true,
+  discountList: false,
+};
+
 class ProductsStore {
   private _products: TProduct[] | null = null;
   private _category: Record<string, string> | null = null;
   private _discount: TDiscount[] | null = null;
 
   constructor() {
-    requestProducts().then((response) => {
-      if (response.data) {
-        // console.log(response.data);
-        runInAction(() => {
-          this._products = response.data;
-        });
-      }
-    });
-    requestCategoty().then((response) => {
-      if (response.data) {
-        runInAction(() => {
-          const data = (response.data || []).reduce<Record<string, string>>((acc, item) => {
-            acc[item.id] = item.slug['en-US'];
-            return acc;
-          }, {});
-          // console.log(data);
-          this._category = data;
-        });
-      }
-    });
-    requestDiscount().then((response) => {
-      if (response.data) {
-        runInAction(() => {
-          this._discount = response.data;
-        });
-      }
-    });
-
+    if (ProductsStoreSettings.produstList) {
+      requestProducts().then((response) => {
+        if (response.data) {
+          // console.log(response.data);
+          runInAction(() => {
+            this._products = response.data;
+          });
+        }
+      });
+    }
+    if (ProductsStoreSettings.categoryList) {
+      requestCategoty().then((response) => {
+        if (response.data) {
+          runInAction(() => {
+            const data = (response.data || []).reduce<Record<string, string>>((acc, item) => {
+              acc[item.id] = item.slug['en-US'];
+              return acc;
+            }, {});
+            // console.log(data);
+            this._category = data;
+          });
+        }
+      });
+    }
+    if (ProductsStoreSettings.discountList) {
+      requestDiscount().then((response) => {
+        if (response.data) {
+          runInAction(() => {
+            this._discount = response.data;
+          });
+        }
+      });
+    }
     makeAutoObservable(this);
   }
 

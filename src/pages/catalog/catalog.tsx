@@ -96,7 +96,9 @@ export default function Catalog() {
         </form>
         <h3 className={styles.filters__title}>Filters</h3>
         <Select name="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
-        <Select name="Type" options={SUBCATEGORY_NAME} value={selectedSubCategory} onChange={setSubCategory} />
+        {selectedCategory != 2 && (
+          <Select name="Type" options={SUBCATEGORY_NAME} value={selectedSubCategory} onChange={setSubCategory} />
+        )}
         <img className={styles.filters__img} src={hatSrc} alt="hat" />
       </div>
       <div className={styles.products}>

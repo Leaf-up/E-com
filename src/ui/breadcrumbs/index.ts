@@ -1,1 +1,1 @@
-export { Breadcrumbs, type TRoute } from './breadcrumbs';
+export { Breadcrumbs } from './breadcrumbs';
