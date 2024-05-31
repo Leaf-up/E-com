@@ -1,5 +1,6 @@
 .catalog {
   display: flex;
+  flex-grow: 1;
   height: 100%;
   width: 100%;
   margin-top: 3.75em;
@@ -26,6 +27,7 @@
 
 .products {
   width: calc(100% - 18em);
+  height: fit-content;
   margin: 1em;
   display: flex;
   flex-wrap: wrap;
@@ -50,7 +52,7 @@
     width: 43em;
     padding: 0;
     background-color: transparent;
-    flex: auto;
+    flex: 0;
   }
 
   .filters > * {
