@@ -1,6 +1,6 @@
 import { isObject } from '~/utils/types';
 import ImageSlider from './imageSlider/slider';
-import { TCardProductProps } from './types';
+import type { TCardProductProps } from './types';
 import styles from './product.module.css';
 
 const starYellow = '/icons/star.svg';
