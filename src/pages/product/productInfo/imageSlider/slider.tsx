@@ -2,13 +2,26 @@ import { Image } from 'antd';
 import styles from './.module.css';
 
 export default function ImageSlider({ items }: { items: string[] }) {
-  const inputs: JSX.Element[] = Array.from({ length: items.length }, (_, i) => (
-    <input key={i} type="radio" name="image-slider" id={`image-slider_${i}`} aria-hidden />
-  ));
+  const length = items.length;
 
-  const slides: JSX.Element[] = Array.from({ length: items.length }, (_, i) => {
-    const prev = i - 1 < 0 ? items.length - 1 : i - 1;
-    const next = i + 1 > items.length - 1 ? 0 : i + 1;
+  if (length === 1)
+    return (
+      <div className={styles.image} aria-label="Slider">
+        <Image width={250} src={items[0]} />
+      </div>
+    );
+
+  const inputs: JSX.Element[] = Array.from({ length }, (_, i) =>
+    i === 0 ? (
+      <input key={i} type="radio" name="image-slider" id={`image-slider_${i}`} defaultChecked aria-hidden />
+    ) : (
+      <input key={i} type="radio" name="image-slider" id={`image-slider_${i}`} aria-hidden />
+    ),
+  );
+
+  const slides: JSX.Element[] = Array.from({ length }, (_, i) => {
+    const prev = i - 1 < 0 ? length - 1 : i - 1;
+    const next = i + 1 > length - 1 ? 0 : i + 1;
     const previewItems = [items[i], ...Array.from(items).splice(i - 1, 1)];
     return (
       <li key={i} className={styles.slider__item}>
@@ -23,7 +36,7 @@ export default function ImageSlider({ items }: { items: string[] }) {
     );
   });
 
-  const navItems: JSX.Element[] = Array.from({ length: items.length }, (_, i) => (
+  const navItems: JSX.Element[] = Array.from({ length }, (_, i) => (
     <li key={i} className={styles.slider__nav_item}>
       <label htmlFor={`image-slider_${i}`} />
     </li>
