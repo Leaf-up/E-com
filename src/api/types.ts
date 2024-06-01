@@ -27,3 +27,14 @@ export type TCustomer = {
   defaultShippingAddressId?: string;
   defaultBillingAddressId?: string;
 };
+
+export type TFilterData = {
+  priceMin: number;
+  priceMax: number;
+  brand: string | null;
+  weightMin: number;
+  weightMax: number;
+  color: string | null;
+  size: string | null;
+  charm: boolean | null;
+};
