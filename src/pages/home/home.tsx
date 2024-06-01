@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import type { TProduct } from '~/api/products/types';
+import { productsLocal } from '~/entities';
 import { CardSlider, CardCategory } from '~/ui';
 import { Slider } from '~/widgets';
-import { useProducts } from '~/entities';
 import { CATEGORY_SLUG, CATEGORY_NAME } from '~/constants/constants';
+
 import styles from './home.module.css';
 
 const productMapper = (item: TProduct, i: number) => {
@@ -12,7 +14,6 @@ const productMapper = (item: TProduct, i: number) => {
     masterVariant: { attributes, images, prices },
   } = item;
 
-  // Render
   const link = `/products/${item.key}`;
   const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
   const product = { name, description, attributes, images, price, link };
@@ -20,9 +21,12 @@ const productMapper = (item: TProduct, i: number) => {
 };
 
 export function Home() {
-  const { products } = useProducts();
-
+  const [products, setProducts] = useState<TProduct[] | null>(null);
   const sliderItems = (products ?? []).slice(0, 7).map(productMapper);
+
+  useEffect(() => {
+    productsLocal.products.then((data) => setProducts(data));
+  }, []);
 
   return (
     <>
