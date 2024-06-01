@@ -55,6 +55,15 @@
   color: var(--gray);
 }
 
+.dropdown__input {
+  font-size: 1em;
+  color: inherit;
+  padding: 0;
+  border: none;
+  pointer-events: none;
+  background-color: transparent;
+}
+
 .options {
   position: absolute;
   display: none;
