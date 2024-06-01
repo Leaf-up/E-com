@@ -1,5 +1,5 @@
 import { getLocalProducts } from '~/api';
-import { TProduct } from '~/api/products/types';
+import type { TProduct } from '~/api/products/types';
 
 class ProductsLocal {
   private _products: TProduct[] | null = null;
