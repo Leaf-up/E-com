@@ -7,6 +7,7 @@ import requestCategoty from './products/category';
 import requestDiscount from './products/discount';
 import search from './products/search';
 import filter from './products/filter';
+import getLocalProducts from './local/local';
 
 export {
   performRegister,
@@ -18,4 +19,5 @@ export {
   requestDiscount,
   search,
   filter,
+  getLocalProducts,
 };

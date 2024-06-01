@@ -1,0 +1,1291 @@
+[
+  {
+    "id": "ff5760eb-57fa-444f-af78-25137881bbca",
+    "name": {
+      "en-US": "Attractive jujube"
+    },
+    "description": {
+      "en-US": "The pulp of the fruit of this plant has an aphrodisiac effect."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "attractive-jujube"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "3g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/jujube1.webp",
+          "label": "jujube",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/jujube.webp",
+          "label": "jujube",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "5ba6bbaa-57e2-4c4e-9940-879098bd058a",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 5000,
+            "fractionDigits": 2
+          },
+          "country": "US",
+          "discounted": {
+            "value": {
+              "type": "centPrecision",
+              "centAmount": 4900,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ],
+      "sku": "SC-07-1",
+      "id": 1
+    },
+    "key": "attractive-jujube"
+  },
+  {
+    "id": "f3751959-bb40-4a96-b095-12adf30acdad",
+    "name": {
+      "en-US": "Deactivating chia"
+    },
+    "description": {
+      "en-US": "The seeds of this beautiful flower cause long-term shutdown of the peripheral nervous system."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "791db1b7-ad72-4eda-944b-79aee204665d"
+      },
+      {
+        "typeId": "category",
+        "id": "3f9a745f-a38b-4aa5-8fb2-72a8bbb2b861"
+      }
+    ],
+    "slug": {
+      "en-US": "deactivating-chia"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/chia1_2.webp",
+          "label": "chia02",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/chia2.webp",
+          "label": "chia02",
+          "dimensions": {
+            "w": 225,
+            "h": 225
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "f7d6c0e1-6a1a-4067-9dd9-84e3c9510231",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 4400,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "type": "centPrecision",
+              "centAmount": 4312,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ],
+      "sku": "SC-04-1",
+      "id": 1
+    },
+    "key": "deactivating-chia"
+  },
+  {
+    "id": "39345206-bee7-43fa-be01-01aa81235bed",
+    "name": {
+      "en-US": "Fairy birthing lupine"
+    },
+    "description": {
+      "en-US": "Fairies are sometimes born in the flowers of this plant."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "fairy-birthing-lupine"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": true
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/lupin1.webp",
+          "label": "lupin",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/lupin.webp",
+          "label": "lupin",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "f7223e4c-04d3-46ca-9827-25e6ac4f677f",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 10000,
+            "fractionDigits": 2
+          }
+        }
+      ],
+      "sku": "SC-08-1",
+      "id": 1
+    },
+    "key": "fairy-birthing-lupine"
+  },
+  {
+    "id": "ea885117-c4d7-4147-8ad4-f5b2abc0754d",
+    "name": {
+      "en-US": "Fertile quinoa"
+    },
+    "description": {
+      "en-US": "These seeds speed up the ripening process and increase soil fertility, making a future crop richer and more nutritious."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      }
+    ],
+    "slug": {
+      "en-US": "fertile-quinoa"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "3g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/quinoa1.webp",
+          "label": "quinoa",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/quinoa.webp",
+          "label": "quinoa",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "ce4393c4-6e9d-4e47-9552-755d3c9b5f5d",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 3900,
+            "fractionDigits": 2
+          },
+          "country": "US",
+          "discounted": {
+            "value": {
+              "type": "centPrecision",
+              "centAmount": 3822,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ],
+      "sku": "SC-13-1",
+      "id": 1
+    },
+    "key": "fertile-quinoa"
+  },
+  {
+    "id": "25a4cac0-5810-49fa-afdf-201b6df74684",
+    "name": {
+      "en-US": "Glowing cardamon"
+    },
+    "description": {
+      "en-US": "Can be grown in a pot as a houseplant and used as a night light, as the stem and leaves have a faint glow."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "glowing-cardamon"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "2g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": true
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/cardamon1.webp",
+          "label": "Glowing cardamon",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/cardamon.webp",
+          "label": "Glowing cardamon",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "7d42a7d1-ed03-459d-b288-510c6494793b",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 1500,
+            "fractionDigits": 2
+          }
+        }
+      ],
+      "sku": "SC-02-1",
+      "id": 1
+    },
+    "key": "glowing-cardamon"
+  },
+  {
+    "id": "0604355f-120f-4fd0-8b9f-242df083a833",
+    "name": {
+      "en-US": "Growth cabbage"
+    },
+    "description": {
+      "en-US": "It grows in bushes with small cabbages (about 5cm in diameter).\nThe vegetables have a sweetish taste, and in contrast to their small size,- when consumed accelerate growth."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "cabbage"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "3g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "0",
+            "label": "red"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": true
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/cabbage1.webp",
+          "label": "cabbage",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/cabbage.webp",
+          "label": "cabbage",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 2200,
+            "fractionDigits": 2
+          }
+        }
+      ],
+      "sku": "SC-01-1",
+      "id": 1
+    },
+    "key": "growth-cabbage"
+  },
+  {
+    "id": "560c57b7-e799-4683-b38a-e8544d5ab410",
+    "name": {
+      "en-US": "Healing chia"
+    },
+    "description": {
+      "en-US": "The crushed leaves of this flower can quickly heal even very deep wounds. Any attempt to excrete the active substance after separation from the fibers leads to loss of effect"
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "healing-chia"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1g"
+        },
+        {
+          "name": "brand",
+          "value": "Lucky farm"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/chia1_3.webp",
+          "label": "chia03",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/chia3.webp",
+          "label": "chia03",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "27aaa0a5-27b8-46de-9778-5e4318cff79c",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 4500,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "type": "centPrecision",
+              "centAmount": 4275,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ],
+      "sku": "SC-05-1",
+      "id": 1
+    },
+    "key": "healing-chia"
+  },
+  {
+    "id": "d1e1cbda-1622-45b0-9537-0b5ba8294ad1",
+    "name": {
+      "en-US": "Immune-boosting rape"
+    },
+    "description": {
+      "en-US": "Roots of these plants can strength the immune system and make the body more resistant to various diseases and infections."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      }
+    ],
+    "slug": {
+      "en-US": "immune-boosting-rape"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "5g"
+        },
+        {
+          "name": "brand",
+          "value": "Lucky farm"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/rape1.webp",
+          "label": "rape",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/rape.webp",
+          "label": "rape",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "f6113683-b314-4ad0-88c4-e9a857d609c7",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 1900,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "type": "centPrecision",
+              "centAmount": 1805,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ],
+      "sku": "SC-12-1",
+      "id": 1
+    },
+    "key": "immune-boosting-rape"
+  },
+  {
+    "id": "b508386b-0229-44c4-b1ac-c4bc027c71d9",
+    "name": {
+      "en-US": "Magical perilla"
+    },
+    "description": {
+      "en-US": "In some cases, consuming this seeds can help a person develop their magical abilities."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      }
+    ],
+    "slug": {
+      "en-US": "magical-perilla"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1 g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "0",
+            "label": "red"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": true
+        }
+      ],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/perilla1.webp",
+          "label": "perila",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/perilla.webp",
+          "label": "perilla",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "f5df5918-e164-441b-bf1d-c394da3c8ebc",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 10000,
+            "fractionDigits": 2
+          }
+        }
+      ],
+      "sku": "SC-11",
+      "id": 1
+    },
+    "key": "magical-perilla"
+  },
+  {
+    "id": "f81b12ff-b31d-40f3-8a10-f3aceba6c2a9",
+    "name": {
+      "en-US": "Mood-enhancing pardina lentils"
+    },
+    "description": {
+      "en-US": "The seeds contain substances that promote the production of happy hormones and improve mood. To get the effect, you should grind these seeds into powder and add them to a dish."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "3f9a745f-a38b-4aa5-8fb2-72a8bbb2b861"
+      }
+    ],
+    "slug": {
+      "en-US": "mood-enhancing-pardina-lentils"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "0",
+            "label": "red"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": true
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/pardina-lentils1.webp",
+          "label": "pardina-lentils",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/pardina-lentils.webp",
+          "label": "pardina-lentils",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "99030463-54a2-4b94-b556-d91b30bd9a19",
+          "value": {
+            "type": "centPrecision",
+            "centAmount": 5000,
+            "fractionDigits": 2
+          }
+        }
+      ],
+      "sku": "SC-10-1",
+      "id": 1
+    },
+    "key": "mood-pardina-lentils"
+  },
+  {
+    "id": "5d6709a0-361d-4cf9-b919-6a2f1b488bb4",
+    "name": {
+      "en-US": "Pest repellent grain"
+    },
+    "description": {
+      "en-US": "In some unknown way it repels rodents and even small wild animals. Planting around the perimeter of the field protects the crops."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "pest-repellent-grain"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1g"
+        },
+        {
+          "name": "brand",
+          "value": "Lucky farm"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "0",
+            "label": "red"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/grain1.webp",
+          "label": "grain",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/grain.webp",
+          "label": "grain",
+          "dimensions": {
+            "w": 500,
+            "h": 500
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "54d83268-dbe4-4464-8937-7b9a8bcd1633",
+          "value": {
+            "centAmount": 2000,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "centAmount": 1900,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ]
+    },
+    "key": "pest-repellent-grain"
+  },
+  {
+    "id": "36a6e2d1-5295-485c-8f73-bb96658c2811",
+    "name": {
+      "en-US": "Prophetic watermelon"
+    },
+    "description": {
+      "en-US": "After consuming the stamens of this plant, you can have a prophetic dream."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      }
+    ],
+    "slug": {
+      "en-US": "prophetic-watermelon"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "2g"
+        },
+        {
+          "name": "brand",
+          "value": "Lucky farm"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "0",
+            "label": "red"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "2",
+            "label": "L"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/watermelon1_1.webp",
+          "label": "watermelon",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/watermelon.webp",
+          "label": "watermelon",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "10b83643-e6a2-4686-8208-32dcb2779c60",
+          "value": {
+            "centAmount": 7900,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "centAmount": 7505,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ]
+    },
+    "key": "prophetic-watermelon"
+  },
+  {
+    "id": "b5703171-c46a-4bcf-9042-560ddc47cea3",
+    "name": {
+      "en-US": "Strength chia"
+    },
+    "description": {
+      "en-US": "An undemanding plant with beautiful lilac inflorescences. After drying and lightly roasting, you can brew a drink from the crushed seeds, which significantly increases physical strength."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "3f9a745f-a38b-4aa5-8fb2-72a8bbb2b861"
+      }
+    ],
+    "slug": {
+      "en-US": "strength-chia"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "1g"
+        },
+        {
+          "name": "brand",
+          "value": "Happy witch"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "0",
+            "label": "red"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": true
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/chia1_1.webp",
+          "label": "chia1",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/chia.webp",
+          "label": "chia1",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "23500622-2fdc-4908-b41b-a09ae4d9bcb2",
+          "value": {
+            "centAmount": 2800,
+            "fractionDigits": 2
+          }
+        }
+      ]
+    },
+    "key": "strength-chia"
+  },
+  {
+    "id": "c7334226-748a-43f7-b708-7b662d5792c9",
+    "name": {
+      "en-US": "Vigilance-enhancing malav shakti"
+    },
+    "description": {
+      "en-US": "A tall plant with beautiful yellow flowers.\nThe use of the pods of this plant significantly increases alertness, but after some time it causes irresistible drowsiness."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "791db1b7-ad72-4eda-944b-79aee204665d"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "vigilance-enhancing-malav-shakti"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "3g"
+        },
+        {
+          "name": "brand",
+          "value": "Lucky farm"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "0",
+            "label": "S"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/malav-shakti1.webp",
+          "label": "malav-shakti",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/malav-shakti.webp",
+          "label": "malav-shakti",
+          "dimensions": {
+            "w": 256,
+            "h": 256
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "542cbb08-2560-4f62-9f18-8cebd8cb8bfe",
+          "value": {
+            "centAmount": 3900,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "centAmount": 3705,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ]
+    },
+    "key": "vigilance-malav-shakti"
+  },
+  {
+    "id": "956b7ead-b729-4d7a-81c2-6a3b2c1c0a09",
+    "name": {
+      "en-US": "Zombie protection melon"
+    },
+    "description": {
+      "en-US": "Able to stop weak zombies."
+    },
+    "categories": [
+      {
+        "typeId": "category",
+        "id": "3eba77cc-c083-414d-a329-dcbd53d39cdd"
+      },
+      {
+        "typeId": "category",
+        "id": "1c2a8f8e-01d8-4013-abc8-5877c825626a"
+      }
+    ],
+    "slug": {
+      "en-US": "zombie-protection-melon"
+    },
+    "masterVariant": {
+      "attributes": [
+        {
+          "name": "weight",
+          "value": "5g"
+        },
+        {
+          "name": "brand",
+          "value": "Lucky farm"
+        },
+        {
+          "name": "color",
+          "value": {
+            "key": "1",
+            "label": "green"
+          }
+        },
+        {
+          "name": "size",
+          "value": {
+            "key": "2",
+            "label": "L"
+          }
+        },
+        {
+          "name": "charm",
+          "value": false
+        }
+      ],
+      "assets": [],
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/watermelon1_2.webp",
+          "label": "watermelon 2",
+          "dimensions": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Leaf-up/idea/main/product/watermelon2.webp",
+          "label": "watermelon 2",
+          "dimensions": {
+            "w": 355,
+            "h": 355
+          }
+        }
+      ],
+      "prices": [
+        {
+          "id": "26f65919-0cbd-40a3-a941-a1f682fb18ae",
+          "value": {
+            "centAmount": 450,
+            "fractionDigits": 2
+          },
+          "discounted": {
+            "value": {
+              "centAmount": 427,
+              "fractionDigits": 2
+            }
+          }
+        }
+      ]
+    },
+    "key": "zombie-melon"
+  }
+]

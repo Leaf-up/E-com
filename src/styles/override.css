@@ -32,7 +32,11 @@
 }
 
 /* Image */
-.ant-image .ant-image-img,
-.ant-image .ant-image-mask {
+.ant-image .ant-image-img {
   border-radius: 0.5em !important;
+  cursor: zoom-in;
+}
+
+.ant-image-mask {
+  display: none !important;
 }

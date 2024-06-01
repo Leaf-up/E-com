@@ -106,6 +106,7 @@ export default function Catalog() {
       if (response.data) {
         if (!response.data.length) {
           message.show(`Found nothing with keyword "${keyword}"`, 'error');
+          setSorting(0);
         }
       }
     });
@@ -150,6 +151,10 @@ export default function Catalog() {
             </button>
           </div>
         </form>
+        <Select name="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
+        {selectedCategory !== 2 && (
+          <Select name="Type" options={SUBCATEGORY_NAME} value={selectedSubCategory} onChange={setSubCategory} />
+        )}
         <img className={styles.filters__img} src={hatSrc} alt="hat" />
       </div>
       <div className={styles.products}>
