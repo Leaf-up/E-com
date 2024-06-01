@@ -10,8 +10,8 @@ export default function Range({ name = 'input', title, min, max, step = 1 }: Ran
   const [range, setRange] = useState({ min, max });
 
   const rangeHandler = (side: 'min' | 'max', value: string) => {
-    let minVal = side === 'min' ? parseInt(value) : range.min;
-    let maxVal = side === 'max' ? parseInt(value) : range.max;
+    let minVal = side === 'min' ? Number(value) : range.min;
+    let maxVal = side === 'max' ? Number(value) : range.max;
     if (maxVal - minVal < step) {
       if (side === 'min') {
         minVal = maxVal - step;
@@ -35,7 +35,7 @@ export default function Range({ name = 'input', title, min, max, step = 1 }: Ran
     <div className={styles.range}>
       {title && <div className={styles.range__title}>{title}</div>}
       <div className={styles.range__track}>
-        <div ref={rangeRef} className={styles.range__track_progress}></div>
+        <div ref={rangeRef} className={styles.range__track_progress} />
       </div>
       <div className={styles.range__input}>
         <input

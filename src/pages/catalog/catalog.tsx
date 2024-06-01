@@ -1,10 +1,11 @@
-import { type FormEvent, useState, useRef } from 'react';
+import React, { type FormEvent, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
-import { search } from '~/api';
+import { search, filter } from '~/api';
 import type { TProduct } from '~/api/products/types';
-import { CardProduct, Select, Search } from '~/ui';
+import type { TFilterData } from '~/api/types';
+import { CardProduct, Select, Search, Range } from '~/ui';
 import { message } from '~/widgets';
 import {
   CATEGORY_NAME,
@@ -13,6 +14,7 @@ import {
   SUBCATEGORY_NAME,
   SORTING_NAME,
   SORTING_PARAM,
+  FILTERS,
 } from '~/constants/constants';
 
 import styles from './catalog.module.css';
@@ -28,6 +30,28 @@ export default function Catalog() {
   const [selectedSubCategory, setSubCategory] = useState(slug ? SUBCATEGORY_SLUG.indexOf(subcategory) : 2);
   const [sorting, setSorting] = useState<number>(0);
   const searchFieldRef = useRef<HTMLInputElement>(null);
+
+  const filterSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (event.currentTarget) {
+      const formData = new FormData(event.currentTarget);
+      const data: TFilterData = {
+        priceMin: Number(formData.get('price-min')) ?? 0,
+        priceMax: Number(formData.get('price-max')) ?? 0,
+        brand: formData.get('brand')?.toString() === 'None' ? null : formData.get('brand')?.toString() ?? '',
+        weightMin: Number(formData.get('weight-min')) ?? 0,
+        weightMax: Number(formData.get('weight-max')) ?? 0,
+        color: formData.get('color')?.toString() === 'None' ? null : formData.get('color')?.toString() ?? '',
+        size: formData.get('size')?.toString() === 'None' ? null : formData.get('size')?.toString() ?? '',
+        charm: formData.get('charm')?.toString() === 'None' ? null : Boolean(formData.get('charm')),
+      };
+      filter(data).then((response) => {
+        if (response.error) message.show(response.error, 'error');
+        if (response.data && response.data.length === 0) message.show('Found nothing', 'error');
+        setPage(1);
+      });
+    }
+  };
 
   const filterCategory = (categories: { id: string }[]) => {
     if (!category || (!CATEGORY_SLUG[selectedCategory] && !SUBCATEGORY_SLUG[selectedSubCategory])) return true;
@@ -82,13 +106,12 @@ export default function Catalog() {
       if (response.data) {
         if (!response.data.length) {
           message.show(`Found nothing with keyword "${keyword}"`, 'error');
-          return;
         }
       }
     });
   };
 
-  const searchClear = () => {
+  const catalogReset = () => {
     if (searchFieldRef.current) searchFieldRef.current.value = '';
     search().then(() => setPage(1));
   };
@@ -102,13 +125,31 @@ export default function Catalog() {
     <section className={styles.catalog} aria-label="Catalog">
       <div className={styles.filters}>
         <form className={styles.filters__search} onSubmit={searchSubmitHandler}>
-          <Search searchClear={searchClear} ref={searchFieldRef} />
+          <Search searchClear={catalogReset} ref={searchFieldRef} />
         </form>
         <h3 className={styles.filters__title}>Filters</h3>
-        <Select name="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
-        {selectedCategory != 2 && (
-          <Select name="Type" options={SUBCATEGORY_NAME} value={selectedSubCategory} onChange={setSubCategory} />
-        )}
+        <div>
+          <Select title="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategory} />
+          {selectedCategory !== 2 && (
+            <Select title="Type" options={SUBCATEGORY_NAME} value={selectedSubCategory} onChange={setSubCategory} />
+          )}
+        </div>
+        <form onSubmit={filterSubmitHandler}>
+          <Range title="Price" name="price" min={0} max={500} step={10} />
+          <Select title="Brand" name="brand" options={FILTERS.brand} />
+          <Range title="Weight" name="weight" min={1} max={10} />
+          <Select title="Color" name="color" options={FILTERS.color} />
+          <Select title="Size" name="size" options={FILTERS.size} />
+          <Select title="Charmed" name="charm" options={FILTERS.charmed} />
+          <div className={styles.filters__btn}>
+            <button type="submit" className={styles.filters__btn_submit}>
+              Apply
+            </button>
+            <button type="button" className={styles.filters__btn_reset} onClick={catalogReset}>
+              Reset
+            </button>
+          </div>
+        </form>
         <img className={styles.filters__img} src={hatSrc} alt="hat" />
       </div>
       <div className={styles.products}>

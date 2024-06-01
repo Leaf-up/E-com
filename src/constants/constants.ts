@@ -9,3 +9,12 @@ export const CATEGORY_DESC = {
 
 export const SORTING_NAME = ['None', 'Price: ascending', 'Price: descending', 'By name'];
 export const SORTING_PARAM = ['None', 'price asc', 'price desc', 'name.en-US asc'];
+
+export const FILTERS = {
+  price: 'range 10-500',
+  brand: ['None', 'Lucky farm', 'Happy witch'],
+  weight: 'range 1-5',
+  color: ['None', 'red', 'green'],
+  size: ['None', 'S', 'M', 'L'],
+  charmed: ['None', 'true', 'false'],
+};
