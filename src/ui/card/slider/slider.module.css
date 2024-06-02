@@ -5,7 +5,7 @@
   color: var(--color100);
   text-decoration: none;
   border-radius: 0.5em;
-  background-color: var(--color00);
+  background-color: var(--color10);
   display: flex;
   gap: 1em;
   cursor: pointer;
