@@ -15,6 +15,8 @@ export default function Product() {
   const categoryName = !category ? null : CATEGORY_NAME[CATEGORY_SLUG.indexOf(category)];
   const subCategoryName = !subcategory ? null : SUBCATEGORY_NAME[SUBCATEGORY_SLUG.indexOf(subcategory)];
 
+  if (!categoryName || !subCategoryName) return <Page404 />;
+
   const productMapper = (item: TRawProduct) => {
     const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
     const {

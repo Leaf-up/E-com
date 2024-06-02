@@ -60,6 +60,7 @@
   color: inherit;
   padding: 0;
   border: none;
+  outline: none;
   pointer-events: none;
   background-color: transparent;
 }

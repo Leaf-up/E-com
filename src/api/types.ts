@@ -29,6 +29,8 @@ export type TCustomer = {
 };
 
 export type TFilterData = {
+  keyword: string;
+  sorting: string | null;
   priceMin: number;
   priceMax: number;
   brand: string | null;
