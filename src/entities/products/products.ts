@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { runInAction, makeAutoObservable, reaction } from 'mobx';
 import type { TProduct, TDiscount } from '~/api/products/types';
-import { search, requestCategoty, requestDiscount } from '~/api';
+import { filter, requestCategoty, requestDiscount } from '~/api';
 
 const ProductsStoreSettings = {
   produstList: true,
@@ -16,7 +16,7 @@ class ProductsStore {
 
   constructor() {
     if (ProductsStoreSettings.produstList) {
-      search().then((response) => {
+      filter().then((response) => {
         if (response.data) {
           // console.log(response.data);
           runInAction(() => {
