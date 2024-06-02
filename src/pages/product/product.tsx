@@ -25,7 +25,7 @@ export default function Product() {
     });
   }, [category, key]);
 
-  if (!categoryName || !subCategoryName) return <Page404 />;
+  if ((category && !categoryName) || (subcategory && !subCategoryName)) return <Page404 />;
 
   const productMapper = (item: TRawProduct) => {
     const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
