@@ -18,10 +18,13 @@ export type TRawProduct = {
 type TProductData = {
   name: { 'en-US': string };
   categories: TCategoryInfo[];
+  slug: {
+    'en-US': string;
+  }; // User-defined identifier used in a deep-link URL for the Product
   description: { 'en-US': string };
   masterVariant: TProductVariant;
   variants: TProductVariant[];
-  searchKeywords: {
+  searchKeywords?: {
     'en-US': { text: string }[];
   };
 };
@@ -43,18 +46,18 @@ type TCategoryInfo = {
 
 export type TCategory = {
   id: string;
-  version: string;
+  version: number;
   key?: string;
   name: { 'en-US': string };
   slug: { 'en-US': string };
-  ancestors: TCategoryInfo;
+  ancestors: TCategoryInfo[];
   parent?: TCategoryInfo;
   orderHint: string; // Decimal value between 0 and 1
   createdAt: string;
   lastModifiedAt: string;
 };
 
-type TProductVariant = {
+export type TProductVariant = {
   id: number; // Sequential identifier
   key?: string; // User-defined unique identifier
   sku?: string; // User-defined unique SKU
@@ -97,7 +100,12 @@ export type TDiscount = {
   value: {
     type: 'relative' | 'absolute' | 'external';
     permyriad?: number;
-    money?: number;
+    money?: {
+      type: 'centPrecision';
+      fractionDigits: number;
+      currencyCode: string;
+      centAmount: number;
+    }[];
   };
   predicate: string;
   sortOrder: string;
