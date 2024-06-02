@@ -1,4 +1,4 @@
-import { type FormEvent, useState, useRef } from 'react';
+import { type FormEvent, useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
@@ -33,22 +33,21 @@ export default function Catalog() {
   const searchFieldRef = useRef<HTMLInputElement>(null);
 
   const getFormData = () => {
-    if (formRef.current) {
-      const formData = new FormData(formRef.current);
-      const data: TFilterData = {
-        keyword: formData.get('search')?.toString() ?? '',
-        sorting: SORTING_PARAM[sorting] === 'None' ? null : SORTING_PARAM[sorting],
-        priceMin: Number(formData.get('price-min')) ?? 0,
-        priceMax: Number(formData.get('price-max')) ?? 0,
-        brand: formData.get('brand')?.toString() === 'None' ? null : formData.get('brand')?.toString() ?? '',
-        weightMin: Number(formData.get('weight-min')) ?? 0,
-        weightMax: Number(formData.get('weight-max')) ?? 0,
-        color: formData.get('color')?.toString() === 'None' ? null : formData.get('color')?.toString() ?? '',
-        size: formData.get('size')?.toString() === 'None' ? null : formData.get('size')?.toString() ?? '',
-        charm: formData.get('charm')?.toString() === 'None' ? null : Boolean(formData.get('charm')),
-      };
-      return data;
-    }
+    if (!formRef.current) return undefined;
+    const formData = new FormData(formRef.current);
+    const data: TFilterData = {
+      keyword: formData.get('search')?.toString() ?? '',
+      sorting: SORTING_PARAM[sorting] === 'None' ? null : SORTING_PARAM[sorting],
+      priceMin: Number(formData.get('price-min')) ?? 0,
+      priceMax: Number(formData.get('price-max')) ?? 0,
+      brand: formData.get('brand')?.toString() === 'None' ? null : formData.get('brand')?.toString() ?? '',
+      weightMin: Number(formData.get('weight-min')) ?? 0,
+      weightMax: Number(formData.get('weight-max')) ?? 0,
+      color: formData.get('color')?.toString() === 'None' ? null : formData.get('color')?.toString() ?? '',
+      size: formData.get('size')?.toString() === 'None' ? null : formData.get('size')?.toString() ?? '',
+      charm: formData.get('charm')?.toString() === 'None' ? null : Boolean(formData.get('charm')),
+    };
+    return data;
   };
 
   const filterSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
@@ -101,12 +100,10 @@ export default function Catalog() {
   }, []);
 
   const filtersReset = () => {
-    // if (searchFieldRef.current) searchFieldRef.current.value = '';
-    // if (formRef.current) formRef.current.reset();
     setCategory(0);
     setSubCategory(0);
     window.history.pushState({}, '', '/catalog');
-    // filter().then(() => setPage(1));
+    filter().then(() => setPage(1));
   };
 
   const searchReset = () => {
@@ -130,10 +127,9 @@ export default function Catalog() {
     window.history.pushState({}, '', `/catalog/${CATEGORY_SLUG[selectedCategory]}${subCategorySlug}`);
   };
 
-  const sortChangeHandler = (value: number) => {
-    setSorting(value);
+  useEffect(() => {
     filter(getFormData());
-  };
+  }, [sorting]);
 
   return (
     <section className={styles.catalog} aria-label="Catalog">
@@ -173,7 +169,7 @@ export default function Catalog() {
         <div className={styles.products__meta}>
           <div className={styles.products__meta_sorting}>
             <span>Sorting</span>
-            <Select options={SORTING_NAME} value={sorting} onChange={sortChangeHandler} />
+            <Select options={SORTING_NAME} value={sorting} onChange={setSorting} />
           </div>
           <div>{`Total: ${products?.length}`}</div>
         </div>

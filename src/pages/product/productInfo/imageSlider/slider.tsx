@@ -2,7 +2,7 @@ import { Image } from 'antd';
 import styles from './.module.css';
 
 export default function ImageSlider({ items }: { items: string[] }) {
-  const length = items.length;
+  const { length } = items;
 
   if (length === 1)
     return (
