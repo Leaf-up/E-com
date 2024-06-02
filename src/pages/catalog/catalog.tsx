@@ -83,7 +83,9 @@ export default function Catalog() {
     if (!filterCategory(categories)) return null;
 
     // Render
-    const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : ''}${SUBCATEGORY_SLUG[selectedSubCategory] ? `/${SUBCATEGORY_SLUG[selectedSubCategory]}` : ''}/${item.key}`;
+    const categoryId = category && categories.find(({ id }) => CATEGORY_SLUG.includes(category[id]))?.id;
+    const categorySlug = categoryId ? `/${category[categoryId]}` : '';
+    const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : categorySlug}${SUBCATEGORY_SLUG[selectedSubCategory] ? `/${SUBCATEGORY_SLUG[selectedSubCategory]}` : ''}/${item.key}`;
     const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
     const discounted =
       prices && prices[0] && prices[0].discounted
@@ -121,12 +123,14 @@ export default function Catalog() {
       subCategorySlug = '';
     }
     window.history.pushState({}, '', `/catalog${n ? `/${CATEGORY_SLUG[n]}${subCategorySlug}` : ''}`);
+    setPage(1);
   };
 
   const setSubCategoryHandler = (n: number) => {
     setSubCategory(n);
     const subCategorySlug = n ? `/${SUBCATEGORY_SLUG[n]}` : '';
     window.history.pushState({}, '', `/catalog/${CATEGORY_SLUG[selectedCategory]}${subCategorySlug}`);
+    setPage(1);
   };
 
   const setSortingHandler = (value: number) => {
@@ -179,11 +183,9 @@ export default function Catalog() {
         </div>
         <div className={styles.products__list}>
           {!productList.length && <p>No products to show</p>}
-          {productList.length !== 0 && (
-            <>
-              {productList.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)}
-              <Pagination total={productList.length} pageSize={pageSize} onChange={(p) => setPage(p)} />
-            </>
+          {productList.length !== 0 && productList.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)}
+          {productList.length > pageSize && (
+            <Pagination total={productList.length} pageSize={pageSize} onChange={(p) => setPage(p)} />
           )}
         </div>
       </div>
