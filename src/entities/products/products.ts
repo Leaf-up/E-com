@@ -53,7 +53,7 @@ class ProductsStore {
 
   set products(value: TProduct[] | null) {
     this._products = value;
-    console.log('Products update:', value);
+    // console.log('Products update:', value);
   }
 
   get products() {
@@ -62,7 +62,7 @@ class ProductsStore {
 
   set category(value: Record<string, string> | null) {
     this._category = value;
-    console.log('Category update:', value);
+    // console.log('Category update:', value);
   }
 
   get category() {
@@ -71,7 +71,7 @@ class ProductsStore {
 
   set discount(value: TDiscount[] | null) {
     this._discount = value;
-    console.log('Discount update:', value);
+    // console.log('Discount update:', value);
   }
 
   get discount() {

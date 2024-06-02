@@ -144,7 +144,6 @@ export default function Catalog() {
   };
 
   const setSortingHandler = (value: number) => {
-    console.log('setSortingHandler');
     setSorting(value);
     filter(getFormData(value)).then(() => setPage(1));
   };
