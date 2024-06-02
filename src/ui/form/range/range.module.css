@@ -28,6 +28,7 @@
   pointer-events: none;
   appearance: none;
   -webkit-appearance: none;
+  outline: none;
 }
 .range__input input[type='range']::-webkit-slider-thumb {
   height: 1em;

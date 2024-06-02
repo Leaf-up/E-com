@@ -52,6 +52,7 @@ export default function Select({ title, name, options, value = 0, onChange, isRe
             name={name}
             defaultValue={options[0]}
             tabIndex={-1}
+            onInput={(e) => setSelected(options.indexOf(e.currentTarget.value))}
           />
         </div>
       </div>

@@ -17,7 +17,7 @@ export default function setFilters(
   if (filters) {
     if (filters.keyword) url = `${url}&text.en-US="${filters.keyword}"`; // search
     if (filters.sorting) url = `${url}&sort=${filters.sorting}`; // sort
-    url = `${url}&filter=variants.price.centAmount:range (${filters.priceMin} to ${filters.priceMax * 100})`; // range
+    url = `${url}&filter=variants.price.centAmount:range (${filters.priceMin * 100} to ${filters.priceMax * 100})`; // range
     const weight = Array.from(
       { length: filters.weightMax - filters.weightMin + 1 },
       (_, i) => `%22${i + filters.weightMin}g%22`,

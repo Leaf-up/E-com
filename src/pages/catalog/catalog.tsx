@@ -36,7 +36,7 @@ export default function Catalog() {
     if (!formRef.current) return undefined;
     const formData = new FormData(formRef.current);
     const data: TFilterData = {
-      keyword: formData.get('search')?.toString() ?? '',
+      keyword: searchFieldRef.current ? searchFieldRef.current.value : '',
       sorting: SORTING_PARAM[sort] === 'None' ? null : SORTING_PARAM[sort],
       priceMin: Number(formData.get('price-min')) ?? 0,
       priceMax: Number(formData.get('price-max')) ?? 0,
@@ -101,17 +101,27 @@ export default function Catalog() {
     return acc;
   }, []);
 
+  const formReset = () => {
+    if (formRef.current) {
+      formRef.current.reset();
+      const list = formRef.current.querySelectorAll('input');
+      const event = new Event('input', { bubbles: true });
+      list.forEach((el) => el.dispatchEvent(event));
+    }
+  };
+
   const filtersReset = () => {
     setCategory(0);
     setSubCategory(0);
     setSorting(0);
     window.history.pushState({}, '', '/catalog');
-    console.log('filtersReset');
-    filter().then(() => setPage(1));
+    formReset();
+    filter(getFormData()).then(() => setPage(1));
   };
 
   const searchReset = () => {
     if (searchFieldRef.current) searchFieldRef.current.value = '';
+    formReset();
     filter().then(() => setPage(1));
   };
 
@@ -142,8 +152,10 @@ export default function Catalog() {
   return (
     <section className={styles.catalog} aria-label="Catalog">
       <div className={styles.filters}>
-        <form ref={formRef} className={styles.filters__search} onSubmit={filterSubmitHandler}>
+        <form onSubmit={filterSubmitHandler}>
           <Search searchClear={searchReset} ref={searchFieldRef} />
+        </form>
+        <form ref={formRef} className={styles.filters__search} onSubmit={filterSubmitHandler}>
           <h3 className={styles.filters__title}>Filters</h3>
           <div>
             <Select title="Category" options={CATEGORY_NAME} value={selectedCategory} onChange={setCategoryHandler} />
@@ -156,7 +168,7 @@ export default function Catalog() {
               />
             )}
           </div>
-          <Range title="Price" name="price" min={0} max={500} step={10} />
+          <Range title="Price" name="price" min={0} max={100} step={10} />
           <Select title="Brand" name="brand" options={FILTERS.brand} />
           <Range title="Weight" name="weight" min={1} max={10} />
           <Select title="Color" name="color" options={FILTERS.color} />
@@ -166,7 +178,7 @@ export default function Catalog() {
             <button type="submit" className={styles.filters__btn_submit}>
               Apply
             </button>
-            <button type="reset" className={styles.filters__btn_reset} onClick={filtersReset}>
+            <button type="button" className={styles.filters__btn_reset} onClick={filtersReset}>
               Reset
             </button>
           </div>
@@ -179,7 +191,7 @@ export default function Catalog() {
             <span>Sorting</span>
             <Select options={SORTING_NAME} value={sorting} onChange={setSortingHandler} />
           </div>
-          <div>{`Total: ${products?.length}`}</div>
+          <div className={styles.products__meta_total}>{`Total: ${products?.length ?? 0}`}</div>
         </div>
         <div className={styles.products__list}>
           {!productList.length && <p>No products to show</p>}

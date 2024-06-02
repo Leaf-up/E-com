@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import RangeProps from './types';
 
 import styles from './range.module.css';
@@ -9,30 +9,30 @@ export default function Range({ name = 'input', title, min, max, step = 1 }: Ran
   const valueMaxRef = useRef<HTMLElement>(null);
   const inputMinRef = useRef<HTMLInputElement>(null);
   const inputMaxRef = useRef<HTMLInputElement>(null);
-  const [range, setRange] = useState({ min, max });
 
-  const rangeHandler = (side: 'min' | 'max', value: string) => {
-    let minVal = side === 'min' ? Number(value) : range.min;
-    let maxVal = side === 'max' ? Number(value) : range.max;
-    if (maxVal - minVal < step) {
-      if (side === 'min') {
-        minVal = maxVal - step;
+  const rangeHandler = (side: 'min' | 'max') => {
+    if (inputMinRef.current && inputMaxRef.current) {
+      let minVal = Number(inputMinRef.current.value);
+      let maxVal = Number(inputMaxRef.current.value);
+      if (maxVal - minVal < step) {
+        if (side === 'min') {
+          minVal = maxVal - step;
+        } else {
+          maxVal = minVal + step;
+        }
       } else {
-        maxVal = minVal + step;
+        if (valueMinRef.current && valueMaxRef.current) {
+          valueMinRef.current.textContent = minVal.toString();
+          valueMaxRef.current.textContent = maxVal.toString();
+        }
+        if (rangeRef.current) {
+          rangeRef.current.style.left = `${((minVal - min) / (max - min)) * 100}%`;
+          rangeRef.current.style.right = `${100 - ((maxVal - min) / (max - min)) * 100}%`;
+        }
       }
-    } else {
-      if (valueMinRef.current && valueMaxRef.current) {
-        valueMinRef.current.textContent = minVal.toString();
-        valueMaxRef.current.textContent = maxVal.toString();
-      }
-      if (rangeRef.current) {
-        rangeRef.current.style.left = `${((minVal - min) / (max - min)) * 100}%`;
-        rangeRef.current.style.right = `${100 - ((maxVal - min) / (max - min)) * 100}%`;
-      }
+      inputMinRef.current.value = minVal.toString();
+      inputMaxRef.current.value = maxVal.toString();
     }
-    if (inputMinRef.current) inputMinRef.current.value = minVal.toString();
-    if (inputMaxRef.current) inputMaxRef.current.value = maxVal.toString();
-    setRange({ min: minVal, max: maxVal });
   };
 
   return (
@@ -50,7 +50,7 @@ export default function Range({ name = 'input', title, min, max, step = 1 }: Ran
           max={max}
           defaultValue={min}
           step={step}
-          onChange={(e) => rangeHandler('min', e.currentTarget.value)}
+          onInput={() => rangeHandler('min')}
         />
         <input
           ref={inputMaxRef}
@@ -60,7 +60,7 @@ export default function Range({ name = 'input', title, min, max, step = 1 }: Ran
           max={max}
           defaultValue={max}
           step={step}
-          onChange={(e) => rangeHandler('max', e.currentTarget.value)}
+          onInput={() => rangeHandler('max')}
         />
       </div>
       <div className={styles.range__value}>
