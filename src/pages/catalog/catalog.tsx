@@ -1,4 +1,4 @@
-import { type FormEvent, useState, useRef, useEffect } from 'react';
+import { type FormEvent, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
@@ -32,12 +32,12 @@ export default function Catalog() {
   const formRef = useRef<HTMLFormElement>(null);
   const searchFieldRef = useRef<HTMLInputElement>(null);
 
-  const getFormData = () => {
+  const getFormData = (sort = sorting) => {
     if (!formRef.current) return undefined;
     const formData = new FormData(formRef.current);
     const data: TFilterData = {
       keyword: formData.get('search')?.toString() ?? '',
-      sorting: SORTING_PARAM[sorting] === 'None' ? null : SORTING_PARAM[sorting],
+      sorting: SORTING_PARAM[sort] === 'None' ? null : SORTING_PARAM[sort],
       priceMin: Number(formData.get('price-min')) ?? 0,
       priceMax: Number(formData.get('price-max')) ?? 0,
       brand: formData.get('brand')?.toString() === 'None' ? null : formData.get('brand')?.toString() ?? '',
@@ -102,7 +102,9 @@ export default function Catalog() {
   const filtersReset = () => {
     setCategory(0);
     setSubCategory(0);
+    setSorting(0);
     window.history.pushState({}, '', '/catalog');
+    console.log('filtersReset');
     filter().then(() => setPage(1));
   };
 
@@ -127,9 +129,11 @@ export default function Catalog() {
     window.history.pushState({}, '', `/catalog/${CATEGORY_SLUG[selectedCategory]}${subCategorySlug}`);
   };
 
-  useEffect(() => {
-    filter(getFormData());
-  }, [sorting]);
+  const setSortingHandler = (value: number) => {
+    console.log('setSortingHandler');
+    setSorting(value);
+    filter(getFormData(value)).then(() => setPage(1));
+  };
 
   return (
     <section className={styles.catalog} aria-label="Catalog">
@@ -169,7 +173,7 @@ export default function Catalog() {
         <div className={styles.products__meta}>
           <div className={styles.products__meta_sorting}>
             <span>Sorting</span>
-            <Select options={SORTING_NAME} value={sorting} onChange={setSorting} />
+            <Select options={SORTING_NAME} value={sorting} onChange={setSortingHandler} />
           </div>
           <div>{`Total: ${products?.length}`}</div>
         </div>

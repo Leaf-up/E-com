@@ -19,7 +19,7 @@ export default function setFilters(
     if (filters.sorting) url = `${url}&sort=${filters.sorting}`; // sort
     url = `${url}&filter=variants.price.centAmount:range (${filters.priceMin} to ${filters.priceMax * 100})`; // range
     const weight = Array.from(
-      { length: filters.weightMax - filters.weightMin },
+      { length: filters.weightMax - filters.weightMin + 1 },
       (_, i) => `%22${i + filters.weightMin}g%22`,
     ).join('%2C');
     url = `${url}&filter=variants.attributes.weight%3A${weight}`; // array
