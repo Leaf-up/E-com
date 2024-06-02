@@ -77,4 +77,11 @@ describe('Form fields validation util:', () => {
     expect(checkRules('2@2.ru', rules)).toBeNull();
     expect(checkRules('abra@cadabra', rules)).toBe('Invalid email address');
   });
+
+  test('Validate postal code', () => {
+    const rules = validationRules().notEmpty().postalCode().finalize();
+
+    expect(checkRules('11111-1111', rules)).toBeNull();
+    expect(checkRules('111111', rules)).toBe('The field must contain only numbers in "xxxxx" or "xxxxx-xxxx" format');
+  });
 });

@@ -18,10 +18,18 @@ export function Form({ type, address, sendRequest, onCancelButtonClick }: FormPr
       return;
     }
 
-    ref.current[`${type}-postal-code`].value = address.postalCode ?? '';
-    ref.current[`${type}-country`].value = address.country ?? '';
-    ref.current[`${type}-city`].value = address.city ?? '';
-    ref.current[`${type}-street`].value = address.streetName ?? '';
+    if (ref.current[`${type}-postal-code`]) {
+      ref.current[`${type}-postal-code`].value = address.postalCode ?? '';
+    }
+    if (ref.current[`${type}-country`]) {
+      ref.current[`${type}-country`].value = address.country ?? '';
+    }
+    if (ref.current[`${type}-city`]) {
+      ref.current[`${type}-city`].value = address.city ?? '';
+    }
+    if (ref.current[`${type}-street`]) {
+      ref.current[`${type}-street`].value = address.streetName ?? '';
+    }
   }, [ref, address?.postalCode, address?.country, address?.city, address?.streetName, type, address]);
 
   const getFormData = () => {

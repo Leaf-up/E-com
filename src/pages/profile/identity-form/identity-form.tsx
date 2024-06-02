@@ -22,17 +22,25 @@ export function IdentityForm({ isEdit, disableEditMode }: IdentityFormProps) {
       return;
     }
 
-    ref.current.email.value = user?.email ?? '';
-    ref.current['first-name'].value = user?.firstName ?? '';
-    ref.current['last-name'].value = user?.lastName ?? '';
-    ref.current['date-of-birth'].value =
-      (user &&
-        new Date(user?.dateOfBirth)
-          .toLocaleDateString('en-US')
-          .split('/')
-          .map((el) => (el.length < 2 ? el.padStart(2, '0') : el))
-          .join('.')) ??
-      '';
+    if (ref.current.email) {
+      ref.current.email.value = user?.email ?? '';
+    }
+    if (ref.current['first-name']) {
+      ref.current['first-name'].value = user?.firstName ?? '';
+    }
+    if (ref.current['last-name']) {
+      ref.current['last-name'].value = user?.lastName ?? '';
+    }
+    if (ref.current['date-of-birth']) {
+      ref.current['date-of-birth'].value =
+        (user &&
+          new Date(user?.dateOfBirth)
+            .toLocaleDateString('en-US')
+            .split('/')
+            .map((el) => (el.length < 2 ? el.padStart(2, '0') : el))
+            .join('.')) ??
+        '';
+    }
   }, [user, ref, isEdit]);
 
   const getFormData = () => {

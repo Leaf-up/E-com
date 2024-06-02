@@ -40,7 +40,7 @@ export default function Slider({ items, itemsToShow = 1 }: { items: JSX.Element[
   return (
     <div className={styles.slider} aria-label="Slider">
       {inputs}
-      <div className={styles.slider__wrap}>
+      <div className={styles.slider__wrap} data-testid="slider">
         <ol className={styles.slider__list}>{slides}</ol>
       </div>
       {itemsToShow === 1 && <ul className={styles.slider__nav}>{navItems}</ul>}
