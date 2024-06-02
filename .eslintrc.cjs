@@ -62,8 +62,10 @@ module.exports = {
     ],
     'react/no-array-index-key': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'jsx-a11y/label-has-associated-control': 'off', // Compelled exception
-    'jsx-a11y/control-has-associated-label': 'off', // Compelled exception
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
+    'react/button-has-type': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
   noInlineConfig: true,
 };

@@ -34,7 +34,7 @@ html {
 }
 
 .dark .main {
-  background-color: var(--color30a);
+  background-color: var(--color10);
   background-blend-mode: multiply;
 }
 

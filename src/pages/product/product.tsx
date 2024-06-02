@@ -15,6 +15,18 @@ export default function Product() {
   const categoryName = !category ? null : CATEGORY_NAME[CATEGORY_SLUG.indexOf(category)];
   const subCategoryName = !subcategory ? null : SUBCATEGORY_NAME[SUBCATEGORY_SLUG.indexOf(subcategory)];
 
+  useEffect(() => {
+    requestProducts(key).then((response) => {
+      if (response.error) setProduct('404');
+      if (response.data) {
+        if (!response.data.length) setProduct('404');
+        else setProduct(response.data[0]);
+      }
+    });
+  }, [category, key]);
+
+  if ((category && !categoryName) || (subcategory && !subCategoryName)) return <Page404 />;
+
   const productMapper = (item: TRawProduct) => {
     const productData = item.masterData.published ? item.masterData.current : item.masterData.staged;
     const {
@@ -32,16 +44,6 @@ export default function Product() {
     const props = { name, description, attributes, images, price, discounted, category: categoryName, rating };
     return <ProductInfo {...props} />;
   };
-
-  useEffect(() => {
-    requestProducts(key).then((response) => {
-      if (response.error) setProduct('404');
-      if (response.data) {
-        if (!response.data.length) setProduct('404');
-        else setProduct(response.data[0]);
-      }
-    });
-  }, [category, key]);
 
   if (!product) return <Loader />;
   if (product === '404') return <Page404 />;

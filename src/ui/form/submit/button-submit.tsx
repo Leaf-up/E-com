@@ -4,7 +4,7 @@ import styles from './button-submit.module.css';
 
 const ButtonSubmit: FC<ButtonSubmitProps> = ({ children, loading, disabled }) => {
   return (
-    <button className={styles.form__button} type="submit" disabled={disabled}>
+    <button className={styles.form__button} type="submit" disabled={Boolean(disabled)}>
       {loading ? <div className={styles.form__button_loader} /> : children}
     </button>
   );
