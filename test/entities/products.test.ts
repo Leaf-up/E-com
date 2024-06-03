@@ -1,27 +1,18 @@
-/**
- * @jest-environment jsdom
- */
-
-// jest.mock('~/api', () => jest.fn());
-import { productsStore } from '~/entities';
+import { productsStore } from '~/entities/products/products';
 import type { TProduct, TDiscount } from '~/api/products/types.ts';
 
-jest.mock('~/pages', () => ({
-  ...jest.requireActual('~/pages/404/404'),
+jest.mock('mobx', () => ({
+  makeAutoObservable: jest.fn(() => undefined),
+  reaction: jest.fn(() => undefined),
+  runInAction: jest.fn(() => undefined),
 }));
 jest.mock('~/api', () => ({
-  requestProducts: jest.fn(() => Promise.resolve({})),
+  filter: jest.fn(() => Promise.resolve({})),
+  requestCategoty: jest.fn(() => Promise.resolve({})),
+  requestDiscount: jest.fn(() => Promise.resolve({})),
 }));
-jest.mock('~/entities/customer/customer', () => ({
-  useCustomer: jest.fn(() => ({ user: {} })),
-  customerStore: {},
-}));
-jest.mock('~/entities/products/products', () => jest.fn());
-jest.mock('~/api/profile/updateUser', () => jest.fn());
-jest.mock('~/api/profile/changePassword', () => jest.fn());
-jest.mock('~/widgets/message/message', () => jest.fn());
 
-const productsMock: TProduct[] = [
+const products: TProduct[] = [
   {
     name: { 'en-US': 'name' },
     categories: [
@@ -145,9 +136,9 @@ const productsMock: TProduct[] = [
   },
 ];
 
-const categoryMock: Record<string, string> = { key1: 'value', key2: 'value' };
+const category: Record<string, string> = { key1: 'value', key2: 'value' };
 
-const discountMock: TDiscount[] = [
+const discount: TDiscount[] = [
   {
     id: 'id',
     version: 1,
@@ -180,17 +171,17 @@ const discountMock: TDiscount[] = [
 
 describe('ProductsStore:', () => {
   test('Products', () => {
-    productsStore.products = productsMock;
-    expect(productsStore.products).toBe(productsMock);
+    productsStore.products = products;
+    expect(productsStore.products).toBe(products);
   });
 
   test('Category', () => {
-    productsStore.category = categoryMock;
-    expect(productsStore.category).toBe(categoryMock);
+    productsStore.category = category;
+    expect(productsStore.category).toBe(category);
   });
 
   test('Discount', () => {
-    productsStore.discount = discountMock;
-    expect(productsStore.discount).toBe(discountMock);
+    productsStore.discount = discount;
+    expect(productsStore.discount).toBe(discount);
   });
 });

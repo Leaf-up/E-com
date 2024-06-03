@@ -1,17 +1,17 @@
-/**
- * @jest-environment jsdom
- */
-
-import { customerStore } from '~/entities';
+import { customerStore } from '~/entities/customer/customer';
 import type { TCustomer } from '~/api/types.ts';
 
-jest.mock('~/entities/customer/customer', () => ({
-  useCustomer: jest.fn(() => ({ user: {} })),
-  customerStore: {},
+jest.mock('~/widgets/message/message', () => jest.fn());
+jest.mock('mobx', () => ({
+  makeAutoObservable: jest.fn(() => undefined),
+  reaction: jest.fn(() => undefined),
 }));
-jest.mock('~/entities/products/products', () => jest.fn());
+jest.mock('~/utils/store', () => ({
+  get: jest.fn(() => undefined),
+  set: jest.fn(() => undefined),
+}));
 
-const userMock: TCustomer = {
+const user: TCustomer = {
   id: 'userid',
   version: 1,
   email: 'email@email.email',
@@ -33,16 +33,16 @@ const userMock: TCustomer = {
   defaultShippingAddressId: 'addressesid',
   defaultBillingAddressId: 'addressesid',
 };
-const themeMock = 'light';
+const theme = 'light';
 
 describe('CustomerStore:', () => {
   test('User', () => {
-    customerStore.user = userMock;
-    expect(customerStore.user).toBe(userMock);
+    customerStore.user = user;
+    expect(customerStore.user).toBe(user);
   });
 
   test('Theme', () => {
-    customerStore.theme = themeMock;
-    expect(customerStore.theme).toBe(themeMock);
+    customerStore.theme = theme;
+    expect(customerStore.theme).toBe(theme);
   });
 });
