@@ -79,10 +79,8 @@ export default function Catalog() {
       masterVariant: { attributes, images, prices },
     } = item;
 
-    // Filters
     if (!filterCategory(categories)) return null;
 
-    // Render
     const categoryId = category && categories.find(({ id }) => CATEGORY_SLUG.includes(category[id]))?.id;
     const categorySlug = categoryId ? `/${category[categoryId]}` : '';
     const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : categorySlug}${SUBCATEGORY_SLUG[selectedSubCategory] ? `/${SUBCATEGORY_SLUG[selectedSubCategory]}` : ''}/${item.key}`;
@@ -144,7 +142,6 @@ export default function Catalog() {
   };
 
   const setSortingHandler = (value: number) => {
-    console.log('setSortingHandler');
     setSorting(value);
     filter(getFormData(value)).then(() => setPage(1));
   };

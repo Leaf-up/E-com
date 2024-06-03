@@ -26,7 +26,6 @@ class CustomerStore {
 
   set user(value: TCustomer | null) {
     this._user = value;
-    console.log('User update:', value);
     store.set('user', this._user);
   }
 

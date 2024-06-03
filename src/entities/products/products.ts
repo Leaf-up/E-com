@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { runInAction, makeAutoObservable, reaction } from 'mobx';
 import type { TProduct, TDiscount } from '~/api/products/types';
-import { search, requestCategoty, requestDiscount } from '~/api';
+import { filter, requestCategoty, requestDiscount } from '~/api';
 
 const ProductsStoreSettings = {
   produstList: true,
@@ -16,9 +16,8 @@ class ProductsStore {
 
   constructor() {
     if (ProductsStoreSettings.produstList) {
-      search().then((response) => {
+      filter().then((response) => {
         if (response.data) {
-          // console.log(response.data);
           runInAction(() => {
             this._products = response.data;
           });
@@ -33,7 +32,6 @@ class ProductsStore {
               acc[item.id] = item.slug['en-US'];
               return acc;
             }, {});
-            // console.log(data);
             this._category = data;
           });
         }
@@ -53,7 +51,7 @@ class ProductsStore {
 
   set products(value: TProduct[] | null) {
     this._products = value;
-    console.log('Products update:', value);
+    // console.log('Products update:', value);
   }
 
   get products() {
@@ -62,7 +60,7 @@ class ProductsStore {
 
   set category(value: Record<string, string> | null) {
     this._category = value;
-    console.log('Category update:', value);
+    // console.log('Category update:', value);
   }
 
   get category() {
@@ -71,7 +69,7 @@ class ProductsStore {
 
   set discount(value: TDiscount[] | null) {
     this._discount = value;
-    console.log('Discount update:', value);
+    // console.log('Discount update:', value);
   }
 
   get discount() {

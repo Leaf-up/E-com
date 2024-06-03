@@ -43,7 +43,6 @@ export function PageTest() {
         action: 'setDefaultBillingAddress',
         addressId: user?.addresses[1].id,
       },
-      // And so on for changeAddress, setDefaultShippingAddress
     ];
 
     if (customerStore.user) {

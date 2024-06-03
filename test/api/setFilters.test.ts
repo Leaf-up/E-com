@@ -1,9 +1,10 @@
 import { API_URL, PROJECT_KEY } from '~/api/constants';
-import getSearch from '~/api/products/getSearch';
+import setFilters from '~/api/products/setFilters';
+import { TFilterData } from '~/api/types';
 import { TRawProduct } from '~/api/products/types';
 
 const keyword = 'test';
-const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections/search?staged=true&fuzzy=true&text.en-US="${keyword}"`;
+const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections/search?staged=true&text.en-US="${keyword}"&filter=variants.price.centAmount:range (0 to 100)&filter=variants.attributes.weight%3A%220g%22`;
 const testToken = 'Og==';
 
 const discountData: TRawProduct[] = [
@@ -174,6 +175,19 @@ const discountData: TRawProduct[] = [
   },
 ];
 
+const filter: TFilterData = {
+  keyword,
+  sorting: null,
+  priceMin: 0,
+  priceMax: 1,
+  brand: null,
+  weightMin: 0,
+  weightMax: 0,
+  color: null,
+  size: null,
+  charm: null,
+};
+
 const testSuccessResponse = { results: discountData, total: 1 };
 const testErrorResponse = { message: 'Error' };
 const testFetchOptions = {
@@ -215,7 +229,7 @@ describe('Get search api:', () => {
     .mockImplementationOnce(assetsFailFetchMock);
 
   test('Receive expected successful response', async () => {
-    const response = await getSearch(testToken, keyword);
+    const response = await setFilters(testToken, filter);
 
     expect(fetchMock).toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalledWith(endpoint, testFetchOptions);
@@ -223,7 +237,7 @@ describe('Get search api:', () => {
   });
 
   test('Receive expected fail response', async () => {
-    const response = await getSearch(testToken, keyword);
+    const response = await setFilters(testToken, filter);
 
     expect(fetchMock).toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalledWith(endpoint, testFetchOptions);
