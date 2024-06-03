@@ -46,23 +46,6 @@
   top: 0;
 }
 
-.submit {
-  position: absolute;
-  display: none;
-  outline: none;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  top: 1em;
-  right: 1em;
-  cursor: pointer;
-}
-
-.submit img {
-  width: 1.5em;
-  height: 1.5em;
-}
-
 .clear {
   position: absolute;
   display: none;
@@ -71,7 +54,7 @@
   background-color: transparent;
   padding: 0;
   top: 1.25em;
-  right: 3em;
+  right: 1em;
   cursor: pointer;
 }
 
@@ -80,16 +63,11 @@
   height: 1em;
 }
 
-.input:valid ~ .submit,
 .input:valid ~ .clear {
   display: block;
 }
 
 @media (hover: hover) {
-  .submit:hover {
-    opacity: 0.65;
-  }
-
   .clear:hover {
     opacity: 0.65;
   }

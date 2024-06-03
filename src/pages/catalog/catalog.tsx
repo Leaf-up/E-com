@@ -117,8 +117,12 @@ export default function Catalog() {
     filter(getFormData()).then(() => setPage(1));
   };
 
-  const searchReset = () => {
+  const searchClear = () => {
     if (searchFieldRef.current) searchFieldRef.current.value = '';
+  };
+
+  const searchReset = () => {
+    searchClear();
     formReset();
     filter().then(() => setPage(1));
   };
@@ -149,8 +153,16 @@ export default function Catalog() {
   return (
     <section className={styles.catalog} aria-label="Catalog">
       <div className={styles.filters}>
-        <form onSubmit={filterSubmitHandler}>
-          <Search searchClear={searchReset} ref={searchFieldRef} />
+        <form onSubmit={filterSubmitHandler} className={styles.search}>
+          <Search searchClear={searchClear} ref={searchFieldRef} />
+          <div className={styles.filters__btn}>
+            <button type="submit" className={styles.filters__btn_submit}>
+              Apply
+            </button>
+            <button type="button" className={styles.filters__btn_reset} onClick={searchReset}>
+              Reset
+            </button>
+          </div>
         </form>
         <form ref={formRef} className={styles.filters__search} onSubmit={filterSubmitHandler}>
           <h3 className={styles.filters__title}>Filters</h3>

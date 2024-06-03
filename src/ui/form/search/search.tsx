@@ -3,7 +3,6 @@ import { forwardRef } from 'react';
 import styles from './search.module.css';
 
 const clearSrc = '/icons/close.svg';
-const searchSrc = '/icons/search.svg';
 
 interface SearchProps {
   searchClear: () => void;
@@ -28,9 +27,6 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(({ searchClear }
       </label>
       <button type="button" className={styles.clear} onClick={searchClear}>
         <img src={clearSrc} alt="" />
-      </button>
-      <button type="submit" className={styles.submit}>
-        <img src={searchSrc} alt="" />
       </button>
     </div>
   );

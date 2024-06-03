@@ -3,7 +3,6 @@ import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/types';
 import { getSystemTheme } from '~/utils';
 import store from '~/utils/store';
-import { message } from '~/widgets';
 
 type TTheme = 'light' | 'dark';
 
@@ -15,8 +14,6 @@ class CustomerStore {
     const user = store.get<TCustomer>('user');
     if (user) {
       this._user = user;
-      const { firstName, lastName } = user;
-      message.show(`Logged in as ${firstName} ${lastName}`);
     }
     const theme = store.get<TTheme>('theme');
     this._theme = theme ?? getSystemTheme();
