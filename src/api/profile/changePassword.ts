@@ -33,7 +33,6 @@ export default function changePassword(
     })
     .then((data) => {
       if (Math.floor(info.status / 100) !== 2) {
-        // console.error(data.errors);
         return { customer: null, error: `(${info.status}) ${data.message ?? info.error}` };
       }
       return { customer: data, error: null };

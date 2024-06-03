@@ -18,7 +18,6 @@ class ProductsStore {
     if (ProductsStoreSettings.produstList) {
       filter().then((response) => {
         if (response.data) {
-          // console.log(response.data);
           runInAction(() => {
             this._products = response.data;
           });
@@ -33,7 +32,6 @@ class ProductsStore {
               acc[item.id] = item.slug['en-US'];
               return acc;
             }, {});
-            // console.log(data);
             this._category = data;
           });
         }
