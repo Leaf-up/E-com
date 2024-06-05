@@ -1,0 +1,48 @@
+.input {
+  border: 1px solid transparent;
+  background-color: var(--color10);
+  color: inherit;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.2em;
+}
+
+.form__buttons {
+  visibility: visible;
+}
+
+.form__buttons_hidden {
+  visibility: hidden;
+}
+
+.form__buttons_cancel {
+  margin-left: 0.8em;
+  padding: 0.2em 1.5em;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid var(--color60);
+  font-size: 1.2em;
+  color: var(--dark-theme);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .form__buttons_cancel:hover {
+    background-color: var(--color20);
+  }
+}
+
+.form__buttons_cancel:active {
+  background-color: var(--color30);
+}
+
+.form__group {
+  display: flex;
+  gap: 1.2em;
+  flex-wrap: wrap;
+  justify-content: center;
+}

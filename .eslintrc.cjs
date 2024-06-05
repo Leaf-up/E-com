@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2015: true },
+  env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
     'airbnb',
@@ -18,7 +18,7 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       parserOptions: {
-        ecmaVersion: 2015,
+        ecmaVersion: 2020,
         sourceType: 'module',
         project: ['**/tsconfig.json'],
       },
@@ -38,17 +38,34 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/prefer-default-export': 'off',
+    'import/no-absolute-path': 'off',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     'object-curly-newline': 'off',
-    'no-bitwise': 'off',
     'lines-between-class-members': 'off',
+    '@typescript-eslint/lines-between-class-members': 'off',
     'prefer-destructuring': ['error', { object: true, array: false }],
     '@typescript-eslint/no-explicit-any': 'error',
     'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
+    'react/require-default-props': 'off',
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: ['function-declaration', 'arrow-function'],
+        unnamedComponents: ['arrow-function'],
+      },
+    ],
+    'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
+    'react/button-has-type': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
   noInlineConfig: true,
 };

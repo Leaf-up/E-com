@@ -1,0 +1,41 @@
+.modal_overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.4s;
+  pointer-events: none;
+}
+
+.modal_overlay.modal_active {
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: all;
+}
+
+.modal {
+  position: relative;
+  top: 3.75em;
+  height: 100%;
+  padding: 2em 3.75em;
+  background-color: var(--color30);
+  transform: translateX(100%);
+  transition: transform 0.4s;
+}
+
+.modal.modal_active {
+  transform: translateX(0);
+}
+
+@media (min-width: 769px) {
+  .modal_overlay {
+    display: none;
+  }
+
+  .modal {
+    display: none;
+  }
+}

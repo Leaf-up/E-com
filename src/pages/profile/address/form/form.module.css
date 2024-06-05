@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.2em;
+  width: min-content;
+  padding: 30px 40px;
+}
+
+.form__buttons_cancel {
+  margin-left: 0.4em;
+  padding: 0.2em 1.5em;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid var(--color60);
+  color: var(--dark-theme);
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .form__buttons_cancel:hover {
+    background-color: var(--color20);
+  }
+}
+
+.form__buttons_cancel:active {
+  background-color: var(--color30);
+}

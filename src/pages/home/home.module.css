@@ -1,0 +1,110 @@
+.welcome {
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4em;
+  margin-top: 3.75em;
+  background-image: url('/image/witch1.png');
+  background-position: 95% 0;
+  background-size: 20%;
+  background-repeat: no-repeat;
+}
+
+.welcome__title {
+  font-family: Spyced, sans-serif;
+  font-size: 2.5rem;
+  color: var(--color80);
+  max-width: 420px;
+  margin: 0;
+  text-align: center;
+}
+
+.category {
+  max-width: 832px;
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+}
+
+.about {
+  width: 100%;
+  max-width: 832px;
+  padding: 2em;
+  text-align: right;
+}
+
+.about a {
+  color: inherit;
+}
+
+.bottle1,
+.bottle2,
+.bottle3 {
+  position: fixed;
+  width: 2em;
+  height: 2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 0;
+}
+
+.bottle1 {
+  background-image: url(/image/bottle1.png);
+  top: 9em;
+  animation:
+    x 10s linear infinite alternate,
+    y1 5s infinite cubic-bezier(0.5, 100, 0.5, -100);
+}
+
+.bottle2 {
+  background-image: url(/image/bottle2.png);
+  top: 70%;
+  animation:
+    x 15s linear infinite alternate,
+    y2 5s infinite cubic-bezier(0.5, 100, 0.5, -100);
+}
+
+.bottle3 {
+  background-image: url(/image/bottle3.png);
+  top: 9.5em;
+  left: calc(100% - 40px);
+  animation:
+    x3 12.5s linear infinite alternate,
+    y3 5s infinite cubic-bezier(0.5, 100, 0.5, -100);
+}
+
+@keyframes x {
+  to {
+    left: calc(100% - 40px);
+    transform: rotate(540deg);
+  }
+}
+
+@keyframes y1 {
+  to {
+    top: 9.1em;
+  }
+}
+
+@keyframes y2 {
+  to {
+    top: 70.1%;
+  }
+}
+
+@keyframes x3 {
+  to {
+    left: 0;
+    transform: rotate(540deg);
+  }
+}
+
+@keyframes y3 {
+  to {
+    top: 9.6em;
+  }
+}
