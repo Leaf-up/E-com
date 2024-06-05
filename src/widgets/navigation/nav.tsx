@@ -6,7 +6,7 @@ import styles from './nav.module.css';
 
 const logoutIcon = '/icons/logout.svg';
 const profileIcon = '/icons/profile.svg';
-const basketIcon = '/icons/basket.svg';
+const cartIcon = '/icons/cart.svg';
 
 const topMenu = [
   {
@@ -49,10 +49,10 @@ const userActionsMenu = [
     icon: profileIcon,
   },
   {
-    title: 'Basket',
-    route: '/basket',
+    title: 'Cart',
+    route: '/cart',
     customer: null,
-    icon: basketIcon,
+    icon: cartIcon,
   },
   {
     title: 'Logout',
