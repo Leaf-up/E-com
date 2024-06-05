@@ -8,3 +8,5 @@ export { Login } from './login/login';
 export { Register } from './register/register';
 export { PageTest } from './test/pageTest';
 export { Profile } from './profile/profile';
+export { About } from './about/about';
+export { Basket } from './basket/basket';
