@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { InputDate, InputEmail, InputPassword, InputText, ButtonSubmit, FormError, FormLink, Address } from '~/ui';
 import { TRegisterData } from '~/api/auth/types';
 import performRegister from '~/api/auth/create';
@@ -56,6 +56,26 @@ export function RegistrationForm() {
     if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = data.shippingPostalCode;
     if (ref.current['billing-street']) ref.current['billing-street'].value = data.shippingStreetName;
   };
+
+  useEffect(() => {
+    if (sameAddress) {
+      setBillingCityValid(true);
+      setBillingStreetValid(true);
+      setBillingPostalCodeValid(true);
+      setBillingCountryValid(true);
+    } else {
+      setBillingCityValid(false);
+      setBillingStreetValid(false);
+      setBillingPostalCodeValid(false);
+      setBillingCountryValid(false);
+      if (ref.current) {
+        ref.current['billing-city'].value = '';
+        ref.current['billing-country'].value = '';
+        ref.current['billing-postal-code'].value = '';
+        ref.current['billing-street'].value = '';
+      }
+    }
+  }, [sameAddress]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
