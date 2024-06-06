@@ -31,9 +31,9 @@
 }
 
 .form__button:disabled {
-  border: 1px solid var(--color20);
-  background-color: var(--color20);
-  color: var(--color90);
+  border: 1px solid var(--gray);
+  background-color: var(--gray);
+  color: var(--color100);
   cursor: auto;
 }
 
@@ -44,14 +44,14 @@
   }
 
   .form__button:disabled:hover {
-    border: 1px solid var(--color20);
-    background-color: var(--color20);
-    color: var(--color90);
+    border: 1px solid var(--gray);
+    background-color: var(--gray);
+    color: var(--color100);
   }
 }
 
 .form__button:disabled:active {
-  border: 1px solid var(--color20);
-  background-color: var(--color20);
-  color: var(--color90);
+  border: 1px solid var(--gray);
+  background-color: var(--gray);
+  color: var(--color100);
 }
