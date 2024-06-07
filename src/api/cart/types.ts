@@ -123,12 +123,16 @@ export type TCartUpdateAction = {
   productId?: string; // Used to add
   lineItemId?: string; // Used to remove, change
   quantity?: number;
-  address: TAddress; // Used to set address
+  address?: TAddress; // Used to set address
+  customerId?: string; // Used to set cuctomer
+  email?: string; // Used to set cuctomer email
 };
 
 type TCartAction =
   | 'addLineItem'
   | 'removeLineItem'
   | 'changeLineItemQuantity'
+  | 'setCustomerId'
+  | 'setCustomerEmail'
   | 'setShippingAddress'
   | 'setBillingAddress';
