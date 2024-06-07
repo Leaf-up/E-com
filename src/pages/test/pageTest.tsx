@@ -1,5 +1,5 @@
 import { customerStore, useCustomer } from '~/entities';
-import { performProfileUpdate, performChangePassword } from '~/api';
+import { performProfileUpdate, performChangePassword, prepareCart, requestCart, clearCart } from '~/api';
 import type { TProfileAction } from '~/api/profile/types';
 import { objectKeys } from '~/utils';
 import { message } from '~/widgets';
@@ -8,7 +8,7 @@ import styles from './.module.css';
 const ban = ['versionModifiedAt', 'lastMessageSequenceNumber', 'createdAt', 'lastModifiedAt', 'password'];
 
 export function PageTest() {
-  const { user, logout } = useCustomer();
+  const { user, logout, cart } = useCustomer();
 
   const handleSetUser = () => {
     customerStore.user = {
@@ -97,24 +97,75 @@ export function PageTest() {
               }
               return null;
             })}
+          {cart && (
+            <>
+              <tr>
+                <td>cartId</td>
+                <td>{cart.id}</td>
+              </tr>
+              <tr>
+                <td>lineItems</td>
+                <td>{`Array[${cart.lineItems.length}]`}</td>
+              </tr>
+            </>
+          )}
         </tbody>
       </table>
       <hr />
       <button type="button" onClick={handleSetUser}>
         Set example customer (virtual)
       </button>
-      <br />
-      <button type="button" onClick={handleUpdateAddress}>
-        Set example address using api (for real user only)
-      </button>
-      <br />
-      <button type="button" onClick={handleChangePassword}>
-        Change password using api (for real user only)
-      </button>
-      <br />
-      <button type="button" onClick={logout}>
-        Logout
-      </button>
+      {user && (
+        <>
+          <br />
+          <button type="button" onClick={handleUpdateAddress}>
+            Set example address using api
+          </button>
+          <br />
+          <button type="button" onClick={handleChangePassword}>
+            Change password using api
+          </button>
+          <br />
+          <button type="button" onClick={logout}>
+            Logout
+          </button>
+        </>
+      )}
+      {!cart && (
+        <>
+          <br />
+          <button
+            type="button"
+            onClick={() => {
+              prepareCart(user?.id);
+            }}
+          >
+            Create cart
+          </button>
+        </>
+      )}
+      {cart && (
+        <>
+          <br />
+          <button
+            type="button"
+            onClick={() => {
+              requestCart(cart.id);
+            }}
+          >
+            Get cart
+          </button>
+          <br />
+          <button
+            type="button"
+            onClick={() => {
+              clearCart(cart.id, cart.version);
+            }}
+          >
+            Clear cart
+          </button>
+        </>
+      )}
     </section>
   );
 }

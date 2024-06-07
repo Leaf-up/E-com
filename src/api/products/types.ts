@@ -66,7 +66,7 @@ export type TProductVariant = {
   images: TProductImage[];
 };
 
-type TPrice = {
+export type TPrice = {
   id: string;
   value: TMoney;
   discounted?: {
@@ -75,7 +75,7 @@ type TPrice = {
   };
 };
 
-type TMoney = {
+export type TMoney = {
   centAmount: number;
   currencyCode: TCurrencyCode;
   type: 'centPrecision' | 'highPrecision';
