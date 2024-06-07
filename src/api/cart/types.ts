@@ -1,5 +1,5 @@
-import { TProductVariant, TPrice, TMoney } from '../products/types';
-import { TAddress } from '../types';
+import type { TProductVariant, TPrice, TMoney } from '../products/types';
+import type { TAddress } from '../types';
 
 export type TCart = {
   id: string;
@@ -117,3 +117,18 @@ type TDiscountCodeInfo = {
     | 'MaxApplicationReached'
     | 'ApplicationStoppedByPreviousDiscount';
 };
+
+export type TCartUpdateAction = {
+  action: TCartAction;
+  productId?: string; // Used to add
+  lineItemId?: string; // Used to remove, change
+  quantity?: number;
+  address: TAddress; // Used to set address
+};
+
+type TCartAction =
+  | 'addLineItem'
+  | 'removeLineItem'
+  | 'changeLineItemQuantity'
+  | 'setShippingAddress'
+  | 'setBillingAddress';

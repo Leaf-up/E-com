@@ -10,6 +10,7 @@ import getLocalProducts from './local/local';
 import prepareCart from './cart/create';
 import requestCart from './cart/get';
 import clearCart from './cart/delete';
+import changeCart from './cart/update';
 
 export {
   performRegister,
@@ -24,4 +25,5 @@ export {
   prepareCart,
   requestCart,
   clearCart,
+  changeCart,
 };
