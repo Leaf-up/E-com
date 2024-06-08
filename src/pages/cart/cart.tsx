@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { requestCart } from '~/api';
 import { useCustomer } from '~/entities';
 import { CardCart, ButtonBack } from '~/ui';
+import styles from './cart.module.css';
 
 export function Cart() {
   const { cart } = useCustomer();
@@ -17,13 +18,13 @@ export function Cart() {
 
   if (cart && cartItems.length) {
     return (
-      <section aria-label="Cart">
+      <section aria-label="Cart" className={styles.cart}>
         {cartItems}
-        <p>
+        <p className={styles.cart__total}>
           {'Total: '}
           <span>{cart.totalLineItemQuantity}</span>
           {' for '}
-          <span>{cart.totalPrice.centAmount / 100}$</span>
+          <span className={styles.cart__total_price}>{cart.totalPrice.centAmount / 100}$</span>
         </p>
       </section>
     );

@@ -15,6 +15,49 @@
 .cart__item_info {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   column-gap: 1em;
+}
+
+.select {
+  width: 7em;
+}
+
+.name {
+  width: 10em;
+  font-weight: 500;
+}
+
+.price {
+  width: 4em;
+}
+
+@media (max-width: 560px) {
+  .cart__item {
+    column-gap: 0.5em;
+    margin: 1em 1;
+  }
+
+  .cart__item_img {
+    width: 4em;
+    height: 4em;
+  }
+
+  .cart__item_info {
+    column-gap: 0.5em;
+  }
+
+  .name {
+    width: 8em;
+    font-size: 0.8em;
+  }
+
+  .price {
+    font-size: 0.8em;
+  }
+
+  .select {
+    width: 5.6em;
+  }
 }

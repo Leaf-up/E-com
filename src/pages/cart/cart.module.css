@@ -1,0 +1,22 @@
+.cart {
+  margin: 4.75em 0 13em 0;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  background-color: var(--color00);
+}
+
+.cart__total {
+  padding-top: 1em;
+  font-size: 1.1em;
+}
+
+.cart__total_price {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+@media (max-width: 560px) {
+  .cart {
+    padding: 0 1em;
+  }
+}
