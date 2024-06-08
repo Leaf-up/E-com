@@ -63,7 +63,7 @@ const userActionsMenu = [
 ];
 
 export function NavigationMenu({ isColumn, onClick }: NavProps) {
-  const { user, logout } = useCustomer();
+  const { user, cart, logout } = useCustomer();
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? styles.nav__link_active : styles.nav__link);
 
@@ -94,6 +94,7 @@ export function NavigationMenu({ isColumn, onClick }: NavProps) {
               {item.route && item.icon && (
                 <NavLink to={item.route} className={styles.nav__link} onClick={onClick}>
                   <img src={item.icon} alt={item.title.toLowerCase()} className={styles.icon} />
+                  {item.title === 'Cart' && <div className={styles.quantity}>{cart?.lineItems.length ?? 0}</div>}
                 </NavLink>
               )}
               {item.action === 'logout' && (
