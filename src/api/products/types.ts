@@ -61,7 +61,7 @@ export type TProductVariant = {
   id: number; // Sequential identifier
   key?: string; // User-defined unique identifier
   sku?: string; // User-defined unique SKU
-  prices?: TPrice[];
+  prices: TPrice[];
   attributes?: TProductAttribute[];
   images: TProductImage[];
 };
