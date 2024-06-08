@@ -36,9 +36,11 @@
   height: 1em;
   border-radius: 0.75em;
 }
+
 .card__info_attr_red {
   background: radial-gradient(at 30% 30%, #0000, #000a) red;
 }
+
 .card__info_attr_green {
   background: radial-gradient(at 30% 30%, #0000, #000a) green;
 }
@@ -53,6 +55,17 @@
 
 .card__info_new_price {
   color: var(--yellow);
+}
+
+.card__info_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  column-gap: 0.5em;
 }
 
 @media (max-width: 768px) {

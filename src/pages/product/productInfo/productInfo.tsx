@@ -1,6 +1,8 @@
 import { isObject } from '~/utils/types';
 import ImageSlider from './imageSlider/slider';
 import type { TCardProductProps } from './types';
+import { AddToCart, RemoveFromCart } from '~/widgets';
+
 import styles from './product.module.css';
 
 const starYellow = '/icons/star.svg';
@@ -9,6 +11,7 @@ const bottleSrc = '/image/bottle1.png';
 const tagNames = ['weight', 'color', 'size', 'charm'];
 
 export default function ProductInfo({
+  id,
   name,
   description,
   attributes,
@@ -57,7 +60,13 @@ export default function ProductInfo({
       </div>
       <div className={styles.card__info}>
         <div>
-          <h1 className={styles.card__info_title}>{name}</h1>
+          <div className={styles.card__info_header}>
+            <h1 className={styles.card__info_title}>{name}</h1>
+            <div className={styles.buttons}>
+              <AddToCart id={id} />
+              <RemoveFromCart id={id} />
+            </div>
+          </div>
           <div>
             {stars}
             <span>{` ${rating?.toFixed(1)}`}</span>

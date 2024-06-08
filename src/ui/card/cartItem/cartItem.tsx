@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TLineItem } from '~/api/cart/types';
 import { changeCart } from '~/api';
 import { useCustomer } from '~/entities';
+import { message } from '~/widgets';
 
 import styles from './.module.css';
 
@@ -50,7 +51,10 @@ export default function CardCart({ item }: { item: TLineItem }) {
           productId: item.id,
           lineItemId: item.id,
         },
-      ]);
+      ]).then((response) => {
+        if (response.error) message.show(response.error, 'error');
+        else message.show('Product was deleted from cart');
+      });
     }
   };
 
