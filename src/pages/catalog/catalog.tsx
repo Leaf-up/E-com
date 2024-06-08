@@ -73,6 +73,7 @@ export default function Catalog() {
 
   const productMapper = (item: TProduct, i: number) => {
     const {
+      id,
       categories,
       name: { 'en-US': name },
       description: { 'en-US': description },
@@ -89,7 +90,7 @@ export default function Catalog() {
       prices && prices[0] && prices[0].discounted
         ? prices[0].discounted.value.centAmount / 10 ** prices[0].discounted.value.fractionDigits
         : null;
-    const product = { name, description, attributes, images, price, discounted, link };
+    const product = { id, name, description, attributes, images, price, discounted, link };
     return <CardProduct {...product} key={i} />;
   };
 
