@@ -1,11 +1,11 @@
-import { type FormEvent, useState, useRef } from 'react';
+import { type FormEvent, useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useProducts } from '~/entities';
 import { filter } from '~/api';
 import type { TProduct } from '~/api/products/types';
 import type { TFilterData } from '~/api/types';
-import { CardProduct, Select, Search, Range } from '~/ui';
+import { CardProduct, Select, Search, Range, LoaderDots } from '~/ui';
 import { message } from '~/widgets';
 import {
   CATEGORY_NAME,
@@ -24,11 +24,12 @@ const pageSize = 10;
 
 export default function Catalog() {
   const { category: slug, subcategory } = useParams();
-  const { products, category } = useProducts();
+  const { products, total, category } = useProducts();
   const [page, setPage] = useState(1);
   const [selectedCategory, setCategory] = useState(slug ? CATEGORY_SLUG.indexOf(slug) : 0);
   const [selectedSubCategory, setSubCategory] = useState(slug ? SUBCATEGORY_SLUG.indexOf(subcategory) : 0);
-  const [sorting, setSorting] = useState<number>(0);
+  const [sorting, setSorting] = useState(0);
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const searchFieldRef = useRef<HTMLInputElement>(null);
 
@@ -53,10 +54,12 @@ export default function Catalog() {
   const filterSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (event.currentTarget) {
+      setLoading(true);
       filter(getFormData()).then((response) => {
         if (response.error) message.show(response.error, 'error');
         if (response.data && response.data.length === 0) message.show('Found nothing', 'error');
         setPage(1);
+        setLoading(false);
       });
     }
   };
@@ -114,7 +117,11 @@ export default function Catalog() {
     setSorting(0);
     window.history.pushState({}, '', '/catalog');
     formReset();
-    filter(getFormData()).then(() => setPage(1));
+    setLoading(true);
+    filter(getFormData()).then(() => {
+      setPage(1);
+      setLoading(false);
+    });
   };
 
   const searchClear = () => {
@@ -124,7 +131,11 @@ export default function Catalog() {
   const searchReset = () => {
     searchClear();
     formReset();
-    filter().then(() => setPage(1));
+    setLoading(true);
+    filter().then(() => {
+      setPage(1);
+      setLoading(false);
+    });
   };
 
   const setCategoryHandler = (n: number) => {
@@ -147,8 +158,25 @@ export default function Catalog() {
 
   const setSortingHandler = (value: number) => {
     setSorting(value);
-    filter(getFormData(value)).then(() => setPage(1));
+    setLoading(true);
+    filter(getFormData(value)).then(() => {
+      setPage(1);
+      setLoading(false);
+    });
   };
+
+  const fetchPage = (p: number) => {
+    setLoading(true);
+    filter(getFormData(), (p - 1) * pageSize).then(() => {
+      setPage(p);
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    filter().then(() => setLoading(false));
+  }, []);
 
   return (
     <section className={styles.catalog} aria-label="Catalog">
@@ -200,13 +228,14 @@ export default function Catalog() {
             <span>Sorting</span>
             <Select options={SORTING_NAME} value={sorting} onChange={setSortingHandler} />
           </div>
-          <div className={styles.products__meta_total}>{`Total: ${products?.length ?? 0}`}</div>
+          {loading && <LoaderDots />}
+          <div className={styles.products__meta_total}>{`Total: ${total ?? 0}`}</div>
         </div>
         <div className={styles.products__list}>
           {!productList.length && <p>No products to show</p>}
-          {productList.length !== 0 && productList.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)}
-          {productList.length > pageSize && (
-            <Pagination total={productList.length} pageSize={pageSize} onChange={(p) => setPage(p)} />
+          {productList.length !== 0 && productList}
+          {(total ?? 0) > pageSize && (
+            <Pagination current={page} total={total} pageSize={pageSize} onChange={fetchPage} />
           )}
         </div>
       </div>
