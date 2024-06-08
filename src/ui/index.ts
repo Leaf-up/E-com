@@ -3,12 +3,15 @@ import FormError from './form/error/form-error';
 import CardProduct from './card/product/product';
 import CardSlider from './card/slider/slider';
 import CardCategory from './card/category/category';
+import CardCart from './card/cartItem/cartItem';
 import Select from './form/select/select';
 import Range from './form/range/range';
 import Loader from './loader/loader';
+import ButtonBack from './button/back/back';
 
-export { CardProduct, CardSlider, CardCategory };
-export { ButtonSubmit, FormError, Select, Range, Loader };
+export { CardProduct, CardSlider, CardCategory, CardCart };
+export { ButtonSubmit, FormError, Select, Range, Loader, ButtonBack };
+
 export { InputEmail } from './form/input-email/input-email';
 export { InputPassword } from './form/input-password/input-password';
 export { InputDate } from './form/input-date/input-date';

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { isObject } from '~/utils/types';
 import { TCardProductProps } from './types';
+import AddToCart from '~/widgets/cart/add/addToCart';
 
 import styles from './product.module.css';
 
@@ -8,6 +9,7 @@ const bottleSrc = '/image/bottle1.png';
 const tagNames = ['weight', 'color', 'size', 'charm'];
 
 export default function CardProduct({
+  id,
   name,
   description,
   attributes,
@@ -54,7 +56,10 @@ export default function CardProduct({
       </div>
       <div className={styles.card__info}>
         <div>
-          <h1 className={styles.card__info_title}>{name}</h1>
+          <div className={styles.card__info_wrap}>
+            <h1 className={styles.card__info_title}>{name}</h1>
+            <AddToCart id={id} />
+          </div>
           <div>{`Brand: ${brand}`}</div>
           <p>{description}</p>
         </div>

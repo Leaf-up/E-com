@@ -16,6 +16,7 @@ export type TCart = {
   taxMode: 'Platform' | 'External' | 'ExternalAmount' | 'Disabled';
   taxRoundingMode: 'HalfEven' | 'HalfUp' | 'HalfDown';
   taxCalculationMode: 'LineItemLevel' | 'UnitPriceLevel';
+  totalLineItemQuantity: number;
   refusedGifts: unknown[];
   origin: 'Customer' | 'Merchant' | 'Quote';
   itemShippingAddresses: TAddress[];
@@ -31,6 +32,7 @@ export type TLineItem = {
   id: string;
   slug?: string;
   productId: string;
+  productKey: string;
   productType: {
     id: string;
     typeId: 'product-type';
