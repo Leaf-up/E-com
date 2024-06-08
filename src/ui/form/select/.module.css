@@ -111,16 +111,3 @@
     background-color: var(--color50a);
   }
 }
-
-@media (max-width: 560px) {
-  .dropdown {
-    margin: 0.2em 0;
-    padding: 0 0.6em;
-    font-size: 0.7rem;
-  }
-
-  .dropdown__control::after {
-    width: 0.7rem;
-    height: 0.7rem;
-  }
-}
