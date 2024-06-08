@@ -7,6 +7,10 @@ import requestCategoty from './products/category';
 import requestDiscount from './products/discount';
 import filter from './products/filter';
 import getLocalProducts from './local/local';
+import prepareCart from './cart/create';
+import requestCart from './cart/get';
+import clearCart from './cart/delete';
+import changeCart from './cart/update';
 
 export {
   performRegister,
@@ -18,4 +22,8 @@ export {
   requestDiscount,
   filter,
   getLocalProducts,
+  prepareCart,
+  requestCart,
+  clearCart,
+  changeCart,
 };
