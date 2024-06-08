@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { requestCart } from '~/api';
+import { clearCart, requestCart } from '~/api';
 import { useCustomer } from '~/entities';
 import { CardCart, ButtonBack } from '~/ui';
 import styles from './cart.module.css';
@@ -16,16 +16,27 @@ export function Cart() {
     if (cart) requestCart(cart.id);
   }, []);
 
+  const clearCartHandler = () => {
+    if (cart) {
+      clearCart(cart.id, cart.version);
+    }
+  };
+
   if (cart && cartItems.length) {
     return (
       <section aria-label="Cart" className={styles.cart}>
         <div className={styles.cart__items}>{cartItems}</div>
-        <p className={styles.cart__total}>
-          {'Total: '}
-          <span>{cart.totalLineItemQuantity}</span>
-          {' for '}
-          <span className={styles.cart__total_price}>{cart.totalPrice.centAmount / 100}$</span>
-        </p>
+        <div className={styles.cart__footer}>
+          <p className={styles.cart__total}>
+            {'Total: '}
+            <span>{cart.totalLineItemQuantity}</span>
+            {' for '}
+            <span className={styles.cart__total_price}>{cart.totalPrice.centAmount / 100}$</span>
+          </p>
+          <button className={styles.cart__clear_button} onClick={clearCartHandler}>
+            Clear Shopping Cart
+          </button>
+        </div>
       </section>
     );
   }
