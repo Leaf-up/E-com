@@ -7,13 +7,14 @@ const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections`;
 export default function setFilters(
   token: string,
   filters?: TFilterData,
-): Promise<{ data: TProduct[] | null; error: string | null }> {
+  offset = 0,
+): Promise<{ data: TProduct[] | null; error: string | null; total?: number }> {
   const info: { status: number; error?: string } = { status: 500 };
   const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
-  let url = `${endpoint}/search?staged=true`;
+  let url = `${endpoint}/search?staged=true&limit=10&offset=${offset}`;
   if (filters) {
     if (filters.keyword) url = `${url}&text.en-US="${filters.keyword}"`; // search
     if (filters.sorting) url = `${url}&sort=${filters.sorting}`; // sort
@@ -46,8 +47,8 @@ export default function setFilters(
         // console.error(data.errors);
         return { data: null, error: `(${info.status}) ${data.message ?? info.error}` };
       }
-      const { results } = data as { results: TProduct[]; total: number };
-      return { data: results, error: null };
+      const { results, total } = data as { results: TProduct[]; total: number };
+      return { data: results, total, error: null };
     })
     .catch((error) => ({
       data: null,

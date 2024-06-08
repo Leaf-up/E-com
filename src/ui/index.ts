@@ -7,10 +7,11 @@ import CardCart from './card/cartItem/cartItem';
 import Select from './form/select/select';
 import Range from './form/range/range';
 import Loader from './loader/loader';
+import LoaderDots from './loader/dots';
 import ButtonBack from './button/back/back';
 
 export { CardProduct, CardSlider, CardCategory, CardCart };
-export { ButtonSubmit, FormError, Select, Range, Loader, ButtonBack };
+export { ButtonSubmit, FormError, Select, Range, Loader, LoaderDots, ButtonBack };
 
 export { InputEmail } from './form/input-email/input-email';
 export { InputPassword } from './form/input-password/input-password';

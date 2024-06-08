@@ -80,10 +80,6 @@
   column-gap: 1em;
 }
 
-.products__meta_sorting > div {
-  flex: 0 0 10em;
-}
-
 .search {
   display: flex;
   flex-direction: column;

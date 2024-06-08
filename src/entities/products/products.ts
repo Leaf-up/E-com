@@ -4,13 +4,14 @@ import type { TProduct, TDiscount } from '~/api/products/types';
 import { filter, requestCategoty, requestDiscount } from '~/api';
 
 const ProductsStoreSettings = {
-  produstList: true,
+  produstList: false,
   categoryList: true,
   discountList: false,
 };
 
 class ProductsStore {
   private _products: TProduct[] | null = null;
+  private _total: number | undefined;
   private _category: Record<string, string> | null = null;
   private _discount: TDiscount[] | null = null;
 
@@ -20,6 +21,7 @@ class ProductsStore {
         if (response.data) {
           runInAction(() => {
             this._products = response.data;
+            this._total = response.total;
           });
         }
       });
@@ -58,6 +60,14 @@ class ProductsStore {
     return this._products;
   }
 
+  set total(value: number | undefined) {
+    this._total = value;
+  }
+
+  get total() {
+    return this._total;
+  }
+
   set category(value: Record<string, string> | null) {
     this._category = value;
     // console.log('Category update:', value);
@@ -81,6 +91,7 @@ export const productsStore = new ProductsStore();
 
 export const useProducts = () => {
   const [products, setProducts] = useState<TProduct[] | null>(productsStore.products);
+  const [total, setTotal] = useState<number | undefined>(productsStore.total);
   const [category, setCategory] = useState<Record<string, string> | null>(productsStore.category);
   const [discount, setDiscount] = useState<TDiscount[] | null>(productsStore.discount);
 
@@ -89,6 +100,12 @@ export const useProducts = () => {
       () => productsStore.products,
       (value) => {
         setProducts(value);
+      },
+    );
+    reaction(
+      () => productsStore.total,
+      (value) => {
+        setTotal(value);
       },
     );
     reaction(
@@ -105,5 +122,5 @@ export const useProducts = () => {
     );
   }, []);
 
-  return { products, category, discount };
+  return { products, total, category, discount };
 };
