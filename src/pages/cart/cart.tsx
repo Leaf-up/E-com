@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { clearCart, requestCart } from '~/api';
 import { useCustomer } from '~/entities';
 import { CardCart, ButtonBack } from '~/ui';
+import { Modal } from '~/shared';
+
 import styles from './cart.module.css';
 
 export function Cart() {
   const { cart } = useCustomer();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const cartItems =
     cart && cart.totalLineItemQuantity ? cart.lineItems.map((item, i) => <CardCart key={i} item={item} />) : [];
 
@@ -33,10 +36,25 @@ export function Cart() {
             {' for '}
             <span className={styles.cart__total_price}>{cart.totalPrice.centAmount / 100}$</span>
           </p>
-          <button className={styles.cart__clear_button} onClick={clearCartHandler}>
+          <button className={styles.cart__clear_button} onClick={() => setIsModalOpen(true)}>
             Clear Shopping Cart
           </button>
         </div>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          {isModalOpen && (
+            <div className={styles.modal}>
+              <div>Clear your shopping cart?</div>
+              <div className={styles.buttons}>
+                <button className={styles.buttons__clear} onClick={clearCartHandler}>
+                  Clear
+                </button>
+                <button className={styles.buttons__cancel} onClick={() => setIsModalOpen(false)}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+        </Modal>
       </section>
     );
   }
