@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { requestCart } from '~/api';
 import { useCustomer } from '~/entities';
-import { CardCart } from '~/ui';
+import { CardCart, ButtonBack } from '~/ui';
 
 export function Cart() {
   const { cart } = useCustomer();
@@ -15,7 +15,7 @@ export function Cart() {
     if (cart) requestCart(cart.id);
   }, []);
 
-  if (cart) {
+  if (cart && cartItems.length) {
     return (
       <section aria-label="Cart">
         {cartItems}
@@ -29,5 +29,10 @@ export function Cart() {
     );
   }
 
-  return <p>Cart is empty</p>;
+  return (
+    <>
+      <p>Cart is empty</p>
+      <ButtonBack to="/catalog">Go to catalog</ButtonBack>
+    </>
+  );
 }
