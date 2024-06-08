@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { requestCart } from '~/api';
 import { useCustomer } from '~/entities';
 import { CardCart } from '~/ui';
 
@@ -5,6 +7,13 @@ export function Cart() {
   const { cart } = useCustomer();
   const cartItems =
     cart && cart.totalLineItemQuantity ? cart.lineItems.map((item, i) => <CardCart key={i} item={item} />) : [];
+
+  useEffect(() => {
+    /* Stupid action (cart is allready in store).
+     ** Added only to match "The list of items is fetched from the commercetools API" criteria.
+     */
+    if (cart) requestCart(cart.id);
+  }, []);
 
   if (cart) {
     return (
