@@ -19,7 +19,7 @@ export function Cart() {
   if (cart && cartItems.length) {
     return (
       <section aria-label="Cart" className={styles.cart}>
-        {cartItems}
+        <div className={styles.cart__items}>{cartItems}</div>
         <p className={styles.cart__total}>
           {'Total: '}
           <span>{cart.totalLineItemQuantity}</span>

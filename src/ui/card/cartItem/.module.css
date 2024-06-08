@@ -59,6 +59,11 @@
   width: 5em;
 }
 
+.trash {
+  color: var(--red);
+  cursor: pointer;
+}
+
 @media (max-width: 560px) {
   .cart__item {
     column-gap: 0.5em;
@@ -66,8 +71,8 @@
   }
 
   .cart__item_img {
-    width: 4em;
-    height: 4em;
+    width: 3.5em;
+    height: 3.5em;
   }
 
   .cart__item_info {
@@ -86,13 +91,22 @@
   .quantity {
     justify-content: flex-start;
     column-gap: 0.3em;
-    width: 5.6em;
+    width: 5em;
     font-size: 0.8em;
+  }
+
+  .trash {
+    width: 1.2em;
   }
 }
 
 @media (hover: hover) {
   .quantity__button:not(:disabled):hover {
     background-color: var(--color50);
+  }
+
+  .trash:hover {
+    transform: translateY(-1px);
+    filter: drop-shadow(1px 1px 1px #0004);
   }
 }

@@ -1,8 +1,15 @@
 .cart {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   margin: 4.75em 0 1em 0;
   padding: 1em 1.5em;
   border-radius: 8px;
   background-color: var(--color00);
+}
+
+.cart__items {
+  flex-grow: 1;
 }
 
 .cart__total {

@@ -5,6 +5,8 @@ import { useCustomer } from '~/entities';
 
 import styles from './.module.css';
 
+const trashIcon = '/icons/trash.svg';
+
 export default function CardCart({ item }: { item: TLineItem }) {
   const { cart } = useCustomer();
   const [quantity, setQuantity] = useState(item.quantity);
@@ -40,6 +42,18 @@ export default function CardCart({ item }: { item: TLineItem }) {
     }
   };
 
+  const removeProductHandler = () => {
+    if (cart) {
+      changeCart(cart.id, cart.version, [
+        {
+          action: 'removeLineItem',
+          productId: item.id,
+          lineItemId: item.id,
+        },
+      ]);
+    }
+  };
+
   return (
     <div className={styles.cart__item}>
       <img className={styles.cart__item_img} src={item.variant.images[0].url} alt={item.productKey} />
@@ -66,6 +80,7 @@ export default function CardCart({ item }: { item: TLineItem }) {
           </button>
         </div>
         <span className={styles.price}>{item.totalPrice.centAmount / 100}$</span>
+        <img src={trashIcon} alt="trash" className={styles.trash} onClick={removeProductHandler} aria-hidden />
       </div>
     </div>
   );
