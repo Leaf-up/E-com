@@ -1,3 +1,4 @@
+import tokenHolder from './token/token';
 import performLogin from './auth/login';
 import performRegister from './auth/create';
 import performProfileUpdate from './profile/update';
@@ -13,6 +14,7 @@ import clearCart from './cart/delete';
 import changeCart from './cart/update';
 
 export {
+  tokenHolder,
   performRegister,
   performLogin,
   performProfileUpdate,

@@ -76,6 +76,7 @@ export default function Catalog() {
 
   const productMapper = (item: TProduct, i: number) => {
     const {
+      id,
       categories,
       name: { 'en-US': name },
       description: { 'en-US': description },
@@ -84,7 +85,7 @@ export default function Catalog() {
 
     if (!filterCategory(categories)) return null;
 
-    const categoryId = category && categories.find(({ id }) => CATEGORY_SLUG.includes(category[id]))?.id;
+    const categoryId = category && categories.find(({ id: catId }) => CATEGORY_SLUG.includes(category[catId]))?.id;
     const categorySlug = categoryId ? `/${category[categoryId]}` : '';
     const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : categorySlug}${SUBCATEGORY_SLUG[selectedSubCategory] ? `/${SUBCATEGORY_SLUG[selectedSubCategory]}` : ''}/${item.key}`;
     const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
@@ -92,7 +93,7 @@ export default function Catalog() {
       prices && prices[0] && prices[0].discounted
         ? prices[0].discounted.value.centAmount / 10 ** prices[0].discounted.value.fractionDigits
         : null;
-    const product = { name, description, attributes, images, price, discounted, link };
+    const product = { id, name, description, attributes, images, price, discounted, link };
     return <CardProduct {...product} key={i} />;
   };
 
