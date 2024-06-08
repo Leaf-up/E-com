@@ -82,7 +82,7 @@ export default function Catalog() {
 
     if (!filterCategory(categories)) return null;
 
-    const categoryId = category && categories.find(({ id }) => CATEGORY_SLUG.includes(category[id]))?.id;
+    const categoryId = category && categories.find(({ id: catId }) => CATEGORY_SLUG.includes(category[catId]))?.id;
     const categorySlug = categoryId ? `/${category[categoryId]}` : '';
     const link = `/products${CATEGORY_SLUG[selectedCategory] ? `/${CATEGORY_SLUG[selectedCategory]}` : categorySlug}${SUBCATEGORY_SLUG[selectedSubCategory] ? `/${SUBCATEGORY_SLUG[selectedSubCategory]}` : ''}/${item.key}`;
     const price = prices && prices[0] ? prices[0].value.centAmount / 10 ** prices[0].value.fractionDigits : 0;
