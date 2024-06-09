@@ -41,7 +41,17 @@ export default function Product() {
         ? prices[0].discounted.value.centAmount / 10 ** prices[0].discounted.value.fractionDigits
         : null;
     const rating = Math.floor(Math.random() * 2) + 3;
-    const props = { name, description, attributes, images, price, discounted, category: categoryName, rating };
+    const props = {
+      id: item.id,
+      name,
+      description,
+      attributes,
+      images,
+      price,
+      discounted,
+      category: categoryName,
+      rating,
+    };
     return <ProductInfo {...props} />;
   };
 

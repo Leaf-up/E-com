@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { TLineItem } from '~/api/cart/types';
 import { changeCart } from '~/api';
 import { useCustomer } from '~/entities';
+import { message } from '~/widgets';
 
 import styles from './.module.css';
+
+const trashIcon = '/icons/trash.svg';
 
 export default function CardCart({ item }: { item: TLineItem }) {
   const { cart } = useCustomer();
@@ -40,6 +43,20 @@ export default function CardCart({ item }: { item: TLineItem }) {
     }
   };
 
+  const removeProductHandler = () => {
+    if (cart) {
+      changeCart(cart.id, cart.version, [
+        {
+          action: 'removeLineItem',
+          lineItemId: item.id,
+        },
+      ]).then((response) => {
+        if (response.error) message.show(response.error, 'error');
+        else message.show('Product was deleted from cart');
+      });
+    }
+  };
+
   return (
     <div className={styles.cart__item}>
       <img className={styles.cart__item_img} src={item.variant.images[0].url} alt={item.productKey} />
@@ -66,6 +83,7 @@ export default function CardCart({ item }: { item: TLineItem }) {
           </button>
         </div>
         <span className={styles.price}>{item.totalPrice.centAmount / 100}$</span>
+        <img src={trashIcon} alt="trash" className={styles.trash} onClick={removeProductHandler} aria-hidden />
       </div>
     </div>
   );

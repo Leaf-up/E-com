@@ -17,8 +17,7 @@
 }
 
 .modal {
-  position: relative;
-  top: 3.75em;
+  margin-top: 3.75em;
   height: 100%;
   padding: 2em 3.75em;
   background-color: var(--color30);
