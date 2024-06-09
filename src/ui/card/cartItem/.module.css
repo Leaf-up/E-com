@@ -60,7 +60,7 @@
 }
 
 .trash {
-  color: var(--red);
+  filter: invert(var(--dark-theme));
   cursor: pointer;
 }
 

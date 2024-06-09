@@ -20,7 +20,6 @@ export default function RemoveFromCart({ id }: { id: string }) {
   const removeLineItem = () => {
     const action: TCartUpdateAction = {
       action: 'removeLineItem',
-      productId,
       lineItemId: productId,
     };
 

@@ -68,9 +68,6 @@ export function PasswordForm({ disableEditMode }: PasswordFormProps) {
       </div>
       <FormError error={error} />
       <div className={styles.form__buttons}>
-        <ButtonSubmit loading={loading} disabled={!currentPasswordValid || !newPasswordValid}>
-          Save
-        </ButtonSubmit>
         <button
           type="button"
           className={styles.form__buttons_cancel}
@@ -81,6 +78,9 @@ export function PasswordForm({ disableEditMode }: PasswordFormProps) {
         >
           Cancel
         </button>
+        <ButtonSubmit loading={loading} disabled={!currentPasswordValid || !newPasswordValid}>
+          Save
+        </ButtonSubmit>
       </div>
     </form>
   );

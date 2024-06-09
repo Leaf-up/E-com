@@ -146,9 +146,6 @@ export function IdentityForm({ isEdit, disableEditMode }: IdentityFormProps) {
       </div>
       <FormError error={error} />
       <div className={isEdit ? styles.form__buttons : styles.form__buttons_hidden}>
-        <ButtonSubmit loading={loading} disabled={!firstNameValid || !lastNameValid || !dateValid || !emailValid}>
-          Save
-        </ButtonSubmit>
         <button
           type="button"
           className={styles.form__buttons_cancel}
@@ -159,6 +156,9 @@ export function IdentityForm({ isEdit, disableEditMode }: IdentityFormProps) {
         >
           Cancel
         </button>
+        <ButtonSubmit loading={loading} disabled={!firstNameValid || !lastNameValid || !dateValid || !emailValid}>
+          Save
+        </ButtonSubmit>
       </div>
     </form>
   );

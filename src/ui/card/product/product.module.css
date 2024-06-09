@@ -93,9 +93,11 @@
   height: 1em;
   border-radius: 0.75em;
 }
+
 .card__info_attr_red {
   background: radial-gradient(at 30% 30%, #0000, #000a) red;
 }
+
 .card__info_attr_green {
   background: radial-gradient(at 30% 30%, #0000, #000a) green;
 }

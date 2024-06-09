@@ -65,8 +65,10 @@
   width: 1.3rem;
   height: 1.3rem;
   border-radius: 50%;
-  background-color: var(--red);
+  background-color: var(--color70);
+  color: var(--color00);
   font-size: 0.7em;
+  line-height: 0.7em;
 }
 
 @media (hover: hover) {

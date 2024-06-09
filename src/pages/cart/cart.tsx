@@ -29,27 +29,25 @@ export function Cart() {
     return (
       <section aria-label="Cart" className={styles.cart}>
         <div className={styles.cart__items}>{cartItems}</div>
-        <div className={styles.cart__footer}>
-          <p className={styles.cart__total}>
-            {'Total: '}
-            <span>{cart.totalLineItemQuantity}</span>
-            {' for '}
-            <span className={styles.cart__total_price}>{cart.totalPrice.centAmount / 100}$</span>
-          </p>
-          <button className={styles.cart__clear_button} onClick={() => setIsModalOpen(true)}>
-            Clear Shopping Cart
-          </button>
-        </div>
+        <p className={styles.cart__total}>
+          {'Total: '}
+          <span>{cart.totalLineItemQuantity}</span>
+          {' for '}
+          <span className={styles.cart__total_price}>{cart.totalPrice.centAmount / 100}$</span>
+        </p>
+        <button className={styles.cart__clear_button} onClick={() => setIsModalOpen(true)}>
+          Clear Shopping Cart
+        </button>
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           {isModalOpen && (
             <div className={styles.modal}>
               <div>Clear your shopping cart?</div>
               <div className={styles.buttons}>
-                <button className={styles.buttons__clear} onClick={clearCartHandler}>
-                  Clear
-                </button>
                 <button className={styles.buttons__cancel} onClick={() => setIsModalOpen(false)}>
                   Cancel
+                </button>
+                <button className={styles.buttons__clear} onClick={clearCartHandler}>
+                  Clear
                 </button>
               </div>
             </div>

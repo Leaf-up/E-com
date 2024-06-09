@@ -48,7 +48,6 @@ export default function CardCart({ item }: { item: TLineItem }) {
       changeCart(cart.id, cart.version, [
         {
           action: 'removeLineItem',
-          productId: item.id,
           lineItemId: item.id,
         },
       ]).then((response) => {
