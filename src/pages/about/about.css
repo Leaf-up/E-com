@@ -1,0 +1,72 @@
+.about {
+  margin-top: 3.75em;
+  margin-bottom: 1em;
+  padding: 0 2em;
+}
+
+.about h1 {
+  font-family: 'Spyced', sans-serif;
+  font-size: 2.5em;
+  color: var(--color80);
+  margin: 0.5em 0;
+}
+
+.about h2 {
+  font-family: 'Spyced', sans-serif;
+  font-size: 1.85em;
+  color: var(--color80);
+  margin: 0;
+}
+
+.about p {
+  margin: 0;
+}
+
+.about a {
+  text-decoration: none;
+  color: var(--blue50);
+  transition: opacity 0.25s linear;
+}
+
+.about__team {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
+
+.about__team p:nth-child(2) {
+  width: 5em;
+  flex-shrink: 0;
+}
+
+.about__team img {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  box-shadow: 3px 3px 5px #000;
+}
+
+.about__stack {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5em;
+  flex-wrap: wrap;
+}
+
+.about__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about__footer img {
+  width: 5.4em;
+  height: 2em;
+}
+
+@media (hover: hover) {
+  .about__footer img:hover,
+  .about a:hover {
+    opacity: 0.65;
+  }
+}
