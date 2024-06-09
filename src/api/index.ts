@@ -12,6 +12,7 @@ import prepareCart from './cart/create';
 import requestCart from './cart/get';
 import clearCart from './cart/delete';
 import changeCart from './cart/update';
+import getMarkdownText from './local/about';
 
 export {
   tokenHolder,
@@ -28,4 +29,5 @@ export {
   requestCart,
   clearCart,
   changeCart,
+  getMarkdownText,
 };
