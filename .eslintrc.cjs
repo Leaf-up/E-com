@@ -66,6 +66,7 @@ module.exports = {
     'jsx-a11y/control-has-associated-label': 'off',
     'react/button-has-type': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
   noInlineConfig: true,
 };
