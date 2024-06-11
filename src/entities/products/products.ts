@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { runInAction, makeAutoObservable, reaction } from 'mobx';
 import type { TProduct, TDiscount } from '~/api/products/types';
-import { filter, requestCategoty, requestDiscount } from '~/api';
+import { filter, requestCategory, requestDiscount } from '~/api';
 
 const ProductsStoreSettings = {
-  produstList: false,
+  productList: false,
   categoryList: true,
   discountList: false,
 };
@@ -16,7 +16,7 @@ class ProductsStore {
   private _discount: TDiscount[] | null = null;
 
   constructor() {
-    if (ProductsStoreSettings.produstList) {
+    if (ProductsStoreSettings.productList) {
       filter().then((response) => {
         if (response.data) {
           runInAction(() => {
@@ -27,7 +27,7 @@ class ProductsStore {
       });
     }
     if (ProductsStoreSettings.categoryList) {
-      requestCategoty().then((response) => {
+      requestCategory().then((response) => {
         if (response.data) {
           runInAction(() => {
             const data = (response.data || []).reduce<Record<string, string>>((acc, item) => {

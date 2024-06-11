@@ -4,7 +4,7 @@ import performRegister from './auth/create';
 import performProfileUpdate from './profile/update';
 import requestProducts from './products/products';
 import performChangePassword from './profile/password';
-import requestCategoty from './products/category';
+import requestCategory from './products/category';
 import requestDiscount from './products/discount';
 import filter from './products/filter';
 import getLocalProducts from './local/local';
@@ -21,7 +21,7 @@ export {
   performProfileUpdate,
   performChangePassword,
   requestProducts,
-  requestCategoty,
+  requestCategory,
   requestDiscount,
   filter,
   getLocalProducts,

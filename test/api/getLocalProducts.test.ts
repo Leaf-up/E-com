@@ -81,6 +81,17 @@ const productData: TProduct[] = [
             value: '5g',
           },
         ],
+        prices: [
+          {
+            id: 'd0e4b98e-a821-444a-9d61-f40e251264bd',
+            value: {
+              type: 'centPrecision',
+              currencyCode: 'USD',
+              centAmount: 2200,
+              fractionDigits: 2,
+            },
+          },
+        ],
       },
     ],
   },

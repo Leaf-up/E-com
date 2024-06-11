@@ -11,6 +11,7 @@ jest.mock('~/pages', () => ({
 }));
 jest.mock('~/api', () => ({
   requestProducts: jest.fn(() => Promise.resolve({})),
+  requestCategory: jest.fn(() => Promise.resolve({})),
 }));
 
 it('DOM: product page:', () => {

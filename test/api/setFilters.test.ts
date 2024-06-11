@@ -4,7 +4,8 @@ import { TFilterData } from '~/api/types';
 import { TRawProduct } from '~/api/products/types';
 
 const keyword = 'test';
-const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections/search?staged=true&text.en-US="${keyword}"&filter=variants.price.centAmount:range (0 to 100)&filter=variants.attributes.weight%3A%220g%22`;
+const offset = 0;
+const endpoint = `${API_URL}/${PROJECT_KEY}/product-projections/search?staged=true&limit=10&offset=${offset}&text.en-US="${keyword}"&filter=variants.price.centAmount:range (0 to 100)&filter=variants.attributes.weight%3A%220g%22`;
 const testToken = 'Og==';
 
 const discountData: TRawProduct[] = [
@@ -163,6 +164,17 @@ const discountData: TRawProduct[] = [
                 value: '5g',
               },
             ],
+            prices: [
+              {
+                id: 'd0e4b98e-a821-444a-9d61-f40e251264bd',
+                value: {
+                  type: 'centPrecision',
+                  currencyCode: 'USD',
+                  centAmount: 2200,
+                  fractionDigits: 2,
+                },
+              },
+            ],
           },
         ],
         slug: {
@@ -197,6 +209,7 @@ const testFetchOptions = {
 
 const expectedSuccessReturnResponse = {
   data: discountData,
+  total: testSuccessResponse.total,
   error: null,
 };
 const expectedFailReturnResponse = {
