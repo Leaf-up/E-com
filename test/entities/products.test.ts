@@ -8,7 +8,7 @@ jest.mock('mobx', () => ({
 }));
 jest.mock('~/api', () => ({
   filter: jest.fn(() => Promise.resolve({})),
-  requestCategoty: jest.fn(() => Promise.resolve({})),
+  requestCategory: jest.fn(() => Promise.resolve({})),
   requestDiscount: jest.fn(() => Promise.resolve({})),
 }));
 
