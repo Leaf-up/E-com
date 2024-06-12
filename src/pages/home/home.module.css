@@ -30,6 +30,29 @@
   gap: 2em;
 }
 
+.promo {
+  max-width: 832px;
+  padding: 1em 4em;
+  margin: 0 auto;
+  border-radius: 0.5em;
+  background-color: var(--color10);
+  color: var(--color100);
+  text-decoration: none;
+  box-shadow: 0 0 4px #0004;
+}
+
+.promo h3 {
+  font-weight: 500;
+}
+
+.promo__list_item {
+  margin: 0.5em 0;
+}
+
+.promo__list_item code {
+  font-size: larger;
+}
+
 .about {
   width: 100%;
   max-width: 832px;
