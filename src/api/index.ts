@@ -13,9 +13,11 @@ import requestCart from './cart/get';
 import clearCart from './cart/delete';
 import changeCart from './cart/update';
 import getMarkdownText from './local/about';
+import promoHolder from './promo/promo';
 
 export {
   tokenHolder,
+  promoHolder,
   performRegister,
   performLogin,
   performProfileUpdate,

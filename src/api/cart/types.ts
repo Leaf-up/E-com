@@ -128,6 +128,7 @@ export type TCartUpdateAction = {
   address?: TAddress; // Used to set address
   customerId?: string; // Used to set cuctomer
   email?: string; // Used to set cuctomer email
+  code?: string; // Used to add discount code
 };
 
 type TCartAction =
@@ -137,4 +138,5 @@ type TCartAction =
   | 'setCustomerId'
   | 'setCustomerEmail'
   | 'setShippingAddress'
-  | 'setBillingAddress';
+  | 'setBillingAddress'
+  | 'addDiscountCode';
