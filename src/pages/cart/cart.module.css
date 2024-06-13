@@ -5,7 +5,7 @@
   margin: 4.75em 0 1em 0;
   padding: 1em 1.5em;
   border-radius: 8px;
-  background-color: var(--color00);
+  background-color: var(--color10);
 }
 
 .cart__items {
@@ -13,26 +13,62 @@
 }
 
 .cart__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1em;
+}
+
+.cart__total_info {
   font-size: 1.1em;
 }
 
-.cart__total_price {
+.cart__total_info_price {
   font-size: 1.2em;
   font-weight: 500;
 }
 
-.cart__clear_button {
-  width: fit-content;
-  padding: 0.4em 0.8em;
-  border: none;
+.cart__total_info_price_old {
+  text-decoration: line-through;
+}
+
+.cart__total_clear,
+.cart__promo_submit {
+  height: fit-content;
+  outline: none;
+  border: 1px solid var(--color60);
   border-radius: 8px;
   background-color: var(--color50);
   font-size: 1em;
+  padding: 0.25em 1.5em;
+  transition: background-color 0.25s linear;
   cursor: pointer;
 }
 
-.cart__clear_button:active {
+.cart__total_clear:active {
   background-color: var(--color60);
+}
+
+.cart__promo h3 {
+  font-weight: 500;
+  margin: 0.25rem 0;
+}
+
+.cart__promo_list {
+  margin: 0 0 0.5em;
+}
+
+.cart__promo_input {
+  margin-right: 2em;
+  padding: 0.25em;
+  outline: none;
+  border: 1px solid var(--color40);
+  border-radius: 8px;
+  background-color: transparent;
+  font-size: 1em;
+}
+.cart__promo_input:focus {
+  border-color: var(--color60);
 }
 
 .modal {
@@ -47,13 +83,13 @@
   text-align: center;
 }
 
-.buttons {
+.modal__btn {
   display: flex;
   justify-content: center;
   column-gap: 1em;
 }
 
-.buttons__clear {
+.modal__btn_clear {
   width: fit-content;
   height: fit-content;
   padding: 0.4em 0.8em;
@@ -61,15 +97,16 @@
   border-radius: 8px;
   background-color: var(--color50);
   font-size: 1em;
+  transition: background-color 0.25s linear;
   cursor: pointer;
 }
 
-.buttons__clear:active {
+.modal__btn_clear:active {
   border-color: var(--color60);
   background-color: var(--color60);
 }
 
-.buttons__cancel {
+.modal__btn_cancel {
   width: fit-content;
   height: fit-content;
   padding: 0.4em 0.8em;
@@ -78,30 +115,39 @@
   border: 1px solid var(--color60);
   color: var(--dark-theme);
   font-size: 1em;
+  transition: background-color 0.25s linear;
   cursor: pointer;
 }
 
-.buttons__cancel:active {
+.modal__btn_cancel:active {
   background-color: var(--color30);
 }
 
 @media (hover: hover) {
-  .cart__clear_button:hover {
+  .cart__total_clear:hover,
+  .cart__promo_submit:hover {
     background-color: var(--color40);
   }
 
-  .buttons__clear:hover {
-    border-color: var(--color40);
+  .modal__btn_clear:hover {
     background-color: var(--color40);
   }
 
-  .buttons__cancel:hover {
+  .modal__btn_cancel:hover {
     background-color: var(--color20);
+  }
+
+  .cart__promo_input:hover {
+    border-color: var(--color60);
   }
 }
 
 @media (max-width: 560px) {
   .cart {
     padding: 0 0.8em;
+  }
+
+  .cart__total_clear {
+    padding: 0.25em;
   }
 }

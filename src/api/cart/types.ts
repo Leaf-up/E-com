@@ -12,6 +12,9 @@ export type TCart = {
   shipping: TShipping[];
   discountCodes: TDiscountCodeInfo[];
   directDiscounts: unknown[];
+  discountOnTotalPrice?: {
+    discountedAmount: TMoney;
+  };
   inventoryMode: 'None' | 'TrackOnly' | 'ReserveOnOrder';
   taxMode: 'Platform' | 'External' | 'ExternalAmount' | 'Disabled';
   taxRoundingMode: 'HalfEven' | 'HalfUp' | 'HalfDown';
