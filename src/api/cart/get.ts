@@ -9,7 +9,6 @@ export default function requestCart(id: string): Promise<{ cart: TCart | null; e
     const token = bearer.data!.access_token;
     return getCart(token, id).then((response) => {
       if (response.cart) {
-        console.log(response.cart);
         customerStore.cart = response.cart;
       }
       return response;

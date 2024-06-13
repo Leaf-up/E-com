@@ -68,7 +68,7 @@ export default function CardCart({ item }: { item: TLineItem }) {
             type="button"
             className={styles.quantity__button}
             onClick={handleDecreaseButtonClick}
-            disabled={quantity === 1 && true}
+            disabled={quantity === 1}
           >
             &#8211;
           </button>
@@ -77,7 +77,7 @@ export default function CardCart({ item }: { item: TLineItem }) {
             type="button"
             className={styles.quantity__button}
             onClick={handleIncreaseButtonClick}
-            disabled={quantity === 30 && true}
+            disabled={quantity >= 10}
           >
             +
           </button>

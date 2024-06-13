@@ -46,8 +46,8 @@
 }
 
 .quantity__button:disabled {
-  background-color: rgb(216, 216, 216);
-  cursor: auto;
+  background-color: var(--gray);
+  cursor: default;
 }
 
 .name {
@@ -107,6 +107,5 @@
 
   .trash:hover {
     transform: translateY(-1px);
-    filter: drop-shadow(1px 1px 1px #0004);
   }
 }

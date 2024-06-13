@@ -7,7 +7,6 @@ function requestPromo(): Promise<{ results: TCartPromo[] | null; error: string |
     if (bearer.error) return { results: null, error: bearer.error };
     const token = bearer.data!.access_token;
     return getPromo(token).then((response) => {
-      console.log(response.results);
       return response;
     });
   });
@@ -15,7 +14,6 @@ function requestPromo(): Promise<{ results: TCartPromo[] | null; error: string |
 
 class Promo {
   private holder: TCartPromo[] | null = null;
-  private _id: { name: string; id: string }[] = [];
 
   public get(): Promise<TCartPromo[]> {
     return new Promise((resolve) => {
