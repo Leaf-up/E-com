@@ -7,7 +7,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { TProduct, TProductVariant } from '~/api/products/types';
 import { Home } from '~/pages/home/home';
 
-jest.mock('~/api', () => jest.fn());
+jest.mock('~/api', () => ({
+  promoHolder: {
+    get: () => Promise.resolve([]),
+  },
+}));
 jest.mock('~/entities', () => ({
   useProducts: jest.fn(() => ({
     products: [],
