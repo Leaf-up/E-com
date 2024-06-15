@@ -35,7 +35,6 @@ export default function updateCart(
     })
     .then((data) => {
       if (Math.floor(info.status / 100) !== 2) {
-        console.error(data.errors);
         return { cart: null, error: `(${info.status}) ${data.message ?? info.error}` };
       }
       return { cart: data as TCart, error: null };

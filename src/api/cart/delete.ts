@@ -9,7 +9,6 @@ export default function clearCart(id: string, version: number): Promise<{ cart: 
     const token = bearer.data!.access_token;
     return deleteCart(token, id, version).then((response) => {
       if (response.cart) {
-        console.log(response.cart);
         customerStore.cart = null;
       }
       return response;
