@@ -11,9 +11,11 @@ export const CopyInput = ({ text }: { text: string }) => {
   index += 1;
 
   const handleCopy = () => {
-    if (typeof navigator !== 'undefined') void navigator.clipboard.writeText(text);
-    setCopyed(true);
-    setTimeout(() => setCopyed(false), 3000);
+    if (typeof navigator !== 'undefined') {
+      navigator.clipboard.writeText(text);
+      setCopyed(true);
+      setTimeout(() => setCopyed(false), 3000);
+    }
   };
 
   return (
