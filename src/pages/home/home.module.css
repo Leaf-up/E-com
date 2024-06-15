@@ -45,12 +45,14 @@
   font-weight: 500;
 }
 
-.promo__list_item {
-  margin: 0.5em 0;
+.promo__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.promo__list_item code {
-  font-size: larger;
+.promo__list_item {
+  margin: 1em 0;
 }
 
 .about {
