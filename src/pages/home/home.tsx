@@ -4,7 +4,7 @@ import type { TCartPromo } from '~/api/promo/types';
 import { promoHolder } from '~/api';
 import { productsLocal } from '~/entities';
 import { CardSlider, CardCategory } from '~/ui';
-import { Slider } from '~/widgets';
+import { Slider, CopyInput } from '~/widgets';
 import { CATEGORY_SLUG, CATEGORY_NAME } from '~/constants/constants';
 
 import styles from './home.module.css';
@@ -52,7 +52,7 @@ export function Home() {
         <ul className={styles.promo__list}>
           {promoCodes.map((item, i) => (
             <li key={i} className={styles.promo__list_item}>
-              <code>{item.code}</code>
+              <CopyInput text={item.code} />
               <div>{item.description['en-US']}</div>
             </li>
           ))}
