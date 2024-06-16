@@ -20,11 +20,6 @@ const topMenu = [
     customer: null,
   },
   {
-    title: 'Test',
-    route: '/test',
-    customer: null,
-  },
-  {
     title: 'About',
     route: '/about',
     customer: null,

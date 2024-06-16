@@ -20,7 +20,7 @@
   margin-top: 3.75em;
   height: 100%;
   padding: 2em 3.75em;
-  background-color: var(--color30);
+  background-color: var(--color20);
   transform: translateX(100%);
   transition: transform 0.4s;
 }
