@@ -6,6 +6,7 @@ import { productsLocal } from '~/entities';
 import { CardSlider, CardCategory } from '~/ui';
 import { Slider, CopyInput } from '~/widgets';
 import { CATEGORY_SLUG, CATEGORY_NAME } from '~/constants/constants';
+import Providers from './providers/providers';
 
 import styles from './home.module.css';
 
@@ -58,11 +59,9 @@ export function Home() {
           ))}
         </ul>
       </section>
+      <Providers />
       <section className={styles.about}>
         <div>It is a fun project (not a real shop)</div>
-        <div>
-          Developed by the <a href="https://github.com/Leaf-up">Leaf up</a> team in 2024
-        </div>
       </section>
     </>
   );

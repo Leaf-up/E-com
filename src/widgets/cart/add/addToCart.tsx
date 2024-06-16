@@ -11,7 +11,7 @@ export default function AddToCart({ id }: { id: string }) {
   const { cart } = useCustomer();
 
   const haveItem = () => {
-    if (!cart) return false;
+    if (!cart || !cart.lineItems) return false;
     return cart.lineItems.some((item) => item.productId === id);
   };
 

@@ -9,7 +9,6 @@ export default function prepareCart(customerId?: string): Promise<{ cart: TCart 
     const token = bearer.data!.access_token;
     return createCart(token, customerId).then((response) => {
       if (response.cart) {
-        console.log(response.cart);
         customerStore.cart = response.cart;
       }
       return response;

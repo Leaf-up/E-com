@@ -22,7 +22,7 @@ export function Cart() {
   }, []);
 
   useEffect(() => {
-    if (cart) {
+    if (cart && cart.discountCodes) {
       promoHolder.get().then((codes) => {
         const applyed = cart.discountCodes.reduce<string[]>((acc, item) => {
           const { id } = item.discountCode;

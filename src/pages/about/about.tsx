@@ -4,10 +4,9 @@ import parse from '~/utils/parser';
 
 import './about.css';
 
-let loading = false;
-
 export function About() {
   const ref = useRef<HTMLElement>(null);
+  let loading = false;
 
   useEffect(() => {
     if (ref.current && !loading && ref.current.childElementCount === 0) {

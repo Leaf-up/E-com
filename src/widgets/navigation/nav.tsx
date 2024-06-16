@@ -20,11 +20,6 @@ const topMenu = [
     customer: null,
   },
   {
-    title: 'Test',
-    route: '/test',
-    customer: null,
-  },
-  {
     title: 'About',
     route: '/about',
     customer: null,
@@ -94,7 +89,9 @@ export function NavigationMenu({ isColumn, onClick }: NavProps) {
               {item.route && item.icon && (
                 <NavLink to={item.route} className={styles.nav__link} onClick={onClick}>
                   <img src={item.icon} alt={item.title.toLowerCase()} className={styles.icon} />
-                  {item.title === 'Cart' && <div className={styles.quantity}>{cart?.lineItems.length ?? 0}</div>}
+                  {cart && item.title === 'Cart' && cart.lineItems && (
+                    <div className={styles.quantity}>{cart.lineItems.length}</div>
+                  )}
                 </NavLink>
               )}
               {item.action === 'logout' && (

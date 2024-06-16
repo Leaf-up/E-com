@@ -2,21 +2,25 @@ import { useState, useEffect } from 'react';
 import { makeAutoObservable, reaction } from 'mobx';
 import type { TCustomer } from '~/api/types';
 import type { TCart } from '~/api/cart/types';
+import requestCart from '~/api/cart/get';
 import { getSystemTheme } from '~/utils';
 import store from '~/utils/store';
 
 type TTheme = 'light' | 'dark';
+type TCartStore = { id: string; version: number };
 
 class CustomerStore {
   private _user: TCustomer | null = null;
-  private _cart: TCart | null = null;
+  private _cart: TCart | TCartStore | null = null;
   private _theme: TTheme;
 
   constructor() {
     const user = store.get<TCustomer>('user');
     if (user) this._user = user;
-    const cart = store.get<TCart>('cart');
-    if (cart) this._cart = cart;
+
+    const cart = store.get<TCartStore>('cart');
+    if (cart) requestCart(cart.id);
+
     const theme = store.get<TTheme>('theme');
     this._theme = theme ?? getSystemTheme();
 
@@ -34,11 +38,15 @@ class CustomerStore {
 
   set cart(value: TCart | null) {
     this._cart = value;
-    store.set('cart', this._cart);
+    if (value) {
+      store.set('cart', { id: value.id, version: value.version });
+    } else {
+      store.set('cart', null);
+    }
   }
 
   get cart() {
-    return this._cart;
+    return this._cart ? (this._cart as TCart) : null;
   }
 
   set theme(value: TTheme) {
