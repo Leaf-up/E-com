@@ -1,4 +1,5 @@
 .about {
+  flex-grow: 1;
   margin-top: 3.75em;
   margin-bottom: 1em;
   padding: 0 2em;

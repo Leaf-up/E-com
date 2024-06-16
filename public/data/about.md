@@ -57,12 +57,3 @@ Users can browse through a vast range of products, view detailed descriptions, a
 </div>
 
 This educational project of [RS School](https://rs.school/) was made in 9 weeks as a practice in collaboration skills. We made our team, work on idea, define [guidelines](https://github.com/Leaf-up/Guidelines), organized task board, worked on separated tasks and made a review for each one.
-
-<hr>
-
-<div class="about__footer">
-  © 2024 [Leaf up](https://github.com/Leaf-up) team
-  [<img src="/logo/rss.svg"/>](https://rs.school/)
-</div>
-
-

@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from './widgets';
+import { Header, Footer } from './widgets';
 import Loader from './ui/loader/loader';
 import './styles/global.css';
 
@@ -10,6 +10,7 @@ export function Layout() {
       <Header />
       <main className="main">
         <Outlet />
+        <Footer />
       </main>
     </Suspense>
   );

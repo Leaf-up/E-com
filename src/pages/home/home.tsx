@@ -60,9 +60,6 @@ export function Home() {
       </section>
       <section className={styles.about}>
         <div>It is a fun project (not a real shop)</div>
-        <div>
-          Developed by the <a href="https://github.com/Leaf-up">Leaf up</a> team in 2024
-        </div>
       </section>
     </>
   );

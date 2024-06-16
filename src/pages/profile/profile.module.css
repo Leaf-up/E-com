@@ -1,7 +1,7 @@
 .profile {
+  flex-grow: 1;
   display: flex;
   width: 100%;
-  min-height: 100vh;
 }
 
 .tabs {
@@ -73,8 +73,8 @@
   min-width: 18em;
   height: fit-content;
   margin: 0 2em;
-  background-color: var(--color00);
-  border: 1px solid var(--color10);
+  background-color: var(--color10);
+  border: 1px solid var(--color30);
   padding: 1em;
   border-radius: 10px;
   box-shadow: 0 0 4px #0008;
