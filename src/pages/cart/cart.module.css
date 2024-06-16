@@ -8,6 +8,16 @@
   background-color: var(--color10);
 }
 
+.cart_empty {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 4.75em 0 1em 0;
+  padding: 1em 1.5em;
+  justify-content: center;
+  align-items: center;
+}
+
 .cart__items {
   flex-grow: 1;
 }

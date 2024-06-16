@@ -106,9 +106,9 @@ export function Cart() {
   }
 
   return (
-    <>
+    <section aria-label="Cart" className={styles.cart_empty}>
       <p>Cart is empty</p>
       <ButtonBack to="/catalog">Go to catalog</ButtonBack>
-    </>
+    </section>
   );
 }
