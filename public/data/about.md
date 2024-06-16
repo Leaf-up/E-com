@@ -34,7 +34,7 @@ Users can browse through a vast range of products, view detailed descriptions, a
 - Custom message component.
 - Modals and popups.
 - Well-organized folder structure ([FSD](https://feature-sliced.design/)).
-- Patrial-application-based form fields validation.
+- Patrtial-application-based form fields validation.
 - Custom storage for reused data.
 
 ## Our team:
@@ -47,13 +47,13 @@ Users can browse through a vast range of products, view detailed descriptions, a
 <div class="about__team">
   <img src="https://avatars.githubusercontent.com/u/101509584?v=4"/>
   [Alisa Dragun](https://github.com/1alisa1)
-  Frontend developer. Young and handy. Good in ⚛️React and ⚙️unit tests. Author of all authentication and user profile pages and its components. Made awesome validation algorithm.
+  Frontend developer. Young and handy. Good in ⚛️React and ⚙️unit tests. Сreated the base project setup to kickstart the development process. Configure organisation and our products in CommerceTools. Author of all authentication and user profile pages, custom form components. I came up with an awesome validation algorithm. Made a significant contribution to the design of the application.
 </div>
 
 <div class="about__team">
   <img src="https://avatars.githubusercontent.com/u/51874769?v=4"/>
   [Nikolay Hoft](https://github.com/mrHoft)
-  Frontend developer. A frontend/game developer and C++/Python practitioner with over 5 years of experience from the black sea region. The most experienced team member and local mentor.
+  Frontend developer. The most experienced team member and local mentor. Author of: conception, design, themes. Made a major contribution to the home, catalog, product, cart and about pages development. Made the entire api. Developed non-standard solutions, such as: markdown parser, reusable data holders, helper and testing utilities.
 </div>
 
 This educational project of [RS School](https://rs.school/) was made in 9 weeks as a practice in collaboration skills. We made our team, work on idea, define [guidelines](https://github.com/Leaf-up/Guidelines), organized task board, worked on separated tasks and made a review for each one.
