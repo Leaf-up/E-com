@@ -125,13 +125,13 @@ type TDiscountCodeInfo = {
 
 export type TCartUpdateAction = {
   action: TCartAction;
-  productId?: string; // Used to add
-  lineItemId?: string; // Used to remove, change
+  productId?: string;
+  lineItemId?: string;
   quantity?: number;
-  address?: TAddress; // Used to set address
-  customerId?: string; // Used to set cuctomer
-  email?: string; // Used to set cuctomer email
-  code?: string; // Used to add discount code
+  address?: TAddress;
+  customerId?: string;
+  email?: string;
+  code?: string;
 };
 
 type TCartAction =

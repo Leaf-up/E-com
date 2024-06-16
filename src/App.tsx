@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { Layout } from './layout';
-import { Home, Login, Register, PageTest, Page404, Profile, Catalog, Product, About, Cart } from './pages';
+import { Home, Login, Register, Page404, Profile, Catalog, Product, About, Cart } from './pages';
 import { useCustomer } from './entities';
 
 interface ProtectedRouteProps {
@@ -21,7 +21,6 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/catalog/:category?/:subcategory?" element={<Catalog />} />
         <Route path="/products/:category?/:subcategory?/:key" element={<Product />} />
-        <Route path="/test" element={<PageTest />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route element={<ProtectedRoute isRedirect={!user} redirectTo="/" />}>

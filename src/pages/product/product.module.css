@@ -1,4 +1,5 @@
 .product {
   margin-top: 3.75em;
   padding: 1em;
+  flex-grow: 1;
 }

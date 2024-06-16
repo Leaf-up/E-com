@@ -7,9 +7,6 @@ export default function requestCategory(): Promise<{ data: TCategory[] | null; e
     if (bearer.error) return { data: null, error: bearer.error };
     const token = bearer.data!.access_token;
     return getCategory(token).then((response) => {
-      if (response.data) {
-        // console.log('Category:', response.data);
-      }
       return response;
     });
   });
