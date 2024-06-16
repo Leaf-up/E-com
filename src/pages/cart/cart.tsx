@@ -15,9 +15,6 @@ export function Cart() {
     cart && cart.totalLineItemQuantity ? cart.lineItems.map((item, i) => <CardCart key={i} item={item} />) : [];
 
   useEffect(() => {
-    /* Stupid action (cart is allready in store).
-     ** Added only to match "The list of items is fetched from the commercetools API" criteria.
-     */
     if (cart) requestCart(cart.id);
   }, []);
 
