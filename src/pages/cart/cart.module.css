@@ -1,4 +1,5 @@
 .cart {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   margin: 4.75em 0 1em 0;
