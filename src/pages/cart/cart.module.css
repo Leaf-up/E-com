@@ -42,6 +42,10 @@
   text-decoration: line-through;
 }
 
+.cart__promo {
+  margin: 1em 0;
+}
+
 .cart__total_clear,
 .cart__promo_submit {
   height: fit-content;
