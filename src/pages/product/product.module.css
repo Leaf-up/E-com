@@ -12,6 +12,11 @@
   display: flex;
 }
 
+.product__distributor img {
+  width: 14em;
+  height: 14em;
+}
+
 .product__distributor_msg {
   height: fit-content;
   background-color: var(--color10);
