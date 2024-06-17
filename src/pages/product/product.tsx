@@ -91,7 +91,7 @@ export default function Product() {
         {productMapper(product)}
       </div>
       <div className={styles.product__distributor}>
-        <img src={distributorSrc[distributor]} />
+        <img src={distributorSrc[distributor]} alt={distributor} />
         <div className={styles.product__distributor_msg}>{description}</div>
       </div>
     </div>
