@@ -11,8 +11,6 @@ export function Cart() {
   const { cart } = useCustomer();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [discountCodes, setDiscountCodes] = useState<string[]>([]);
-  const cartItems =
-    cart && cart.totalLineItemQuantity ? cart.lineItems.map((item, i) => <CardCart key={i} item={item} />) : [];
 
   useEffect(() => {
     if (cart) requestCart(cart.id);
@@ -52,10 +50,14 @@ export function Cart() {
     }
   };
 
-  if (cart && cartItems.length) {
+  if (cart && cart.totalLineItemQuantity) {
     return (
       <section aria-label="Cart" className={styles.cart}>
-        <div className={styles.cart__items}>{cartItems}</div>
+        <div className={styles.cart__items}>
+          {cart.lineItems.map((item, i) => (
+            <CardCart key={i} item={item} />
+          ))}
+        </div>
         <div className={styles.cart__total}>
           <button className={styles.cart__total_clear} onClick={() => setIsModalOpen(true)}>
             Clear Shopping Cart

@@ -89,7 +89,7 @@ export function NavigationMenu({ isColumn, onClick }: NavProps) {
               {item.route && item.icon && (
                 <NavLink to={item.route} className={styles.nav__link} onClick={onClick}>
                   <img src={item.icon} alt={item.title.toLowerCase()} className={styles.icon} />
-                  {cart && item.title === 'Cart' && cart.lineItems && (
+                  {item.title === 'Cart' && cart && cart.totalLineItemQuantity && (
                     <div className={styles.quantity}>{cart.lineItems.length}</div>
                   )}
                 </NavLink>

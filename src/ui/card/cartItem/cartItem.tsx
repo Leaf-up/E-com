@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TLineItem } from '~/api/cart/types';
 import { changeCart } from '~/api';
 import { useCustomer } from '~/entities';
@@ -64,6 +64,10 @@ export default function CardCart({ item }: { item: TLineItem }) {
       });
     }
   };
+
+  useEffect(() => {
+    setQuantity(item.quantity);
+  }, [item]);
 
   return (
     <div className={styles.cart__item}>
