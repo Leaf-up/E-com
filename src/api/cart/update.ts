@@ -13,6 +13,7 @@ export default function changeCart(
     const token = bearer.data!.access_token;
     return updateCart(token, id, version, actions).then((response) => {
       if (response.cart) {
+        console.log(response.cart);
         customerStore.cart = response.cart;
       }
       return response;

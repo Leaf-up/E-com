@@ -10,7 +10,7 @@ const cartIcon = '/icons/cart.svg';
 const loadingIcon = '/icons/loading.svg';
 
 export default function AddToCart({ id }: { id: string }) {
-  const { cart } = useCustomer();
+  const { user, cart } = useCustomer();
   const [loading, setLoading] = useState(false);
 
   const haveItem = () => {
@@ -35,7 +35,7 @@ export default function AddToCart({ id }: { id: string }) {
     event.preventDefault();
     setLoading(true);
     if (!cart) {
-      prepareCart().then((response) => {
+      prepareCart(user?.id).then((response) => {
         if (response.cart) {
           addLineItem(response.cart.id, response.cart.version);
         }
