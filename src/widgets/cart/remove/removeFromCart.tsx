@@ -15,7 +15,7 @@ export default function RemoveFromCart({ id }: { id: string }) {
 
   const haveItem = () => {
     if (!cart || !cart.lineItems) return false;
-    return !cart.lineItems.some((item) => item.productId === id);
+    return cart.lineItems.some((item) => item.productId === id);
   };
 
   const productId = cart?.lineItems.find((el) => el.productId === id)?.id ?? id;
@@ -37,7 +37,7 @@ export default function RemoveFromCart({ id }: { id: string }) {
   };
 
   return (
-    <button className={styles.button} onClick={removeLineItem} disabled={haveItem() || loading}>
+    <button className={styles.button} onClick={removeLineItem} disabled={!haveItem() || loading}>
       <img src={trashIcon} alt="remove" />
       {loading && <img className={styles.button__loading} src={loadingIcon} alt="" />}
     </button>
