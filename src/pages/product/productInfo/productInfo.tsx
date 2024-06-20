@@ -9,6 +9,7 @@ const starYellow = '/icons/star.svg';
 const starGray = '/icons/star_gray.svg';
 const bottleSrc = '/image/bottle1.png';
 const tagNames = ['weight', 'color', 'size', 'charm'];
+const showDescription = false;
 
 export default function ProductInfo({
   id,
@@ -73,7 +74,7 @@ export default function ProductInfo({
           </div>
           {category && <div>{`Category: ${category}`}</div>}
           <div>{`Brand: ${brand}`}</div>
-          <p>{description}</p>
+          {showDescription && <p>{description}</p>}
           <table>
             <tbody>
               {tags.map((item, i) => (

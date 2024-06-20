@@ -5,6 +5,7 @@ export type TCart = {
   id: string;
   version: number;
   lineItems: TLineItem[];
+  customerId: string;
   customLineItems: TLineItem[];
   cartState: 'Active' | 'Merged' | 'Ordered' | 'Frozen';
   totalPrice: TMoney;

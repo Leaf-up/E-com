@@ -11,13 +11,8 @@ export function Cart() {
   const { cart } = useCustomer();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [discountCodes, setDiscountCodes] = useState<string[]>([]);
-  const cartItems =
-    cart && cart.totalLineItemQuantity ? cart.lineItems.map((item, i) => <CardCart key={i} item={item} />) : [];
 
   useEffect(() => {
-    /* Stupid action (cart is allready in store).
-     ** Added only to match "The list of items is fetched from the commercetools API" criteria.
-     */
     if (cart) requestCart(cart.id);
   }, []);
 
@@ -55,10 +50,14 @@ export function Cart() {
     }
   };
 
-  if (cart && cartItems.length) {
+  if (cart && cart.totalLineItemQuantity) {
     return (
       <section aria-label="Cart" className={styles.cart}>
-        <div className={styles.cart__items}>{cartItems}</div>
+        <div className={styles.cart__items}>
+          {cart.lineItems.map((item, i) => (
+            <CardCart key={i} item={item} />
+          ))}
+        </div>
         <div className={styles.cart__total}>
           <button className={styles.cart__total_clear} onClick={() => setIsModalOpen(true)}>
             Clear Shopping Cart
@@ -109,9 +108,9 @@ export function Cart() {
   }
 
   return (
-    <>
+    <section aria-label="Cart" className={styles.cart_empty}>
       <p>Cart is empty</p>
       <ButtonBack to="/catalog">Go to catalog</ButtonBack>
-    </>
+    </section>
   );
 }

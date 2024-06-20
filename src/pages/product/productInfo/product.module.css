@@ -9,6 +9,7 @@
 }
 
 .card__info {
+  flex-grow: 1;
   max-width: calc(360px - 2em);
   display: flex;
   flex-direction: column;
