@@ -32,6 +32,7 @@ The application is developed by [Leaf up](https://github.com/Leaf-up) team.
 [![prettier](https://img.shields.io/badge/prettier-3.2.5-blue?logo=prettier)](#)
 [![jest](https://img.shields.io/badge/jest-29.7-blue?logo=jest)](#)
 [![react](https://img.shields.io/badge/react-18.2-blue?logo=react)](#)
+[![mobx](https://img.shields.io/badge/mobx-6.12-blue?logo=mobx)](#)
 
 </div>
 
@@ -66,6 +67,7 @@ cp .env.sample .env
 .
 ├── src
 │ ├── api # commercetools api
+│ ├── entities # biusiness logic
 │ ├── pages # SPA pages
 │ ├── ui # UI components
 │ ├── utils # parcer, sanitize, throttle, etc.

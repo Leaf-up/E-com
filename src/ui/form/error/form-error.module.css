@@ -1,0 +1,5 @@
+.form__error {
+  font-size: smaller;
+  height: 1.5em;
+  color: red;
+}

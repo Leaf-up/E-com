@@ -1,0 +1,14 @@
+.form_link {
+  margin: 0 auto;
+}
+
+.form_link__item {
+  text-decoration: none;
+  color: var(--color70);
+}
+
+@media (hover: hover) {
+  .form_link__item:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,111 @@
+.card {
+  flex: 0 0 21em;
+  height: 32em;
+  color: var(--color100);
+  text-decoration: none;
+  padding: 1em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 4px #0008;
+  background-color: var(--color10);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  transition:
+    background-color,
+    transform 0.15s ease-out;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: var(--color20);
+  transform: scale(1.025);
+}
+
+.card__preview {
+  position: relative;
+  width: 100%;
+  height: 12em;
+  flex-shrink: 0;
+}
+
+.card__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5em;
+}
+
+.card__sale {
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
+  width: 3em;
+  height: 3em;
+  background: url(/icons/sale.svg) center / cover;
+}
+
+.card__info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__info_wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__info_title {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card__info_attr_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  column-gap: 0.75em;
+  font-size: smaller;
+}
+
+.card__info_attr_list li:last-of-type {
+  margin-left: auto;
+}
+
+.card__info_attr_tag {
+  height: 1.5em;
+  background-color: var(--color30);
+  padding: 0 0.5em;
+  border-radius: 2em;
+}
+
+.card__info_attr_img {
+  height: 1.5em;
+}
+
+.card__info_attr_red,
+.card__info_attr_green {
+  margin-top: 0.25em;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.75em;
+}
+
+.card__info_attr_red {
+  background: radial-gradient(at 30% 30%, #0000, #000a) red;
+}
+
+.card__info_attr_green {
+  background: radial-gradient(at 30% 30%, #0000, #000a) green;
+}
+
+.card__info_old_price {
+  text-decoration: line-through;
+}
+
+.card__info_new_price {
+  color: var(--yellow);
+}

@@ -1,0 +1,85 @@
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 3.75em;
+  background-color: var(--color80a);
+  color: var(--color100);
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 2em;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
+
+.header__logo_img {
+  display: inline-block;
+  width: 2.5em;
+  height: 2.5em;
+  background-color: var(--color00);
+  background-image: url(/image/leafup.svg);
+  background-size: cover;
+  border-radius: 0.25em;
+}
+
+.header__logo_title {
+  font-family: Spyced, sans-serif;
+  font-size: 1.6em;
+  color: var(--color80);
+  white-space: nowrap;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__menu_button {
+  display: none;
+  border: none;
+  background-color: transparent;
+  filter: invert(var(--dark-theme));
+  cursor: pointer;
+  transition: opacity 0.25s linear;
+}
+.header__menu_button:hover {
+  opacity: 0.65;
+}
+
+@media (max-width: 768px) {
+  .header__content {
+    column-gap: 1.5em;
+    width: 95%;
+  }
+
+  .header__logo_img {
+    width: 2em;
+    height: 2em;
+  }
+
+  .header__logo_title {
+    font-size: 1.2em;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__menu_button {
+    display: block;
+  }
+}
