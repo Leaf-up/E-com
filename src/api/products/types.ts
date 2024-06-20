@@ -1,18 +1,18 @@
 export type TRawProduct = {
-  id: string; // Unique identifier of the Product.
-  version: number; // Current version of the Product.
-  key?: string; // User-defined unique identifier of the Product.
-  productType: TProductTypeInfo; // The Product Type defining the Attributes of the Product.
+  id: string;
+  version: number;
+  key?: string;
+  productType: TProductTypeInfo;
   masterData: {
     published: boolean;
     current: TProductData;
     staged: TProductData;
     hasStagedChanges: boolean;
   };
-  taxCategory?: TTaxCategory; // The TaxCategory of the Product.
-  priceMode?: 'Embedded' | 'Standalone'; // Type of Price to be used when looking up a price for the Product.
-  createdAt: string; // Date and time (UTC) the Product was initially created.
-  lastModifiedAt?: string; // Date and time (UTC) the Product was last updated.
+  taxCategory?: TTaxCategory;
+  priceMode?: 'Embedded' | 'Standalone';
+  createdAt: string;
+  lastModifiedAt?: string;
 };
 
 type TProductData = {
@@ -20,7 +20,7 @@ type TProductData = {
   categories: TCategoryInfo[];
   slug: {
     'en-US': string;
-  }; // User-defined identifier used in a deep-link URL for the Product
+  };
   description: { 'en-US': string };
   masterVariant: TProductVariant;
   variants: TProductVariant[];
@@ -52,21 +52,21 @@ export type TCategory = {
   slug: { 'en-US': string };
   ancestors: TCategoryInfo[];
   parent?: TCategoryInfo;
-  orderHint: string; // Decimal value between 0 and 1
+  orderHint: string;
   createdAt: string;
   lastModifiedAt: string;
 };
 
 export type TProductVariant = {
-  id: number; // Sequential identifier
-  key?: string; // User-defined unique identifier
-  sku?: string; // User-defined unique SKU
-  prices?: TPrice[];
+  id: number;
+  key?: string;
+  sku?: string;
+  prices: TPrice[];
   attributes?: TProductAttribute[];
   images: TProductImage[];
 };
 
-type TPrice = {
+export type TPrice = {
   id: string;
   value: TMoney;
   discounted?: {
@@ -75,11 +75,11 @@ type TPrice = {
   };
 };
 
-type TMoney = {
+export type TMoney = {
   centAmount: number;
   currencyCode: TCurrencyCode;
   type: 'centPrecision' | 'highPrecision';
-  fractionDigits: number; // Number of digits after the decimal separator
+  fractionDigits: number;
 };
 
 export type TProductImage = {
@@ -96,7 +96,7 @@ type TDiscountInfo = {
 export type TDiscount = {
   id: string;
   version: number;
-  name: { 'en-US': string }; // Name of the ProductType.
+  name: { 'en-US': string };
   value: {
     type: 'relative' | 'absolute' | 'external';
     permyriad?: number;
@@ -129,12 +129,12 @@ type TProductTypeInfo = {
 };
 
 export type TProductType = {
-  id: string; // Unique identifier of the ProductType.
-  version: number; // Current version of the ProductType.
-  key?: string; // User-defined unique identifier of the ProductType.
-  name: { 'en-US': string }; // Name of the ProductType.
-  description: string; // Description of the ProductType.
-  attributes?: TProductAttribute[]; // Attributes specified for the ProductType.
+  id: string;
+  version: number;
+  key?: string;
+  name: { 'en-US': string };
+  description: string;
+  attributes?: TProductAttribute[];
   createdAt: string;
   lastModifiedAt: string;
 };

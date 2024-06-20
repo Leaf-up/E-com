@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import type { TProduct } from '~/api/products/types';
+import type { TCartPromo } from '~/api/promo/types';
+import { promoHolder } from '~/api';
 import { productsLocal } from '~/entities';
 import { CardSlider, CardCategory } from '~/ui';
-import { Slider } from '~/widgets';
+import { Slider, CopyInput } from '~/widgets';
 import { CATEGORY_SLUG, CATEGORY_NAME } from '~/constants/constants';
+import Providers from './providers/providers';
 
 import styles from './home.module.css';
 
@@ -22,10 +25,12 @@ const productMapper = (item: TProduct, i: number) => {
 
 export function Home() {
   const [products, setProducts] = useState<TProduct[] | null>(null);
+  const [promoCodes, setPromoCodes] = useState<TCartPromo[]>([]);
   const sliderItems = (products ?? []).slice(0, 7).map(productMapper);
 
   useEffect(() => {
     productsLocal.products.then((data) => setProducts(data));
+    promoHolder.get().then((data) => setPromoCodes(data));
   }, []);
 
   return (
@@ -43,11 +48,20 @@ export function Home() {
           return acc;
         }, [])}
       </section>
+      <section className={styles.promo}>
+        <h3>Free promo codes:</h3>
+        <ul className={styles.promo__list}>
+          {promoCodes.map((item, i) => (
+            <li key={i} className={styles.promo__list_item}>
+              <CopyInput text={item.code} />
+              <div>{item.description['en-US']}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <Providers />
       <section className={styles.about}>
         <div>It is a fun project (not a real shop)</div>
-        <div>
-          Developed by the <a href="https://github.com/Leaf-up">Leaf up</a> team in 2024
-        </div>
       </section>
     </>
   );

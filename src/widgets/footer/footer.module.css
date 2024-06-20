@@ -1,0 +1,29 @@
+.footer {
+  height: 3em;
+  width: 100%;
+  padding: 0 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1em;
+  background-color: var(--color80a);
+}
+
+.footer__author a {
+  text-decoration: none;
+  color: var(--blue50);
+  transition: opacity 0.25s linear;
+}
+
+.footer__rss_logo {
+  width: 5.4em;
+  height: 2em;
+  transition: opacity 0.25s linear;
+}
+
+@media (hover: hover) {
+  .footer__rss_logo:hover,
+  .footer__author a:hover {
+    opacity: 0.65;
+  }
+}

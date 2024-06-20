@@ -52,7 +52,7 @@
 
 .filters__img {
   position: fixed;
-  bottom: 2em;
+  bottom: 4em;
   left: 3em;
   width: 10em;
   z-index: 0;
@@ -78,10 +78,6 @@
   display: flex;
   align-items: center;
   column-gap: 1em;
-}
-
-.products__meta_sorting > div {
-  flex: 0 0 10em;
 }
 
 .search {

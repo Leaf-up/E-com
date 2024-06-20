@@ -69,10 +69,10 @@ export function RegistrationForm() {
       setBillingPostalCodeValid(false);
       setBillingCountryValid(false);
       if (ref.current) {
-        ref.current['billing-city'].value = '';
-        ref.current['billing-country'].value = '';
-        ref.current['billing-postal-code'].value = '';
-        ref.current['billing-street'].value = '';
+        if (ref.current['billing-city']) ref.current['billing-city'].value = '';
+        if (ref.current['billing-country']) ref.current['billing-country'].value = '';
+        if (ref.current['billing-postal-code']) ref.current['billing-postal-code'].value = '';
+        if (ref.current['billing-street']) ref.current['billing-street'].value = '';
       }
     }
   }, [sameAddress]);

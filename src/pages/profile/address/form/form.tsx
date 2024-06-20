@@ -83,12 +83,12 @@ export function Form({ type, address, sendRequest, onCancelButtonClick }: FormPr
       />
       <FormError error={error} />
       <div className={styles.form__buttons}>
-        <ButtonSubmit loading={loading} disabled={!countryValid || !cityValid || !streetValid || !postalCodeValid}>
-          Save
-        </ButtonSubmit>
         <button type="button" className={styles.form__buttons_cancel} onClick={() => onCancelButtonClick()}>
           Cancel
         </button>
+        <ButtonSubmit loading={loading} disabled={!countryValid || !cityValid || !streetValid || !postalCodeValid}>
+          Save
+        </ButtonSubmit>
       </div>
     </form>
   );

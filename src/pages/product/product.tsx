@@ -9,6 +9,13 @@ import { CATEGORY_NAME, CATEGORY_SLUG, SUBCATEGORY_SLUG, SUBCATEGORY_NAME } from
 
 import styles from './product.module.css';
 
+type TDistributor = 'None' | 'Happy witch' | 'Lucky farm';
+const distributorSrc: Record<TDistributor, string> = {
+  None: '',
+  'Happy witch': '/image/witch3.png',
+  'Lucky farm': '/image/dave.png',
+};
+
 export default function Product() {
   const { category, subcategory, key } = useParams();
   const [product, setProduct] = useState<TRawProduct | null | '404'>(null);
@@ -41,7 +48,17 @@ export default function Product() {
         ? prices[0].discounted.value.centAmount / 10 ** prices[0].discounted.value.fractionDigits
         : null;
     const rating = Math.floor(Math.random() * 2) + 3;
-    const props = { name, description, attributes, images, price, discounted, category: categoryName, rating };
+    const props = {
+      id: item.id,
+      name,
+      description,
+      attributes,
+      images,
+      price,
+      discounted,
+      category: categoryName,
+      rating,
+    };
     return <ProductInfo {...props} />;
   };
 
@@ -60,10 +77,23 @@ export default function Product() {
   }
   breadcrumbsItems.push({ title: product.masterData.current.name['en-US'], link: '' });
 
+  const {
+    description: { 'en-US': description },
+    masterVariant: { attributes },
+  } = product.masterData.published ? product.masterData.current : product.masterData.staged;
+  const brand = (attributes ?? []).find((item) => item.name === 'brand');
+  const distributor = (brand?.value.toString() || 'None') as TDistributor;
+
   return (
     <div className={styles.product}>
-      <Breadcrumbs items={breadcrumbsItems} />
-      {productMapper(product)}
+      <div>
+        <Breadcrumbs items={breadcrumbsItems} />
+        {productMapper(product)}
+      </div>
+      <div className={styles.product__distributor}>
+        <img src={distributorSrc[distributor]} alt={distributor} />
+        <div className={styles.product__distributor_msg}>{description}</div>
+      </div>
     </div>
   );
 }

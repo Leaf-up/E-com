@@ -1,31 +1,33 @@
 import { useState, useEffect } from 'react';
 import { runInAction, makeAutoObservable, reaction } from 'mobx';
 import type { TProduct, TDiscount } from '~/api/products/types';
-import { filter, requestCategoty, requestDiscount } from '~/api';
+import { filter, requestCategory, requestDiscount } from '~/api';
 
 const ProductsStoreSettings = {
-  produstList: true,
+  productList: false,
   categoryList: true,
   discountList: false,
 };
 
 class ProductsStore {
   private _products: TProduct[] | null = null;
+  private _total: number | undefined;
   private _category: Record<string, string> | null = null;
   private _discount: TDiscount[] | null = null;
 
   constructor() {
-    if (ProductsStoreSettings.produstList) {
+    if (ProductsStoreSettings.productList) {
       filter().then((response) => {
         if (response.data) {
           runInAction(() => {
             this._products = response.data;
+            this._total = response.total;
           });
         }
       });
     }
     if (ProductsStoreSettings.categoryList) {
-      requestCategoty().then((response) => {
+      requestCategory().then((response) => {
         if (response.data) {
           runInAction(() => {
             const data = (response.data || []).reduce<Record<string, string>>((acc, item) => {
@@ -51,16 +53,22 @@ class ProductsStore {
 
   set products(value: TProduct[] | null) {
     this._products = value;
-    // console.log('Products update:', value);
   }
 
   get products() {
     return this._products;
   }
 
+  set total(value: number | undefined) {
+    this._total = value;
+  }
+
+  get total() {
+    return this._total;
+  }
+
   set category(value: Record<string, string> | null) {
     this._category = value;
-    // console.log('Category update:', value);
   }
 
   get category() {
@@ -69,7 +77,6 @@ class ProductsStore {
 
   set discount(value: TDiscount[] | null) {
     this._discount = value;
-    // console.log('Discount update:', value);
   }
 
   get discount() {
@@ -81,6 +88,7 @@ export const productsStore = new ProductsStore();
 
 export const useProducts = () => {
   const [products, setProducts] = useState<TProduct[] | null>(productsStore.products);
+  const [total, setTotal] = useState<number | undefined>(productsStore.total);
   const [category, setCategory] = useState<Record<string, string> | null>(productsStore.category);
   const [discount, setDiscount] = useState<TDiscount[] | null>(productsStore.discount);
 
@@ -89,6 +97,12 @@ export const useProducts = () => {
       () => productsStore.products,
       (value) => {
         setProducts(value);
+      },
+    );
+    reaction(
+      () => productsStore.total,
+      (value) => {
+        setTotal(value);
       },
     );
     reaction(
@@ -105,5 +119,5 @@ export const useProducts = () => {
     );
   }, []);
 
-  return { products, category, discount };
+  return { products, total, category, discount };
 };
